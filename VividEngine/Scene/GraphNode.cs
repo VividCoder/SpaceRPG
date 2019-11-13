@@ -160,7 +160,7 @@ namespace Vivid.Scene
             // Draw.Render.Image(p, ImgFrame);
         }
 
-        public SceneGraph Graph
+        public SceneGraph2D Graph
         {
             get;
             set;

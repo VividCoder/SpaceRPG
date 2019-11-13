@@ -8,10 +8,74 @@ using Vivid.App;
 using Vivid.State;
 using Vivid.Resonance;
 using Vivid.Resonance.Forms;
+using SpaceEngine;
+using SpaceEngine.Forms;
+using SpaceEngine.Map;
 namespace MapViewer.States
 {
+
     public class TileSetEditor : VividState
     {
+
+        public string ContentPath = "C:/Projects/GameInfo/";
+        public SpaceEngine.Map.TileSet.TileSet CurSet = new SpaceEngine.Map.TileSet.TileSet("new set");
+        public SpaceEngine.Map.Map CurSetMap;
+        public SpaceEngine.Map.Layer.MapLayer CurSetLayer;
+
+        public int setX, setY;
+
+        public WindowForm CrTileSetEditor()
+        {
+            setX = 0;
+            setY = 0;
+
+            WindowForm set_Editor = new WindowForm().Set(200, 200, 700, 600, "TileSet") as WindowForm;
+
+            ToolBarForm tools = new ToolBarForm().Set(0, 0, 700, 25) as ToolBarForm;
+
+            
+
+            set_Editor.body.Add(tools);
+
+            MapViewForm tileSet_View = new MapViewForm(CurSetMap).Set(0, 27, 700, 550) as MapViewForm;
+
+            CurSetMap = new Map(1);
+
+            CurSetLayer = CurSetMap.AddLayer(new SpaceEngine.Map.Layer.MapLayer());
+
+
+
+            set_Editor.body.Add(tileSet_View);
+
+            tools.AddItem("Clear");
+            var tile_Add = tools.AddItem("Add Tile");
+
+            void click_AddTile()
+            {
+
+                var addReq = new RequestFileForm("Add Tile to set...",ContentPath);
+                SUI.Top = addReq;
+
+                addReq.Selected = (path) =>
+                {
+
+                    Console.WriteLine("Loading Tile:" + path);
+
+                    var nTile = new SpaceEngine.Map.Tile.Tile(path);
+
+                    SUI.Top = null;
+
+                };
+
+
+            }
+
+            tile_Add.Click = click_AddTile;
+
+
+            return set_Editor;
+
+        }
 
         public override void InitState()
         {
@@ -61,7 +125,7 @@ namespace MapViewer.States
             menu_TileSet.Menu.AddItem("Save Set");
             menu_TileSet.Menu.AddItem("Exit",click_Exit);
 
-            
+            ui_Root.Add(CrTileSetEditor());
 
 
 

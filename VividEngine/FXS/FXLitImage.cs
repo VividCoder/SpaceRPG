@@ -12,7 +12,7 @@ namespace Vivid.FXS
             set;
         }
 
-        public SceneGraph Graph
+        public SceneGraph2D Graph
         {
             get;
             set;

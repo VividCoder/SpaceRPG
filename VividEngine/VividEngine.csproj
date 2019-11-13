@@ -380,7 +380,7 @@
     <Compile Include="Scene\Node\Entity3D.cs" />
     <Compile Include="Scene\Node\Light3D.cs" />
     <Compile Include="Scene\Node\Node3D.cs" />
-    <Compile Include="Scene\SceneGraph.cs" />
+    <Compile Include="Scene\SceneGraph2D.cs" />
     <Compile Include="Scene\SceneGraph3D.cs" />
     <Compile Include="Scene\SceneInfo.cs" />
     <Compile Include="Scripting\NodeScript.cs" />

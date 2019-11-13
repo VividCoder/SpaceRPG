@@ -10,7 +10,7 @@ namespace Vivid.VFX
             set;
         }
 
-        public static Scene.SceneGraph Graph
+        public static Scene.SceneGraph2D Graph
         {
             get;
             set;

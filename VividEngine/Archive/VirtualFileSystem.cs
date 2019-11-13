@@ -145,7 +145,7 @@ namespace Vivid.Archive
             }
         }
 
-        public void Add(Scene.SceneGraph graph)
+        public void Add(Scene.SceneGraph2D graph)
         {
             AddMediaFromNode(graph.Root);
 
@@ -262,7 +262,7 @@ namespace Vivid.Archive
             }
         }
 
-        public Scene.SceneGraph GetGraph(string name)
+        public Scene.SceneGraph2D GetGraph(string name)
         {
             Console.WriteLine("Searching for graph:" + name);
             foreach (VirtualEntry e in Enteries)
@@ -271,7 +271,7 @@ namespace Vivid.Archive
                 if (e.Name == name)
                 {
                     Console.WriteLine("Found Graph:" + name);
-                    Scene.SceneGraph ng = new Scene.SceneGraph();
+                    Scene.SceneGraph2D ng = new Scene.SceneGraph2D();
                     Load(e);
                     MemoryStream ms = new MemoryStream(e.RawData);
                     BinaryReader r = new BinaryReader(ms);

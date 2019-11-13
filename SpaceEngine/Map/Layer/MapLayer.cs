@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceEngine.Map.Layer
 {
-    class MapLayer
+    public class MapLayer
     {
     }
 }

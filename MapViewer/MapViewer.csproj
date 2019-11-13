@@ -60,6 +60,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +80,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SpaceEngine\SpaceEngine.csproj">
+      <Project>{339bc928-4aaf-4214-b478-9813ebb24be7}</Project>
+      <Name>SpaceEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VividEngine\VividEngine.csproj">
       <Project>{4a8424b0-78b1-4a0f-a217-1c884d863e30}</Project>
       <Name>VividEngine</Name>

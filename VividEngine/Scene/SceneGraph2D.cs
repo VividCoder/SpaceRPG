@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Vivid.Scene
 {
-    public class SceneGraph
+    public class SceneGraph2D
     {
         public ClassIO ClassCopy
         {
@@ -67,7 +67,7 @@ namespace Vivid.Scene
             set;
         }
 
-        public SceneGraph()
+        public SceneGraph2D()
         {
             Running = false;
             X = 0;

@@ -9,6 +9,8 @@ namespace Vivid.Resonance.Forms
 {
     public delegate void SelectFile(string pth);
 
+
+
     public class RequestFileForm : WindowForm
     {
         public SelectFile Selected = null;

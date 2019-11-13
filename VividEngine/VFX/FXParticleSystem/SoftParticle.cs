@@ -13,7 +13,7 @@ namespace Vivid.VFX
 
         public override void Render()
         {
-            Scene.SceneGraph g = VFX.VisualFX.Graph;
+            Scene.SceneGraph2D g = VFX.VisualFX.Graph;
 
             int sw = Vivid.App.VividApp.W;
             int sh = Vivid.App.VividApp.H;

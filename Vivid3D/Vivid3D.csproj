@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SharpFont.4.0.1\build\SharpFont.props" Condition="Exists('..\packages\SharpFont.4.0.1\build\SharpFont.props')" />
+  <Import Project="..\packages\SharpFont.Dependencies.2.6\build\SharpFont.Dependencies.props" Condition="Exists('..\packages\SharpFont.Dependencies.2.6\build\SharpFont.Dependencies.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5C4EE52-BE26-4517-B32E-4EA10B224C8A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vivid</RootNamespace>
+    <AssemblyName>Vivid</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AssimpNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=0d51b391f59f42a6, processorArchitecture=MSIL">
+      <HintPath>..\StarRPG\packages\AssimpNet.4.1.0\lib\net40\AssimpNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CSScriptLibrary, Version=3.29.0.0, Culture=neutral, PublicKeyToken=70fcc3d18c749033, processorArchitecture=MSIL">
+      <HintPath>..\packages\CS-Script.bin.3.29.0\lib\net46\CSScriptLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="irrKlang.NET4">
+      <HintPath>..\dotnet-4-64\irrKlang.NET4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.2.0.0\lib\netstandard1.3\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.2.0.0\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Scripting, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Scripting.2.0.0\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Scripting, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Scripting.Common.2.0.0\lib\netstandard1.3\Microsoft.CodeAnalysis.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\CS-Script.bin.3.29.0\lib\net46\Mono.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=3.0.1.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.3.0.1\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="PhysX.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\PhysX.Net.1.0.0-alpha\lib\net471\PhysX.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpFont, Version=4.0.1.200, Culture=neutral, PublicKeyToken=48add4c483071cdf, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpFont.4.0.1\lib\net45\SharpFont.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.FileVersionInfo, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.FileVersionInfo.4.3.0\lib\net46\System.Diagnostics.FileVersionInfo.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.StackTrace.4.3.0\lib\net46\System.Diagnostics.StackTrace.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=1.4.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.1.4.2\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.4.3.0\lib\net463\System.Runtime.InteropServices.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.3.0\lib\net46\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Thread.4.3.0\lib\net46\System.Threading.Thread.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XmlDocument.4.3.0\lib\net46\System.Xml.XmlDocument.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.4.3.0\lib\net46\System.Xml.XPath.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.XDocument.4.3.0\lib\net46\System.Xml.XPath.XDocument.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XInputDotNetPure">
+      <HintPath>E:\VividResearch\Vivid3DStudio\Git\Vivid3DStudio\XInputDotNet-2017.04-2\BinariesX64\Release\XInputDotNetPure.dll</HintPath>
+    </Reference>
+    <Reference Include="zlib.net, Version=1.0.3.0, Culture=neutral, PublicKeyToken=47d7877cb3620160">
+      <HintPath>..\packages\zlib.net.1.0.4.0\lib\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animation\Animator.cs" />
+    <Compile Include="App\AppLog.cs" />
+    <Compile Include="App\VividApp.cs" />
+    <Compile Include="Archive\Compress.cs" />
+    <Compile Include="Archive\VirtualFileSystem.cs" />
+    <Compile Include="Archive\ZLib.cs" />
+    <Compile Include="Audio\Audio.cs" />
+    <Compile Include="Bitmap\PixelMap.cs" />
+    <Compile Include="Cam\VCam.cs" />
+    <Compile Include="Causality\Causealit.cs" />
+    <Compile Include="Composition\Composite.cs" />
+    <Compile Include="Composition\Compositer.cs" />
+    <Compile Include="Composition\CompositerSet.cs" />
+    <Compile Include="Composition\Compositers\BloomCompositer.cs" />
+    <Compile Include="Composition\Compositers\BloomUICompositer.cs" />
+    <Compile Include="Composition\Compositers\BlurCompositer.cs" />
+    <Compile Include="Composition\Compositers\DOFCompositer.cs" />
+    <Compile Include="Composition\Compositers\OutlineCompositer.cs" />
+    <Compile Include="Composition\Compositers\ScreenSpaceReflectionsCompositer.cs" />
+    <Compile Include="Composition\FrameType.cs" />
+    <Compile Include="Composition\FrameTypes\FrameColor.cs" />
+    <Compile Include="Composition\FrameTypes\FrameDepth.cs" />
+    <Compile Include="Composition\FrameTypes\FrameEffect.cs" />
+    <Compile Include="Composition\FrameTypes\FrameNormalMap.cs" />
+    <Compile Include="Composition\FrameTypes\FrameSSRExtras.cs" />
+    <Compile Include="Composition\FrameTypes\FrameUI.cs" />
+    <Compile Include="Data\ClassList.cs" />
+    <Compile Include="Data\Mesh3D.cs" />
+    <Compile Include="Data\Vertex3D.cs" />
+    <Compile Include="Data\VertexData.cs" />
+    <Compile Include="Data\VInfoMap.cs" />
+    <Compile Include="Deffered\DeferdRenderer.cs" />
+    <Compile Include="Deffered\DefferedRendererMRT.cs" />
+    <Compile Include="Draw\IntelliDraw.cs" />
+    <Compile Include="Draw\Pen.cs" />
+    <Compile Include="Draw\Render.cs" />
+    <Compile Include="Effect\Effect.cs" />
+    <Compile Include="Effect\FXDepth.cs" />
+    <Compile Include="Effect\FXG.cs" />
+    <Compile Include="Effect\FXMultiPass.cs" />
+    <Compile Include="Effect\FXParticle.cs" />
+    <Compile Include="Env\EnvRenderer.cs" />
+    <Compile Include="Font2\OrchidFont.cs" />
+    <Compile Include="Font\Font2D.cs" />
+    <Compile Include="Font\FontRenderer.cs" />
+    <Compile Include="Framebuffer\FrameBufferColor.cs" />
+    <Compile Include="Framebuffer\FrameBufferCube.cs" />
+    <Compile Include="Framebuffer\FrameBufferMRT.cs" />
+    <Compile Include="FXS\FXLitImage.cs" />
+    <Compile Include="FX\FXG.cs" />
+    <Compile Include="FX\VEffect.cs" />
+    <Compile Include="Gameplay\AIAgent.cs" />
+    <Compile Include="Gameplay\CameraAgent.cs" />
+    <Compile Include="Gameplay\ClassAgent.cs" />
+    <Compile Include="Gameplay\Gameplay.cs" />
+    <Compile Include="Gameplay\GameplayTemplate.cs" />
+    <Compile Include="Gameplay\InputAgent.cs" />
+    <Compile Include="Gameplay\Standard\InputThrirdPerson.cs" />
+    <Compile Include="Gen\GeoGen.cs" />
+    <Compile Include="Help\IOHelp.cs" />
+    <Compile Include="ImageProcessing\ImageProcessor.cs" />
+    <Compile Include="Import\AssImpImp.cs" />
+    <Compile Include="Import\Import.cs" />
+    <Compile Include="Import\Importer.cs" />
+    <Compile Include="Input\AppInput.cs" />
+    <Compile Include="Input\Input.cs" />
+    <Compile Include="Jobs\JobTimer.cs" />
+    <Compile Include="Lighting\LightMapper\LightMapper.cs" />
+    <Compile Include="Lighting\LightMapper\Omni.cs" />
+    <Compile Include="Material\Material3D.cs" />
+    <Compile Include="Material\MaterialParticle3D.cs" />
+    <Compile Include="Maths\Maths.cs" />
+    <Compile Include="Native\CBridge.cs" />
+    <Compile Include="ParticleSystem\Particle.cs" />
+    <Compile Include="ParticleSystem\ParticleEmitter.cs" />
+    <Compile Include="Physics\PhysicsManager.cs" />
+    <Compile Include="Physics\PyObject.cs" />
+    <Compile Include="Physics\PyType.cs" />
+    <Compile Include="Phys\PhysManager.cs" />
+    <Compile Include="Pick\Picker.cs" />
+    <Compile Include="Pick\PickHelp.cs" />
+    <Compile Include="Pick\PickResult.cs" />
+    <Compile Include="PostProcess\Processes\PPBloom.cs" />
+    <Compile Include="PostProcess\Processes\PPMotionBlur.cs" />
+    <Compile Include="PostProcess\Processes\PPOutLine.cs" />
+    <Compile Include="PostProcess\Processes\VPPBlur.cs" />
+    <Compile Include="PostProcess\VPostProcess.cs" />
+    <Compile Include="PostProcess\VPostProcessRenderer.cs" />
+    <Compile Include="Profiler\Profile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflect\ClassIO.cs" />
+    <Compile Include="Reflect\ClassProperty.cs" />
+    <Compile Include="Resonance\Forms\ButtonForm.cs" />
+    <Compile Include="Resonance\Forms\CheckBoxForm.cs" />
+    <Compile Include="Resonance\Forms\ContextMenuForm.cs" />
+    <Compile Include="Resonance\Forms\DockAreaForm.cs" />
+    <Compile Include="Resonance\Forms\DragObject.cs" />
+    <Compile Include="Resonance\Forms\DragZoneForm.cs" />
+    <Compile Include="Resonance\Forms\DropDownListForm.cs" />
+    <Compile Include="Resonance\Forms\EventForm.cs" />
+    <Compile Include="Resonance\Forms\Graph3DForm.cs" />
+    <Compile Include="Resonance\Forms\HorizontalSplitForm.cs" />
+    <Compile Include="Resonance\Forms\ImageForm.cs" />
+    <Compile Include="Resonance\Forms\ItemForm.cs" />
+    <Compile Include="Resonance\Forms\LabelForm.cs" />
+    <Compile Include="Resonance\Forms\ListForm.cs" />
+    <Compile Include="Resonance\Forms\MainMenuForm.cs" />
+    <Compile Include="Resonance\Forms\PanelForm.cs" />
+    <Compile Include="Resonance\Forms\RequestFileForm.cs" />
+    <Compile Include="Resonance\Forms\ScrollBarV.cs" />
+    <Compile Include="Resonance\Forms\SelectionForm.cs" />
+    <Compile Include="Resonance\Forms\TextAreaForm.cs" />
+    <Compile Include="Resonance\Forms\TextBoxForm.cs" />
+    <Compile Include="Resonance\Forms\ToolBarForm.cs" />
+    <Compile Include="Resonance\Forms\TreeNode.cs" />
+    <Compile Include="Resonance\Forms\TreeViewForm.cs" />
+    <Compile Include="Resonance\Forms\VerticalSplitterForm.cs" />
+    <Compile Include="Resonance\Forms\VideoForm.cs" />
+    <Compile Include="Resonance\Forms\WindowForm.cs" />
+    <Compile Include="Resonance\SimpleUI.cs" />
+    <Compile Include="Resonance\UI.cs" />
+    <Compile Include="Resonance\UIDock.cs" />
+    <Compile Include="Resonance\UIForm.cs" />
+    <Compile Include="Scene\Anim\AnimFrame.cs" />
+    <Compile Include="Scene\Anim\AnimGraph.cs" />
+    <Compile Include="Scene\Anim\AnimNode.cs" />
+    <Compile Include="Scene\Anim\FrameTypes\NodeFrame.cs" />
+    <Compile Include="Scene\Anim\Nodes\NodeNode.cs" />
+    <Compile Include="Scene\Bounds.cs" />
+    <Compile Include="Scene\ClassLink.cs" />
+    <Compile Include="Scene\Flare\Flare3D.cs" />
+    <Compile Include="Scene\Flare\FlareBloom.cs" />
+    <Compile Include="Scene\FusionBase.cs" />
+    <Compile Include="Scene\GenList.cs" />
+    <Compile Include="Scene\GraphLight.cs" />
+    <Compile Include="Scene\GraphNode.cs" />
+    <Compile Include="Scene\GraphParticle3D.cs" />
+    <Compile Include="Scene\GraphSprite.cs" />
+    <Compile Include="Scene\Node\AnimEntity3D.cs" />
+    <Compile Include="Scene\Node\Cam3D.cs" />
+    <Compile Include="Scene\Node\Entity3D.cs" />
+    <Compile Include="Scene\Node\Light3D.cs" />
+    <Compile Include="Scene\Node\Node3D.cs" />
+    <Compile Include="Scene\SceneGraph.cs" />
+    <Compile Include="Scene\SceneGraph3D.cs" />
+    <Compile Include="Scene\SceneInfo.cs" />
+    <Compile Include="Scripting.evaluator.cs" />
+    <Compile Include="Scripting.Extensions.cs" />
+    <Compile Include="Scripting.native.cs" />
+    <Compile Include="Scripting\NodeScript.cs" />
+    <Compile Include="Script\NodeScriptLink.cs" />
+    <Compile Include="Script\Nodes\BaseNodeScript.cs" />
+    <Compile Include="Script\ScriptBase.cs" />
+    <Compile Include="Script\ScriptList.cs" />
+    <Compile Include="Script\ScriptTemplate.cs" />
+    <Compile Include="Settings\Quality.cs" />
+    <Compile Include="Sound\VSoundSys.cs" />
+    <Compile Include="Speech\SpeechOut.cs" />
+    <Compile Include="State\VividState.cs" />
+    <Compile Include="Syn\Engine\CFuncLink.cs" />
+    <Compile Include="Syn\Engine\CodeScope.cs" />
+    <Compile Include="Syn\Engine\CodeToken.cs" />
+    <Compile Include="Syn\Engine\CompiledSource.cs" />
+    <Compile Include="Syn\Engine\Compiler.cs" />
+    <Compile Include="Syn\Engine\LinkEngineBase.cs" />
+    <Compile Include="Syn\Engine\ManagedHost.cs" />
+    <Compile Include="Syn\Engine\Module.cs" />
+    <Compile Include="Syn\Engine\Parser.cs" />
+    <Compile Include="Syn\Engine\ParserClassStatement.cs" />
+    <Compile Include="Syn\Engine\ParserCodeBody.cs" />
+    <Compile Include="Syn\Engine\ParserExpr.cs" />
+    <Compile Include="Syn\Engine\ParserFunc.cs" />
+    <Compile Include="Syn\Engine\ParserMod.cs" />
+    <Compile Include="Syn\Engine\ScriptModule.cs" />
+    <Compile Include="Syn\Engine\ScriptSource.cs" />
+    <Compile Include="Syn\Engine\Struct.cs" />
+    <Compile Include="Syn\Engine\Structs\Compute\ComputeCodeTypes\ComputeCodeAssign.cs" />
+    <Compile Include="Syn\Engine\Structs\Compute\ComputeCodeTypes\ComputeCodeBase.cs" />
+    <Compile Include="Syn\Engine\Structs\Compute\ComputeCodeTypes\ComputeCodeExpr.cs" />
+    <Compile Include="Syn\Engine\Structs\Compute\ComputeCodeTypes\ComputeCodeFor.cs" />
+    <Compile Include="Syn\Engine\Structs\Compute\StructCompute.cs" />
+    <Compile Include="Syn\Engine\Structs\Compute\StructComputeCode.cs" />
+    <Compile Include="Syn\Engine\Structs\Compute\StructComputeFunc.cs" />
+    <Compile Include="Syn\Engine\Structs\Compute\StructComputeStruct.cs" />
+    <Compile Include="Syn\Engine\Structs\Game\GameState.cs" />
+    <Compile Include="Syn\Engine\Structs\Game\GameStruct.cs" />
+    <Compile Include="Syn\Engine\Structs\Game\StructStateSub.cs" />
+    <Compile Include="Syn\Engine\Structs\StructAssign.cs" />
+    <Compile Include="Syn\Engine\Structs\StructBreak.cs" />
+    <Compile Include="Syn\Engine\Structs\StructCall.cs" />
+    <Compile Include="Syn\Engine\Structs\StructCallPars.cs" />
+    <Compile Include="Syn\Engine\Structs\StructClassCall.cs" />
+    <Compile Include="Syn\Engine\Structs\StructCode.cs" />
+    <Compile Include="Syn\Engine\Structs\StructDefineVars.cs" />
+    <Compile Include="Syn\Engine\Structs\StructEntry.cs" />
+    <Compile Include="Syn\Engine\Structs\StructExpr.cs" />
+    <Compile Include="Syn\Engine\Structs\StructFlatCall.cs" />
+    <Compile Include="Syn\Engine\Structs\StructFor.cs" />
+    <Compile Include="Syn\Engine\Structs\StructForEach.cs" />
+    <Compile Include="Syn\Engine\Structs\StructFunc.cs" />
+    <Compile Include="Syn\Engine\Structs\StructIf.cs" />
+    <Compile Include="Syn\Engine\Structs\StructModule.cs" />
+    <Compile Include="Syn\Engine\Structs\StructPar.cs" />
+    <Compile Include="Syn\Engine\Structs\StructParameters.cs" />
+    <Compile Include="Syn\Engine\Structs\StructPars.cs" />
+    <Compile Include="Syn\Engine\Structs\StructReturn.cs" />
+    <Compile Include="Syn\Engine\Structs\StructStop.cs" />
+    <Compile Include="Syn\Engine\Structs\StructSub.cs" />
+    <Compile Include="Syn\Engine\Structs\StructWhile.cs" />
+    <Compile Include="Syn\Engine\Structs\Var.cs" />
+    <Compile Include="Syn\Engine\Structs\VarType.cs" />
+    <Compile Include="Syn\Engine\Tokenizer - Copy.cs" />
+    <Compile Include="Syn\SynApp.cs" />
+    <Compile Include="Syn\SynC.cs" />
+    <Compile Include="Syn\SynFunc.cs" />
+    <Compile Include="Syn\SynGame.cs" />
+    <Compile Include="Syn\SynGameState.cs" />
+    <Compile Include="Syn\SynHost.cs" />
+    <Compile Include="Syn\SynModule.cs" />
+    <Compile Include="Syn\SynScope.cs" />
+    <Compile Include="Syn\SynScript.cs" />
+    <Compile Include="Syn\SynToC.cs" />
+    <Compile Include="Syn\SynVar.cs" />
+    <Compile Include="Terrain\Terrain3D.cs" />
+    <Compile Include="Texture\Texture2D.cs" />
+    <Compile Include="Texture\TextureBase.cs" />
+    <Compile Include="Texture\TextureCube.cs" />
+    <Compile Include="Texture\TextureDepth.cs" />
+    <Compile Include="Texture\TextureRaw.cs" />
+    <Compile Include="Texture\TextureUtil.cs" />
+    <Compile Include="Tex\Tex2D.cs" />
+    <Compile Include="Tex\TexBase.cs" />
+    <Compile Include="Transient\Transient.cs" />
+    <Compile Include="Util\Texture\LeafPacker.cs" />
+    <Compile Include="Util\Texture\NextPixelMap.cs" />
+    <Compile Include="VFX\FXParticleSystem\ParticleBase.cs" />
+    <Compile Include="VFX\FXParticleSystem\SoftParticle.cs" />
+    <Compile Include="VFX\FXParticleSystem\VFXParticleSystem.cs" />
+    <Compile Include="VFX\VFXBase.cs" />
+    <Compile Include="VFX\VisualFX.cs" />
+    <Compile Include="Video\Video.cs" />
+    <Compile Include="Visuals\Renderer.cs" />
+    <Compile Include="Visuals\RendererSimple.cs" />
+    <Compile Include="Visuals\RenderLayer.cs" />
+    <Compile Include="Visuals\RLDepth.cs" />
+    <Compile Include="Visuals\RLMultiPass.cs" />
+    <Compile Include="Visuals\RLParticle.cs" />
+    <Compile Include="Visuals\RLSimple.cs" />
+    <Compile Include="Visuals\RMultiPass.cs" />
+    <Compile Include="Visuals\RParticle.cs" />
+    <Compile Include="Visuals\Visualizer.cs" />
+    <Compile Include="Visuals\VSimple.cs" />
+    <Compile Include="Visuals\VVBO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AssimpNet.4.1.0\build\AssimpNet.targets" Condition="Exists('..\packages\AssimpNet.4.1.0\build\AssimpNet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\AssimpNet.4.1.0\build\AssimpNet.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AssimpNet.4.1.0\build\AssimpNet.targets'))" />
+    <Error Condition="!Exists('..\packages\SharpFont.Dependencies.2.6\build\SharpFont.Dependencies.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SharpFont.Dependencies.2.6\build\SharpFont.Dependencies.props'))" />
+    <Error Condition="!Exists('..\packages\SharpFont.4.0.1\build\SharpFont.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SharpFont.4.0.1\build\SharpFont.props'))" />
+    <Error Condition="!Exists('..\packages\PhysX.Net.1.0.0-alpha\build\PhysX.Net.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PhysX.Net.1.0.0-alpha\build\PhysX.Net.targets'))" />
+    <Error Condition="!Exists('..\StarRPG\packages\AssimpNet.4.1.0\build\AssimpNet.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\StarRPG\packages\AssimpNet.4.1.0\build\AssimpNet.targets'))" />
+  </Target>
+  <Import Project="..\packages\PhysX.Net.1.0.0-alpha\build\PhysX.Net.targets" Condition="Exists('..\packages\PhysX.Net.1.0.0-alpha\build\PhysX.Net.targets')" />
+  <Import Project="..\StarRPG\packages\AssimpNet.4.1.0\build\AssimpNet.targets" Condition="Exists('..\StarRPG\packages\AssimpNet.4.1.0\build\AssimpNet.targets')" />
+</Project>

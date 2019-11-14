@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Vivid.Resonance.Forms;
 using Vivid.Resonance;
 using OpenTK;
-
+using Vivid;
+using Vivid.App;
+using Vivid.Scene;
+using Vivid.Tex;
 namespace SpaceEngine.Forms
 {
 
@@ -44,6 +47,13 @@ namespace SpaceEngine.Forms
 
         public List<HighLightTile> Highlights = new List<HighLightTile>();
 
+        public void UpdateGraph()
+        {
+
+            Graph = Map.UpdateGraph();
+
+        }
+
         public MapViewForm(Map.Map map)
         {
 
@@ -53,6 +63,13 @@ namespace SpaceEngine.Forms
             {
 
                 DrawFormSolid(new Vector4(0, 0.8f, 0.8f, 1.0f));
+
+                if (Graph != null) {
+
+                    Console.WriteLine("Rendering map");
+                }
+
+
 
             };
 

@@ -51,5 +51,12 @@ namespace SpaceEngine.Map.Tile
             Image = new Tex2D(imagePath, true);
         }
 
+        public Tile(Tex2D tex)
+        {
+
+            Image = tex;
+
+        }
+
     }
 }

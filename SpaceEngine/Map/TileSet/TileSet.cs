@@ -38,11 +38,64 @@ namespace SpaceEngine.Map.TileSet
 
         }
 
+        void Load(string path)
+        {
+
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+
+            int c = br.ReadInt32();
+
+            for (int i = 0; i < c; i++)
+            {
+
+                bool alpha = br.ReadBoolean();
+
+                int w = br.ReadInt32();
+                int h = br.ReadInt32();
+
+
+                int siz = 0;
+                if (!alpha)
+                {
+                    siz = w * h * 3;
+                }
+                else
+                {
+                    siz = w * h * 4;
+                }
+
+                byte[] data = br.ReadBytes(siz);
+
+                var tex = new Vivid.Tex.Tex2D(data, alpha, w, h);
+
+                var ntile = new Tile.Tile(tex);
+
+                Tiles.Add(ntile);
+
+            }
+        }
+
         void Save(string path)
         {
 
             FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);
             BinaryWriter bw = new BinaryWriter(fs);
+
+            bw.Write(Tiles.Count);
+            
+            for(int i = 0; i < Tiles.Count; i++)
+            {
+
+                bw.Write(Tiles[i].Image.Alpha);
+
+                bw.Write(Tiles[i].Image.Width);
+                bw.Write(Tiles[i].Image.Height);
+
+                bw.Write(Tiles[i].Image.RawData);
+
+
+            }
 
             bw.Flush();
             fs.Flush();

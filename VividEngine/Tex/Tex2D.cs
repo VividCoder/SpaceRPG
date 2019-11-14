@@ -154,6 +154,38 @@ namespace Vivid.Tex
             GL.BindTexture(TextureTarget.Texture2D, 0);
         }
 
+        public Tex2D(byte[] data,bool alpha,int w,int h)
+        {
+
+            Width = w;
+            Height = h;
+            Alpha = alpha;
+            RawData = data;
+
+            GL.Enable(EnableCap.Texture2D);
+            ID = GL.GenTexture();
+
+            GL.BindTexture(TextureTarget.Texture2D, ID);
+
+            if (alpha)
+            {
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, Width, Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, RawData);
+            }
+            else
+            {
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb, Width, Height, 0, PixelFormat.Rgb, PixelType.UnsignedByte, RawData);
+            }
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.ClampToEdge);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.ClampToEdge);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+
+            GL.BindTexture(TextureTarget.Texture2D, 0);
+
+        }
+
         public Tex2D(string path, bool alpha, byte[] data)
         {
             GL.Enable(EnableCap.Texture2D);

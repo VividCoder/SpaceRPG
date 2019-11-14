@@ -69,7 +69,7 @@ namespace Vivid.Resonance.Forms
                 title = "Select file";
             }
 
-            Set(VividApp.W / 2 - 200, VividApp.H / 2 - 250, 400, 500, title);
+            Set(AppInfo.W / 2 - 200, AppInfo.H / 2 - 250, 400, 500, title);
 
             Files = new ListForm().Set(10, 60, 370, 350, "") as ListForm;
             Add(Files);

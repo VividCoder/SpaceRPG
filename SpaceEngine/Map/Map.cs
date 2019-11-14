@@ -113,8 +113,8 @@ namespace SpaceEngine.Map
 
             }
             Graph.Add(Lights.ToArray());
-            Graph.X = -32+ Vivid.App.AppInfo.W/2;// (TileWidth * Layers[0].Width) / 2;
-            Graph.Y = -32+ Vivid.App.AppInfo.H / 2;// (TileHeight * Layers[0].Height) / 2;
+            Graph.X = -32+ Vivid.App.AppInfo.RW/2;// (TileWidth * Layers[0].Width) / 2;
+            Graph.Y = -32+ Vivid.App.AppInfo.RH / 2;// (TileHeight * Layers[0].Height) / 2;
 
 
             //foreach(var l in Lights)

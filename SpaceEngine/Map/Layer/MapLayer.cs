@@ -27,6 +27,21 @@ namespace SpaceEngine.Map.Layer
             set;
         }
 
+        public void Fill(Tile.Tile tile)
+        {
+
+            for(int y = 0; y < Height; y++)
+            {
+                for(int x = 0; x < Width; x++)
+                {
+
+                    Tiles[x, y] = tile;
+
+                }
+            }
+
+        }
+
         public MapLayer(int width,int height)
         {
 

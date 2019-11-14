@@ -17,6 +17,7 @@ namespace Vivid.Draw
         public float Z = 0.0f;
         public float[] xc;
         public float[] yc;
+        public bool flipuv = false;
         public bool simple = true;
     }
 
@@ -24,7 +25,7 @@ namespace Vivid.Draw
     {
         public List<DrawData> Data = new List<DrawData>();
 
-        public void AddDraw(float[] xc,float[] yc,float z,Tex2D img,Vector4 col)
+        public void AddDraw(float[] xc,float[] yc,float z,Tex2D img,Vector4 col,bool flipuv = false)
         {
             DrawData draw_data = new DrawData();
             draw_data.Img2D = img;
@@ -35,11 +36,12 @@ namespace Vivid.Draw
             //draw_data.H = h;
             draw_data.xc = xc;
             draw_data.yc = yc;
+            draw_data.flipuv = flipuv;
             draw_data.simple = false;
             draw_data.Z = z;
             Data.Add(draw_data);
         }
-        public void AddDraw(int x, int y, int w, int h, Texture2D img, Vector4 col, float z)
+        public void AddDraw(int x, int y, int w, int h, Texture2D img, Vector4 col, float z,bool flipuv = false)
         {
             DrawData draw_data = new DrawData();
             draw_data.Img = img;
@@ -49,6 +51,7 @@ namespace Vivid.Draw
             draw_data.W = w;
             draw_data.H = h;
             draw_data.Z = z;
+            draw_data.flipuv = flipuv;
             Data.Add(draw_data);
         }
     }
@@ -113,12 +116,12 @@ namespace Vivid.Draw
             return draw_listr;
         }
 
-        public static void DrawImg(int x, int y, int w, int h, Texture2D img, Vector4 col)
+        public static void DrawImg(int x, int y, int w, int h, Texture2D img, Vector4 col,bool flipuv = false)
         {
             if (!begun) return;
             var draw_list = GetDrawList(img);
 
-            draw_list.AddDraw(x, y, w, h, img, col, Draw_Z);
+            draw_list.AddDraw(x, y, w, h, img, col, Draw_Z,flipuv);
 
             Draw_Z += 0.002f;
         }
@@ -446,9 +449,16 @@ namespace Vivid.Draw
                     vert_data[vert_i++] = data.Y;
                     vert_data[vert_i++] = data.Z;
 
-                    vert_data[vert_i++] = 0;
-                    vert_data[vert_i++] = 0;
-
+                    if (data.flipuv)
+                    {
+                        vert_data[vert_i++] = 0;
+                        vert_data[vert_i++] = 1;
+                    }
+                    else
+                    {
+                        vert_data[vert_i++] = 0;
+                        vert_data[vert_i++] = 0;
+                    }
                     vert_data[vert_i++] = data.Col.X;
                     vert_data[vert_i++] = data.Col.Y;
                     vert_data[vert_i++] = data.Col.Z;
@@ -458,8 +468,15 @@ namespace Vivid.Draw
                     vert_data[vert_i++] = data.Y;
                     vert_data[vert_i++] = data.Z;
 
-                    vert_data[vert_i++] = 1;
-                    vert_data[vert_i++] = 0;
+                    if (data.flipuv)
+                    {
+                        vert_data[vert_i++] = 1;
+                        vert_data[vert_i++] = 1;
+                     }
+                    else { 
+                        vert_data[vert_i++] = 1;
+                        vert_data[vert_i++] = 0;
+                    }
 
                     vert_data[vert_i++] = data.Col.X;
                     vert_data[vert_i++] = data.Col.Y;
@@ -470,9 +487,17 @@ namespace Vivid.Draw
                     vert_data[vert_i++] = data.Y + data.H;
                     vert_data[vert_i++] = data.Z;
 
-                    vert_data[vert_i++] = 1;
-                    vert_data[vert_i++] = 1;
+                    if (data.flipuv)
+                    {
+                        vert_data[vert_i++] = 1;
+                        vert_data[vert_i++] = -0;
 
+                    }
+                    else
+                    {
+                        vert_data[vert_i++] = 1;
+                        vert_data[vert_i++] = 1;
+                    }
                     vert_data[vert_i++] = data.Col.X;
                     vert_data[vert_i++] = data.Col.Y;
                     vert_data[vert_i++] = data.Col.Z;
@@ -482,9 +507,16 @@ namespace Vivid.Draw
                     vert_data[vert_i++] = data.Y + data.H;
                     vert_data[vert_i++] = data.Z;
 
-                    vert_data[vert_i++] = 0;
-                    vert_data[vert_i++] = 1;
-
+                    if (data.flipuv)
+                    {
+                        vert_data[vert_i++] = 0;
+                        vert_data[vert_i++] = 0;
+                    }
+                    else
+                    {
+                        vert_data[vert_i++] = 0;
+                        vert_data[vert_i++] = 1;
+                    }
                     vert_data[vert_i++] = data.Col.X;
                     vert_data[vert_i++] = data.Col.Y;
                     vert_data[vert_i++] = data.Col.Z;

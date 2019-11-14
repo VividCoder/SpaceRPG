@@ -25,8 +25,8 @@ namespace Vivid.FXS
         public override void SetPars()
         {
             float sw, sh;
-            sw = Vivid.App.VividApp.W;
-            sh = Vivid.App.VividApp.H;
+            sw = Vivid.App.AppInfo.RW;
+            sh = Vivid.App.AppInfo.RH;
             float px, py;
 
             // px = Light.X + Graph.X; py = Light.Y + Graph.Y;

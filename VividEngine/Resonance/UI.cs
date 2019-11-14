@@ -299,7 +299,7 @@ namespace Vivid.Resonance
                     ActiveMenu.Draw.Invoke();
                     Vivid.Draw.IntelliDraw.EndDraw();
                 }
-                Texture.Texture2D ntex = new Texture.Texture2D(Vivid.App.VividApp.W, Vivid.App.VividApp.H);
+                Texture.Texture2D ntex = new Texture.Texture2D(Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
 
                 ntex.CopyTex(0, 0);
                 //  OpenTK.Graphics.OpenGL4.GL.Clear(OpenTK.Graphics.OpenGL4.ClearBufferMask.ColorBufferBit);
@@ -435,7 +435,7 @@ namespace Vivid.Resonance
 
                 if (TopB > 0)
                 {
-                    Texture.Texture2D ntex = new Texture.Texture2D(Vivid.App.VividApp.W, Vivid.App.VividApp.H);
+                    Texture.Texture2D ntex = new Texture.Texture2D(Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
                     ntex.CopyTex(0, 0);
                     OpenTK.Graphics.OpenGL4.GL.Clear(OpenTK.Graphics.OpenGL4.ClearBufferMask.ColorBufferBit);
                     // Iris3D.Draw.Pen2D.RectBlur2(0, 0, Iris3D.App.IrisApp.W, Iris3D.App.IrisApp.H, ntex, new OpenTK.Vector4(1, 1, 1, 1), TopB);

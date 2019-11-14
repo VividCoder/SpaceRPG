@@ -21,8 +21,8 @@ namespace MapViewer.States
         public SpaceEngine.Map.TileSet.TileSet CurSet = new SpaceEngine.Map.TileSet.TileSet("new set");
         public SpaceEngine.Map.Map CurSetMap;
         public SpaceEngine.Map.Layer.MapLayer CurSetLayer;
-        public int setWidth = 64;
-        public int setHeight = 64;
+        public int setWidth = 16;
+        public int setHeight = 16;
         public int setX, setY;
 
         public WindowForm CrTileSetEditor()
@@ -49,7 +49,7 @@ namespace MapViewer.States
 
             set_Editor.body.Add(tools);
 
-            MapViewForm tileSet_View = new MapViewForm(CurSetMap).Set(0, 27, 700, 550) as MapViewForm;
+            MapViewForm tileSet_View = new MapViewForm(CurSetMap).Set(0,25,set_Editor.body.W,set_Editor.body.H-25) as MapViewForm;
 
             //CurSetMap = new Map(1);
 
@@ -75,7 +75,10 @@ namespace MapViewer.States
 
                     var nTile = new SpaceEngine.Map.Tile.Tile(path);
 
-                    CurSetLayer.SetTile(setX, setY, nTile);
+
+
+                    //CurSetLayer.SetTile(setX, setY, nTile);
+                    CurSetLayer.Fill(nTile);
                     setX++;
                     tileSet_View.UpdateGraph();
 

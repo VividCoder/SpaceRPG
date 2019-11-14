@@ -79,16 +79,19 @@ namespace SpaceEngine.Forms
             PreDraw = () =>
             {
 
-                //MapFrame.Bind(0);
+                MapFrame.Bind();
                 if (Graph != null)
                 {
 
                     //Console.WriteLine("Rendering map");
-
+                    AppInfo.RW = AppInfo.RW;
+                    AppInfo.RH = AppInfo.RH;
                     Graph.Draw();
+                    Graph.Rot += 1.0f;
 
                 }
-                //MapFrame.Release();
+                MapFrame.Release();
+
 
 
             };
@@ -97,7 +100,7 @@ namespace SpaceEngine.Forms
             {
 
                 DrawFormSolid(new Vector4(0, 0.8f, 0.8f, 1.0f));
-
+                DrawForm(MapFrame.BB,0,0,-1,-1,true);
                
 
 

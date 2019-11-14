@@ -1,11 +1,11 @@
-﻿using Vivid.Reflect;
-using Vivid.Util;
-
-using OpenTK;
+﻿using OpenTK;
 
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+using Vivid.Reflect;
+using Vivid.Util;
 
 namespace Vivid.Scene
 {
@@ -125,8 +125,8 @@ namespace Vivid.Scene
 
         public void SyncCoords()
         {
-            int sw = Vivid.App.VividApp.W;
-            int sh = Vivid.App.VividApp.H;
+            int sw = Vivid.App.AppInfo.RW;
+            int sh = Vivid.App.AppInfo.RH;
 
             float[] ox = new float[4];
             float[] oy = new float[4];

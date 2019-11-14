@@ -102,8 +102,9 @@ namespace Vivid.App
         private string _Title = "";
         private OpenTK.Graphics.Color4 _BgCol = OpenTK.Graphics.Color4.Black;
         public static int W, H;
-        public static int RW, RH;
+//        public static int RW, RH;
 
+       
         public static VividState InitState = null;
 
         public static Stack<VividState> States = new Stack<VividState>();
@@ -176,10 +177,10 @@ namespace Vivid.App
             AppInfo.RH = height;
             AppInfo.Full = full;
             AppInfo.App = app;
-            W = width;
-            H = height;
-            RW = width;
-            RH = height;
+            AppInfo.W = width;
+            AppInfo.H = height;
+            AppInfo.RW = width;
+            AppInfo.RH = height;
             Import.Import.RegDefaults();
             Pen2D.InitDraw();
             //CursorVisible = false;

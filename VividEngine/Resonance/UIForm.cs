@@ -195,8 +195,8 @@ namespace Vivid.Resonance
 
             //  Pen2D.Line(GX + x, GY + y, GX + x2, GY + y2);
         }
-
-        public void DrawForm(Texture2D tex, int x = 0, int y = 0, int w = -1, int h = -1)
+        
+        public void DrawForm(Texture2D tex, int x = 0, int y = 0, int w = -1, int h = -1,bool flipuv = false)
         {
             Pen2D.BlendMod = PenBlend.Alpha;
 
@@ -208,7 +208,7 @@ namespace Vivid.Resonance
                 dw = w;
                 dh = h;
             }
-            Vivid.Draw.IntelliDraw.DrawImg(GX + x + OffX, GY + y + OffY, dw, dh, tex, Col);
+            Vivid.Draw.IntelliDraw.DrawImg(GX + x + OffX, GY + y + OffY, dw, dh, tex, Col,flipuv);
 
             // Pen2D.Rect(GX + x + OffX, GY + y + OffY, dw, dh, tex, Col * UI.BootAlpha);
         }
@@ -253,7 +253,7 @@ namespace Vivid.Resonance
                 // GL.Viewport(form.ViewX, form.ViewY, form.ViewW, form.ViewH);
             }
         }
-
+       
         public void DrawFormSolid(Vector4 col, int x = 0, int y = 0, int w = -1, int h = -1)
         {
             if (w == -1)

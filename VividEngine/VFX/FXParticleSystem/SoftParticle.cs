@@ -15,8 +15,8 @@ namespace Vivid.VFX
         {
             Scene.SceneGraph2D g = VFX.VisualFX.Graph;
 
-            int sw = Vivid.App.VividApp.W;
-            int sh = Vivid.App.VividApp.H;
+            int sw = Vivid.App.AppInfo.W;
+            int sh = Vivid.App.AppInfo.H;
 
             float[] ox = new float[4];
             float[] oy = new float[4];

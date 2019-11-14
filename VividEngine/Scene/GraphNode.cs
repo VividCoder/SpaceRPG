@@ -40,6 +40,24 @@ namespace Vivid.Scene
             ClassCopy.Reset();
         }
 
+        public int TileX
+        {
+            get;
+            set;
+        }
+
+        public int TileY
+        {
+            get;
+            set;
+        }
+
+        public int TileZ
+        {
+            get;
+            set;
+        }
+
         public System.Drawing.Bitmap ImgBitmap
         {
             get => _ImgBit;

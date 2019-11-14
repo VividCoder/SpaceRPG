@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,21 @@ namespace SpaceEngine.Map.TileSet
         {
 
             Tiles.Add(tile);
+
+        }
+
+        void Save(string path)
+        {
+
+            FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+            BinaryWriter bw = new BinaryWriter(fs);
+
+            bw.Flush();
+            fs.Flush();
+            bw.Close();
+            fs.Close();
+            fs = null;
+            bw = null;
 
         }
 

@@ -53,6 +53,37 @@ namespace MapViewer.States
             MapViewForm tileSet_View = new MapViewForm(CurSetMap).Set(0,25,set_Editor.body.W,set_Editor.body.H-25) as MapViewForm;
             tView = tileSet_View;
             //CurSetMap = new Map(1);
+            tView.MouseLeave = () =>
+            {
+                ClearHL(tileSet_View);
+
+            };
+            tView.MouseMove = (x, y, dx, dy) =>
+            {
+
+                if (tView.Graph != null)
+                {
+                    var node = tView.Graph.Pick(x, y);
+
+                    if (node != null)
+                    {
+
+
+                        tView.Map.HL.Clear();
+                        tView.Map.HighlightTile(node.TileX, node.TileY);
+                        tileSet_View.UpdateGraph();
+                        tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
+                        tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
+                        // Console.WriteLine("MX:" + x + " MY:" + y);
+                    }
+                    else
+                    {
+
+                        ClearHL(tileSet_View);
+
+                    }
+                }
+            };
 
             CurSetLayer = CurSetMap.AddLayer(new SpaceEngine.Map.Layer.MapLayer(setWidth,setHeight));
 
@@ -76,7 +107,7 @@ namespace MapViewer.States
 
                     var nTile = new SpaceEngine.Map.Tile.Tile(path);
 
-
+                    CurSet.Tiles.Add(nTile);
 
                     CurSetLayer.SetTile(setX, setY, nTile);
                    // CurSetLayer.Fill(nTile);
@@ -104,7 +135,24 @@ namespace MapViewer.States
 
         }
 
+        private void ClearHL(MapViewForm tileSet_View)
+        {
+            if (tView.Graph != null)
+            {
 
+                if (tView.Map.HL.Count > 0)
+                {
+
+                    tView.Map.HL.Clear();
+                    tileSet_View.UpdateGraph();
+                    tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
+                    tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
+
+
+                }
+
+            }
+        }
 
         public override void InitState()
         {
@@ -149,9 +197,21 @@ namespace MapViewer.States
 
             }
 
+            void click_SaveSet(int b)
+            {
+                var req = new RequestFileForm("Save set as..", ContentPath);
+
+                req.Selected = (path) =>
+                {
+
+                    CurSet.Save(path);
+
+                };
+            }
+
             menu_TileSet.Menu.AddItem("New Set",click_NewSet);
             menu_TileSet.Menu.AddItem("Load Set");
-            menu_TileSet.Menu.AddItem("Save Set");
+            menu_TileSet.Menu.AddItem("Save Set",click_SaveSet);
             menu_TileSet.Menu.AddItem("Exit",click_Exit);
 
             ui_Root.Add(CrTileSetEditor());
@@ -167,6 +227,7 @@ namespace MapViewer.States
             Vivid.Texture.Texture2D.UpdateLoading();
 
             int hx, hy;
+            return;
 
             if (tView.Graph != null)
             {

@@ -127,6 +127,9 @@ namespace SpaceEngine.Map
 
                         var tileSpr = new GraphSprite(tile.Image,TileWidth,TileHeight);
 
+                        tileSpr.TileX = x;
+                        tileSpr.TileY = y;
+
                         int mx = x * TileWidth;
                         int my = y * TileHeight;
 

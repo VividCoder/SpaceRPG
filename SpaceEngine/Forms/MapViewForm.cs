@@ -47,6 +47,8 @@ namespace SpaceEngine.Forms
 
         public List<HighLightTile> Highlights = new List<HighLightTile>();
 
+        public Vivid.FrameBuffer.FrameBufferColor MapFrame;
+
         public void UpdateGraph()
         {
 
@@ -59,18 +61,44 @@ namespace SpaceEngine.Forms
 
             Map = map;
 
+            if (MapFrame == null)
+            {
+
+                //MapFrame = new Vivid.FrameBuffer.FrameBufferColor()
+
+
+            }
+
+            AfterSet = () =>
+            {
+
+                MapFrame = new Vivid.FrameBuffer.FrameBufferColor (W, H);
+
+            };
+
+            PreDraw = () =>
+            {
+
+                //MapFrame.Bind(0);
+                if (Graph != null)
+                {
+
+                    //Console.WriteLine("Rendering map");
+
+                    Graph.Draw();
+
+                }
+                //MapFrame.Release();
+
+
+            };
+
             Draw = () =>
             {
 
                 DrawFormSolid(new Vector4(0, 0.8f, 0.8f, 1.0f));
 
-                if (Graph != null) {
-
-                    Console.WriteLine("Rendering map");
-
-                    Graph.Draw();
-
-                }
+               
 
 
 

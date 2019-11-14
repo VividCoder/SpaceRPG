@@ -43,7 +43,8 @@ namespace Vivid.FXS
 
             res = Maths.Push(res, sw / 2, sh / 2);
 
-            SetTex("tDiffuse", 0);
+            SetTex("tR", 0);
+            /*
             SetVec3("lPos", new OpenTK.Vector3(res.X, res.Y, 0));
             SetVec3("lDif", Light.Diffuse);
             SetVec3("lSpec", Light.Specular);
@@ -51,6 +52,11 @@ namespace Vivid.FXS
             SetFloat("lRange", Light.Range * Graph.Z);
             SetFloat("sWidth", Vivid.App.VividApp.W);
             SetFloat("sHeight", Vivid.App.VividApp.H);
+            */         
+   
+    SetMat("proj", OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));
+
+
         }
     }
 }

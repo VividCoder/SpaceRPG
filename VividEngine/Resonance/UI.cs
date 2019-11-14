@@ -182,7 +182,7 @@ namespace Vivid.Resonance
 
             GL.Viewport(0, 0, App.AppInfo.W, App.AppInfo.H);
             Vivid.Draw.IntelliDraw.Draw_Z = 0.001f;
-
+            
             foreach (var form in list)
             {
 
@@ -199,6 +199,8 @@ namespace Vivid.Resonance
                     GL.Disable(EnableCap.ScissorTest);
                 }
 
+
+                form.PreDraw?.Invoke();
                 Vivid.Draw.IntelliDraw.BeginDraw(true);
                 form.Draw?.Invoke();
                 Vivid.Draw.IntelliDraw.EndDraw();

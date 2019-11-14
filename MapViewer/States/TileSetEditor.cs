@@ -77,12 +77,18 @@ namespace MapViewer.States
 
 
 
-                    //CurSetLayer.SetTile(setX, setY, nTile);
+                    CurSetLayer.SetTile(setX, setY, nTile);
                     CurSetLayer.Fill(nTile);
                     setX++;
                     tileSet_View.UpdateGraph();
-
+                    tileSet_View.Graph.X = -32+tileSet_View.W / 2;
+                    tileSet_View.Graph.Y = -32+tileSet_View.H / 2;
+                    //tileSet_View.Graph.X = (CurSetMap.Layers[0].Width * 64)/2;
+                   // tileSet_View.Graph.Y = (CurSetMap.Layers[0].Height * 64) / 2;
+                    // tileSet_View.Graph.X -= 64;
                     SUI.Top = null;
+
+
 
                 };
 
@@ -95,6 +101,8 @@ namespace MapViewer.States
             return set_Editor;
 
         }
+
+
 
         public override void InitState()
         {

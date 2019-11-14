@@ -53,7 +53,8 @@ namespace SpaceEngine.Forms
         {
 
             Graph = Map.UpdateGraph();
-
+            //Graph.X -= 370;
+            //Graph.Y -= 170;
         }
 
         public MapViewForm(Map.Map map)
@@ -84,10 +85,17 @@ namespace SpaceEngine.Forms
                 {
 
                     //Console.WriteLine("Rendering map");
-                    AppInfo.RW = AppInfo.RW;
-                    AppInfo.RH = AppInfo.RH;
+                   // AppInfo.RW = AppInfo.RW;
+                    //AppInfo.RH = AppInfo.RH;
                     Graph.Draw();
-                    Graph.Rot += 1.0f;
+
+                    //Graph.X += 1;
+                    //Graph.Y += 1;
+                    //Graph.;
+
+                    //Graph.Z = 0.2f;
+                    //Graph.Rot += 1.0f;
+
 
                 }
                 MapFrame.Release();

@@ -24,7 +24,8 @@ namespace MapViewer.States
         public int setWidth = 16;
         public int setHeight = 16;
         public int setX, setY;
-
+        public Vivid.Scene.SceneGraph2D TileGraph;
+        MapViewForm tView;
         public WindowForm CrTileSetEditor()
         {
             setX = 0;
@@ -44,13 +45,13 @@ namespace MapViewer.States
             WindowForm set_Editor = new WindowForm().Set(200, 200, 700, 600, "TileSet") as WindowForm;
 
             ToolBarForm tools = new ToolBarForm().Set(0, 0, 700, 25) as ToolBarForm;
-
+          
             
 
             set_Editor.body.Add(tools);
 
             MapViewForm tileSet_View = new MapViewForm(CurSetMap).Set(0,25,set_Editor.body.W,set_Editor.body.H-25) as MapViewForm;
-
+            tView = tileSet_View;
             //CurSetMap = new Map(1);
 
             CurSetLayer = CurSetMap.AddLayer(new SpaceEngine.Map.Layer.MapLayer(setWidth,setHeight));
@@ -78,8 +79,9 @@ namespace MapViewer.States
 
 
                     CurSetLayer.SetTile(setX, setY, nTile);
-                    CurSetLayer.Fill(nTile);
+                   // CurSetLayer.Fill(nTile);
                     setX++;
+                    //CurSetMap.HighlightTile(setX - 1, setY);
                     tileSet_View.UpdateGraph();
                     tileSet_View.Graph.X = -32+tileSet_View.W / 2;
                     tileSet_View.Graph.Y = -32+tileSet_View.H / 2;
@@ -163,6 +165,27 @@ namespace MapViewer.States
             base.UpdateState();
             SUI.Update();
             Vivid.Texture.Texture2D.UpdateLoading();
+
+            int hx, hy;
+
+            if (tView.Graph != null)
+            {
+
+                var node = tView.Graph.Pick(10, 10);
+                if (node != null)
+                {
+
+                    hx = (int)node.X / 64;
+                    hy = (int)node.Y / 64;
+
+                    CurSetMap.HighlightTile(hx, hy);
+                    //CurSetMap.UpdateGraph();
+                    tView.Graph = CurSetMap.UpdateGraph();
+                    tView.Graph.X = -32 + tView.W / 2;
+                    tView.Graph.Y = -32 + tView.H / 2;
+                }
+            }
+
         }
 
         public override void DrawState()

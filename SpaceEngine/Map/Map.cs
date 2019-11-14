@@ -10,7 +10,24 @@ namespace SpaceEngine.Map
 {
     public class Map
     {
+        public class HighLightTile
+        {
 
+            public int X
+            {
+                get;
+                set;
+            }
+
+            public int Y
+            {
+                get;
+                set;
+            }
+
+           
+
+        }
         public List<MapLayer> Layers
         {
             get;
@@ -82,6 +99,15 @@ namespace SpaceEngine.Map
             
         }
 
+        public List<HighLightTile> HL = new List<HighLightTile>();
+
+        public void HighlightTile(int x,int y)
+        {
+
+            HL.Add(new HighLightTile() { X = x, Y = y });
+
+        }
+
         public Vivid.Scene.SceneGraph2D UpdateGraph()
         {
 
@@ -112,6 +138,28 @@ namespace SpaceEngine.Map
                 }
 
             }
+
+            foreach(var hl in HL)
+            {
+
+
+                int mx = hl.X * TileWidth;
+                int my = hl.Y * TileHeight;
+
+
+                var hs = new GraphSprite(new Tex2D("content/edit/highlight1.png",true));
+
+                hs.SetPos(mx, my);
+                // tileSpr.SetPos(mx, my);
+
+
+                Graph.Add(hs); ;
+
+            }
+          
+               
+            
+
             Graph.Add(Lights.ToArray());
            // Graph.X = -32+ Vivid.App.AppInfo.RW/2;// (TileWidth * Layers[0].Width) / 2;
             //Graph.Y = -32+ Vivid.App.AppInfo.RH / 2;// (TileHeight * Layers[0].Height) / 2;

@@ -13,22 +13,7 @@ using Vivid.Tex;
 namespace SpaceEngine.Forms
 {
 
-    public class HighLightTile
-    {
-
-        public int X
-        {
-            get;
-            set;
-        }
-
-        public int Y
-        {
-            get;
-            set;
-        }
-
-    }
+    
 
     public class MapViewForm : UIForm
     {
@@ -45,9 +30,13 @@ namespace SpaceEngine.Forms
             set;
         }
 
-        public List<HighLightTile> Highlights = new List<HighLightTile>();
+        //public List<HighLightTile> Highlights = new List<HighLightTile>();
 
         public Vivid.FrameBuffer.FrameBufferColor MapFrame;
+
+
+  //      public void HighlightTile(int x,int y,int z)
+//        {
 
         public void UpdateGraph()
         {

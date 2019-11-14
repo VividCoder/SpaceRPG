@@ -197,20 +197,55 @@ namespace MapViewer.States
 
             }
 
-            void click_SaveSet(int b)
+            
+            void click_LoadSet(int b)
             {
-                var req = new RequestFileForm("Save set as..", ContentPath);
+
+                var req = new RequestFileForm("Load set..", ContentPath);
+                SUI.Top = req;
 
                 req.Selected = (path) =>
                 {
 
-                    CurSet.Save(path);
+                    CurSet = new SpaceEngine.Map.TileSet.TileSet("");
+                    CurSet.Load(path);
+
+                    CurSetLayer.Fill(null);
+                    setX = setY = 0;
+                    foreach(var t in CurSet.Tiles)
+                    {
+
+                        CurSetLayer.SetTile(setX, setY, t);
+                        setX++;
+
+                    }
+
+                    tView.UpdateGraph();
+                    tView.Graph.X = -32 + tView.W / 2;
+                    tView.Graph.Y = -32 + tView.H / 2;
+                    SUI.Top = null;
+
+                };
+
+            }
+            
+            void click_SaveSet(int b)
+            {
+                var req = new RequestFileForm("Save set as..", ContentPath);
+
+                SUI.Top = req;
+
+                req.Selected = (path) =>
+                {
+
+                    CurSet.Save(path+".ts");
+                    SUI.Top = null;
 
                 };
             }
 
             menu_TileSet.Menu.AddItem("New Set",click_NewSet);
-            menu_TileSet.Menu.AddItem("Load Set");
+            menu_TileSet.Menu.AddItem("Load Set",click_LoadSet);
             menu_TileSet.Menu.AddItem("Save Set",click_SaveSet);
             menu_TileSet.Menu.AddItem("Exit",click_Exit);
 

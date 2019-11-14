@@ -14,6 +14,7 @@ namespace Vivid.Resonance
 {
     public class UI
     {
+        public static MenuForm Menu = null;
         public static Texture.Texture2D WhiteTex = null;
         public static UIForm Active = null;
         public static Font.Font2D Font = null;
@@ -150,12 +151,18 @@ namespace Vivid.Resonance
             //AddToList(list, Dock);
             AddToList(list, Dock);
             AddToList(list, Top);
+            if (Menu != null)
+            {
+                AddToList(list, Menu);
+            }
             list.Reverse();
 
             foreach(var form in list)
             {
                 form.Update?.Invoke();
             }
+
+
 
             UpdateInput();
 
@@ -172,6 +179,10 @@ namespace Vivid.Resonance
             }
             AddToList(list, Dock);
             AddToList(list, Top);
+            if (Menu != null)
+            {
+                AddToList(list, Menu);
+            }
             foreach (var form in list)
             {
                 form.PreDraw?.Invoke();

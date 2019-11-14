@@ -171,6 +171,13 @@ namespace Vivid.Resonance
                 {
                     y = y + Root.GY;
                 }
+                else
+                {
+                    if (UI.Menu != null)
+                    {
+                        y = y + 20;
+                    }
+                }
                 y = y + Y;
                 return y;
             }

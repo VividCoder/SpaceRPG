@@ -38,7 +38,7 @@ namespace SpaceEngine.Map.TileSet
 
         }
 
-        void Load(string path)
+        public void Load(string path)
         {
 
             FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -76,7 +76,7 @@ namespace SpaceEngine.Map.TileSet
             }
         }
 
-        void Save(string path)
+        public void Save(string path)
         {
 
             FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);

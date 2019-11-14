@@ -14,7 +14,7 @@
             };
             Draw = () =>
             {
-                DrawFormSolid(new OpenTK.Vector4(0.7f, 0, 0, 1));
+                //DrawFormSolid(new OpenTK.Vector4(0.7f, 0, 0, 1));
             };
         }
     }

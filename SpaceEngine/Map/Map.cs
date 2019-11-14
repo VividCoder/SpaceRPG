@@ -17,14 +17,28 @@ namespace SpaceEngine.Map
             set;
         }
 
+        public List<GraphLight> Lights
+        {
+            get;
+            set;
+        }
+
         public Map()
         {
 
             Layers = new List<MapLayer>();
             TileWidth = TileHeight = 64;
+            Lights = new List<GraphLight>();
+        }
+
+        public void AddLight(GraphLight l)
+        {
+
+            Lights.Add(l);
         }
 
         public int TileWidth
+
         {
             get;
             set;
@@ -98,6 +112,15 @@ namespace SpaceEngine.Map
                 }
 
             }
+            Graph.Add(Lights.ToArray());
+            Graph.X = -200  ;// Vivid.App.AppInfo.W/2;// (TileWidth * Layers[0].Width) / 2;
+            Graph.Y = -200;// Vivid.App.AppInfo.H / 2;// (TileHeight * Layers[0].Height) / 2;
+
+
+            //foreach(var l in Lights)
+            //{
+             //   Graph.Add(l);
+            //}
             return Graph;
 
         }

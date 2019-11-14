@@ -69,7 +69,13 @@ namespace Vivid.Draw
 
         public static void Image(float[] xc, float[] yc, Tex2D img)
         {
-            img.Bind(0);
+            //img.Bind(0);
+
+            Draw.IntelliDraw.BeginDraw();
+
+            Draw.IntelliDraw.DrawImg2D(xc, yc, img,new Vector4(1,1,1,1));
+
+            Draw.IntelliDraw.EndDraw2D();
 
             //'  Col = new Vector4(1, 1, 1, 0.5f);
             /*
@@ -88,7 +94,7 @@ namespace Vivid.Draw
 
             GL.End();
             */
-            img.Unbind(0);
+            //img.Unbind(0);
         }
 
         public static void Image(int x, int y, int w, int h, Tex2D tex)

@@ -67,6 +67,9 @@ namespace SpaceEngine.Forms
                 if (Graph != null) {
 
                     Console.WriteLine("Rendering map");
+
+                    Graph.Draw();
+
                 }
 
 

@@ -31,6 +31,16 @@ namespace MapViewer.States
             setY = 0;
             CurSetMap = new Map();
 
+            var setLight = new Vivid.Scene.GraphLight();
+
+            setLight.SetPos(120, 120);
+            setLight.SetZ(40);
+            setLight.Diffuse = new OpenTK.Vector3(1, 1, 1);
+            setLight.Specular = new OpenTK.Vector3(1, 1, 1);
+            setLight.Range = 1200;
+
+            CurSetMap.AddLight(setLight);
+
             WindowForm set_Editor = new WindowForm().Set(200, 200, 700, 600, "TileSet") as WindowForm;
 
             ToolBarForm tools = new ToolBarForm().Set(0, 0, 700, 25) as ToolBarForm;

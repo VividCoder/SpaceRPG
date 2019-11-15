@@ -96,6 +96,12 @@ namespace Vivid.Resonance.Forms
         {
 
             Pages.Add(page);
+            Active = page;
+            Forms.Clear();
+            Add(Active);
+            page.Y = page.Y + 20;
+            Shown = Active;
+            //Forms.Add(Active);
 
         }
 
@@ -103,6 +109,9 @@ namespace Vivid.Resonance.Forms
     public class TabPageForm : UIForm
     {
         public string PageName = "Tab1";
+
+        public dynamic[] Objs = new dynamic[255];
+
         public TabPageForm(string name)
         {
 

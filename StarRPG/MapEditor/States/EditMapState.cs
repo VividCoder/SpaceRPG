@@ -50,7 +50,15 @@ namespace MapEditor.States
 
             var menu_tiles = menu.AddItem("Tiles");
 
+            var tiles_newSet = menu_tiles.Menu.AddItem("New Set");
             var tiles_addSet = menu_tiles.Menu.AddItem("Add set");
+
+            tiles_newSet.Click = (b) =>
+            {
+
+                tileBrowse.newSet();
+
+            };
 
             tiles_addSet.Click = (b) =>
             {

@@ -69,6 +69,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\MapEditForm.cs" />
+    <Compile Include="Forms\NodeBrowser.cs" />
+    <Compile Include="Forms\TileBrowser.cs" />
     <Compile Include="MapEditorApp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

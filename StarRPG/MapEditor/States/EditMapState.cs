@@ -16,7 +16,8 @@ using SpaceEngine.Map;
 using SpaceEngine.Forms;
 using SpaceEngine.Map.Tile;
 using SpaceEngine.Map.TileSet;
-
+using MapEditor.States;
+using MapEditor.Forms;
 namespace MapEditor.States
 {
     public class EditMapState : VividState
@@ -29,6 +30,10 @@ namespace MapEditor.States
             var split1 = new HorizontalSplitterForm().Set(0, 0, AppInfo.W, AppInfo.H) as HorizontalSplitterForm;
 
             split1.SetSplit(AppInfo.H - AppInfo.H / 4);
+
+            var tileBrowse = new TileBrowser().Set(0, 0, split1.BotDock.W, split1.BotDock.H) as TileBrowser; ;
+
+            split1.SetBottom(tileBrowse);
 
             var split2 = new HorizontalSplitterForm().Set(0, 0, split1.TopDock.W, split1.TopDock.H) as HorizontalSplitterForm;
 
@@ -55,8 +60,23 @@ namespace MapEditor.States
 
             split2.SetSplit(50);
 
+            var split3 = new VerticalSplitterForm().Set(0, 0, split2.BotDock.W, split2.BotDock.H) as VerticalSplitterForm;
+
+            split2.SetBottom(split3);
+
+            split3.SetSplit(150);
+
+            var nodeBrowse = new NodeBrowser().Set(0, 0, split3.LeftDock.W, split3.LeftDock.H) as NodeBrowser;
+
+            split3.SetLeft(nodeBrowse);
+
+            var mapEdit = new MapEditForm().Set(0, 0, split3.RightDock.W, split3.RightDock.H) as MapEditForm;
+
+            split3.SetRight(mapEdit);
+
             SUI = new UI();
             SUI.Root = split1;
+
 
          
 

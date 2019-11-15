@@ -11,6 +11,7 @@ using Vivid.Resonance.Forms;
 using SpaceEngine;
 using SpaceEngine.Forms;
 using SpaceEngine.Map;
+using System.IO;
 namespace MapViewer.States
 {
 
@@ -91,8 +92,51 @@ namespace MapViewer.States
 
             set_Editor.body.Add(tileSet_View);
 
+            void click_AddFolder()
+            {
+
+                var req = new RequestFileForm("Select a folder to scan..", ContentPath, true);
+                SUI.Top = req;
+
+                req.Selected = (path) =>
+                {
+                    Console.WriteLine("Folder:" + path + ":");
+                    SUI.Top = null;
+
+                    var di = new DirectoryInfo(path);
+
+                    foreach(var file in di.GetFiles())
+                    {
+
+                        switch (file.Extension)
+                        {
+                            case ".png":
+                            case ".bmp":
+                            case ".jpg":
+                            case ".tga":
+                                FAddTile(file.FullName);
+
+                                break;
+                        }
+                       
+
+                    }
+
+                    ResetMap(tView);
+
+                };
+
+
+                // var file
+
+
+            }
+
             tools.AddItem("Clear");
             var tile_Add = tools.AddItem("Add Tile");
+            var tile_AddFolder = tools.AddItem("Add Folder");
+
+            tile_AddFolder.Click = click_AddFolder;
 
             void click_AddTile()
             {
@@ -105,19 +149,11 @@ namespace MapViewer.States
 
                     Console.WriteLine("Loading Tile:" + path);
 
-                    var nTile = new SpaceEngine.Map.Tile.Tile(path);
-
-                    CurSet.Tiles.Add(nTile);
-
-                    CurSetLayer.SetTile(setX, setY, nTile);
-                   // CurSetLayer.Fill(nTile);
-                    setX++;
+                    FAddTile(path);
                     //CurSetMap.HighlightTile(setX - 1, setY);
-                    tileSet_View.UpdateGraph();
-                    tileSet_View.Graph.X = -32+tileSet_View.W / 2;
-                    tileSet_View.Graph.Y = -32+tileSet_View.H / 2;
+                    ResetMap(tileSet_View);
                     //tileSet_View.Graph.X = (CurSetMap.Layers[0].Width * 64)/2;
-                   // tileSet_View.Graph.Y = (CurSetMap.Layers[0].Height * 64) / 2;
+                    // tileSet_View.Graph.Y = (CurSetMap.Layers[0].Height * 64) / 2;
                     // tileSet_View.Graph.X -= 64;
                     SUI.Top = null;
 
@@ -133,6 +169,24 @@ namespace MapViewer.States
 
             return set_Editor;
 
+        }
+
+        private static void ResetMap(MapViewForm tileSet_View)
+        {
+            tileSet_View.UpdateGraph();
+            tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
+            tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
+        }
+
+        private void FAddTile(string path)
+        {
+            var nTile = new SpaceEngine.Map.Tile.Tile(path);
+
+            CurSet.Tiles.Add(nTile);
+
+            CurSetLayer.SetTile(setX, setY, nTile);
+            // CurSetLayer.Fill(nTile);
+            setX++;
         }
 
         private void ClearHL(MapViewForm tileSet_View)

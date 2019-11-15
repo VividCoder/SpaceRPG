@@ -19,12 +19,13 @@ namespace Vivid.Resonance.Forms
         public static Texture2D FilePic = null;
         public static Texture2D BackPic = null;
         public ButtonForm BackFolder;
-
+        public bool Folder = false;
         public TextBoxForm DirBox, FileBox;
         public static string DefDir = "";
 
-        public RequestFileForm(string title = "", string defdir = "")
+        public RequestFileForm(string title = "", string defdir = "",bool folder=false)
         {
+            Folder = folder;
             if (FolderPic == null)
             {
                 FolderPic = new Texture2D("data/UI/folder1.png", LoadMethod.Single, true);
@@ -51,7 +52,14 @@ namespace Vivid.Resonance.Forms
 
             void SelectFunc(int b)
             {
-                Selected?.Invoke(DirBox.Text +"/"+ FileBox.Text);
+                if (!Folder)
+                {
+                    Selected?.Invoke(DirBox.Text + "\\" + FileBox.Text);
+                }
+                else
+                {
+                    Selected?.Invoke(DirBox.Text + "\\");
+                }
             }
 
             ok.Click = SelectFunc;
@@ -124,21 +132,28 @@ namespace Vivid.Resonance.Forms
                 }
                 ni.DoubleClick = DoubleClickFunc;
             }
-            foreach (FileInfo file in di.GetFiles())
+            if (!Folder)
             {
-                ItemForm newi = Files.AddItem(file.Name, FilePic);
-                void ClickFunc(int b)
+                foreach (FileInfo file in di.GetFiles())
                 {
-                    FileBox.Text = file.Name;
+                    ItemForm newi = Files.AddItem(file.Name, FilePic);
+                    void ClickFunc(int b)
+                    {
+                        FileBox.Text = file.Name;
+                    }
+                    void DoubleClickFunc(int b)
+                    {
+                        Selected?.Invoke(DirBox.Text + "/" + newi.Text);
+                    }
+                    newi.DoubleClick = DoubleClickFunc;
+                    newi.Click = ClickFunc;
                 }
-                void DoubleClickFunc(int b)
-                {
-                    Selected?.Invoke(DirBox.Text + "/" + newi.Text);
-                }
-                newi.DoubleClick = DoubleClickFunc;
-                newi.Click = ClickFunc;
+                Files.Changed?.Invoke();
             }
-            Files.Changed?.Invoke();
+            else
+            {
+                Files.Changed?.Invoke();
+            }
         }
     }
 }

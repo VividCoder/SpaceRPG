@@ -209,15 +209,15 @@ namespace Vivid.Scene
 
                     if (first)
                     {
-                        Render.SetBlend(BlendMode.Alpha);
+                   //     Render.SetBlend(BlendMode.Alpha);
                         first = false;
                     }
                     else
                     {
-                        Render.SetBlend(BlendMode.Add);
+                 //       Render.SetBlend(BlendMode.Add);
                     }
 
-                    LitImage.Bind();
+                //    LitImage.Bind();
 
                     float[] xc;
                     float[] yc;
@@ -231,7 +231,7 @@ namespace Vivid.Scene
 
                     //Render.Image(xc, yc, node.ImgFrame);
 
-                    LitImage.Release();
+                    
                 }
             }
             foreach (GraphNode snode in node.Nodes)
@@ -242,7 +242,15 @@ namespace Vivid.Scene
 
         public void Draw()
         {
+            Render.Begin();
             DrawNode(Root);
+            if (LitImage.Light != null)
+            {
+                LitImage.Bind();
+                Render.End2D();
+                LitImage.Release();
+            }
+
         }
 
         private float sign(Vector2 p1, Vector2 p2, Vector2 p3)
@@ -271,6 +279,12 @@ namespace Vivid.Scene
                     return p;
                 }
             }
+            if (node.DrawP == null)
+            {
+
+                node.SyncCoords();
+
+            }
             if (node.DrawP != null)
             {
                 if (PointInTriangle(new Vector2(x, y), node.DrawP[0], node.DrawP[1], node.DrawP[2]))
@@ -285,6 +299,12 @@ namespace Vivid.Scene
             return null;
         }
 
+        public class PickSite
+        {
+            public int X, Y, Z;
+        }
+
+       
         public GraphNode Pick(int x, int y)
         {
             return PickNode(Root, x, y);

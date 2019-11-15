@@ -93,6 +93,11 @@ namespace MapEditor.States
 
             var split3 = new VerticalSplitterForm().Set(0, 0, split2.BotDock.W, split2.BotDock.H) as VerticalSplitterForm;
 
+            var toolRoot = new UIForm().Set(0, 0, split2.TopDock.W, split2.TopDock.H);
+
+
+            split2.SetTop(toolRoot);
+
             split2.SetBottom(split3);
 
             split3.SetSplit(150);
@@ -109,7 +114,28 @@ namespace MapEditor.States
             SUI.Root = split1;
 
 
-         
+            var toolBar = new ToolBarForm().Set(0, 0, toolRoot.W, 25) as ToolBarForm;
+
+            var tb_paste = toolBar.AddItem("Paste");
+            var tb_rect = toolBar.AddItem("Rect");
+            var tb_oval = toolBar.AddItem("Oval");
+            var tb_fill = toolBar.AddItem("Fill");
+            var tb_smartfill = toolBar.AddItem("Smart-Fill");
+
+            tb_paste.Click = () =>
+            {
+                mapEdit.Mode = EditMode.Paste;
+            };
+
+            tb_fill.Click = () =>
+            {
+                mapEdit.Mode = EditMode.Fill;
+            };
+
+
+
+            toolRoot.Add(toolBar);
+
 
         }
 

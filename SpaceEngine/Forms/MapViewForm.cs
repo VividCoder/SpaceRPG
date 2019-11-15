@@ -38,16 +38,34 @@ namespace SpaceEngine.Forms
   //      public void HighlightTile(int x,int y,int z)
 //        {
 
-        public void UpdateGraph()
+        public void UpdateGraphHL()
         {
 
-            Graph = Map.UpdateGraph();
-            Graph.X = -32 + W / 2;
-            Graph.Y = -32 + H / 2;
+            //Map.AddHL();
+        }
+        public void UpdateGraph()
+        {
+            float gx, gy;
+            if (Graph != null)
+            {
+                gx = Graph.X;
+                gy = Graph.Y;
+                Graph = Map.UpdateGraph();
+                Graph.X = gx;
+                Graph.Y = gy;
+            }
+            else
+            {
+                Graph = Map.UpdateGraph();
+                Graph.X = -32 + W / 2;
+                Graph.Y = -32 + H / 2;
+            }
+            Changed = true;
+            Console.WriteLine("Changed..");
             //Graph.X -= 370;
             //Graph.Y -= 170;
         }
-
+        public bool Changed = true;
         public MapViewForm(Map.Map map)
         {
 
@@ -65,16 +83,17 @@ namespace SpaceEngine.Forms
             {
 
                 MapFrame = new Vivid.FrameBuffer.FrameBufferColor (W, H);
-
+                Changed = true;
             };
 
             PreDraw = () =>
             {
 
-                MapFrame.Bind();
-                if (Graph != null)
+                
+                if (Graph != null && Changed)
                 {
-
+                    MapFrame.Bind();
+                    Changed = false;
                     //Console.WriteLine("Rendering map");
                    // AppInfo.RW = AppInfo.RW;
                     //AppInfo.RH = AppInfo.RH;
@@ -86,10 +105,10 @@ namespace SpaceEngine.Forms
 
                     //Graph.Z = 0.2f;
                     //Graph.Rot += 1.0f;
-
+                    MapFrame.Release();
 
                 }
-                MapFrame.Release();
+              
 
 
 
@@ -98,7 +117,7 @@ namespace SpaceEngine.Forms
             Draw = () =>
             {
 
-                DrawFormSolid(new Vector4(0, 0.8f, 0.8f, 1.0f));
+                DrawFormSolid(new Vector4(1, 0.8f, 0.8f, 1.0f));
                 DrawForm(MapFrame.BB,0,0,-1,-1,true);
                
 

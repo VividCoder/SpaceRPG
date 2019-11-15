@@ -29,6 +29,8 @@ namespace Vivid.Scene
             set;
         }
 
+        public dynamic[] Obj = new dynamic[255];
+
         public void CopyProps()
         {
             ClassCopy = new ClassIO(this);
@@ -141,8 +143,12 @@ namespace Vivid.Scene
             Y = Y + r.Y;
         }
 
+
+        
+
         public void SyncCoords()
         {
+            if (Graph == null) return;
             int sw = Vivid.App.AppInfo.RW;
             int sh = Vivid.App.AppInfo.RH;
 

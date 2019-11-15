@@ -25,12 +25,14 @@ namespace MapEditor.Forms
         public MapLayer TileLayer;
         public MapViewForm TView;
         public int tx, ty;
+        int lmx, lmy;
+        public Vivid.Scene.GraphNode ONode;
         public TileSetTabPage(string name) : base(name)
         {
             tx = 0;
             ty = 0;
             TileMap = new Map();
-            TileLayer = new MapLayer(64, 64);
+            TileLayer = new MapLayer(16, 16);
             TileMap.AddLayer(TileLayer);
 
             var l1 = new Vivid.Scene.GraphLight();
@@ -46,13 +48,33 @@ namespace MapEditor.Forms
 
             };
 
+           
+
+            TView.MouseDown = (b) =>
+            {
+                if (TView.Graph != null)
+                {
+                    var node = ONode;//TView.Graph.Pick(lmx, lmy);
+
+
+                    if (node != null)
+                    {
+
+                        TileBrowser.ActiveTile = node.Obj[0];
+
+                    }
+                }
+
+            };
+
             TView.MouseMove = (x, y, dx, dy) =>
             {
-
+                lmx = x;
+                lmy = y;
                 if (TView.Graph != null)
                 {
                     var node = TView.Graph.Pick(x, y);
-
+                    ONode = node;
                     if (node != null)
                     {
 
@@ -104,7 +126,7 @@ namespace MapEditor.Forms
         public TabForm Tab = null;
 
         public MapViewForm Map = null;
-
+        public static Tile ActiveTile = null;
         public TabPageForm GetActivePage()
         {
 

@@ -66,17 +66,26 @@ namespace Vivid.Draw
             }
             Image(x, y, img);
         }
+        public static void Begin()
+        {
+            Draw.IntelliDraw.BeginDraw();
+        }
+
+        public static void End2D()
+        {
+            Draw.IntelliDraw.EndDraw2D();
+
+        }
 
         public static void Image(float[] xc, float[] yc, Tex2D img)
         {
             //img.Bind(0);
 
-            Draw.IntelliDraw.BeginDraw();
+            
 
             Draw.IntelliDraw.DrawImg2D(xc, yc, img,new Vector4(1,1,1,1));
 
-            Draw.IntelliDraw.EndDraw2D();
-
+        
             //'  Col = new Vector4(1, 1, 1, 0.5f);
             /*
             GL.Color4(Col);

@@ -112,10 +112,10 @@ namespace SpaceEngine.Map
         {
 
             Vivid.Scene.SceneGraph2D Graph = new Vivid.Scene.SceneGraph2D();
-
+            int li = 0;
             foreach (var layer in Layers)
             {
-
+                li++;
                 for (int y = 0; y < layer.Height; y++)
                 {
                     for (int x = 0; x < layer.Width; x++)
@@ -123,9 +123,21 @@ namespace SpaceEngine.Map
 
                         var tile = layer.GetTile(x, y);
 
-                        if (tile == null) continue;
+                        if (tile == null)
+                        {
+                            if (li == 1)
+                            {
 
-                        var tileSpr = new GraphSprite(tile.Image,TileWidth,TileHeight);
+                                var notile = new GraphSprite(new Tex2D("content/edit/notile.png", false), TileWidth, TileHeight);
+                                notile.SetPos(x * TileWidth, y * TileHeight);
+                                notile.TileX = x;
+                                notile.TileY = y;
+                                Graph.Add(notile);
+                            }
+                            continue;
+                        }
+
+                        var tileSpr = new GraphSprite(tile.Image, TileWidth, TileHeight);
 
                         tileSpr.TileX = x;
                         tileSpr.TileY = y;
@@ -134,15 +146,32 @@ namespace SpaceEngine.Map
                         int my = y * TileHeight;
 
                         tileSpr.SetPos(mx, my);
-
+                        tileSpr.Obj[0] = tile;
                         Graph.Add(tileSpr);
-                                               
+
                     }
                 }
 
             }
 
-            foreach(var hl in HL)
+            NewMethod(Graph);
+
+            Graph.Add(Lights.ToArray());
+            // Graph.X = -32+ Vivid.App.AppInfo.RW/2;// (TileWidth * Layers[0].Width) / 2;
+            //Graph.Y = -32+ Vivid.App.AppInfo.RH / 2;// (TileHeight * Layers[0].Height) / 2;
+
+
+            //foreach(var l in Lights)
+            //{
+            //   Graph.Add(l);
+            //}
+            return Graph;
+
+        }
+
+        private void NewMethod(SceneGraph2D Graph)
+        {
+            foreach (var hl in HL)
             {
 
 
@@ -150,7 +179,7 @@ namespace SpaceEngine.Map
                 int my = hl.Y * TileHeight;
 
 
-                var hs = new GraphSprite(new Tex2D("content/edit/highlight1.png",true));
+                var hs = new GraphSprite(new Tex2D("content/edit/highlight1.png", true), 64, 64);
 
                 hs.SetPos(mx, my);
                 // tileSpr.SetPos(mx, my);
@@ -159,21 +188,6 @@ namespace SpaceEngine.Map
                 Graph.Add(hs); ;
 
             }
-          
-               
-            
-
-            Graph.Add(Lights.ToArray());
-           // Graph.X = -32+ Vivid.App.AppInfo.RW/2;// (TileWidth * Layers[0].Width) / 2;
-            //Graph.Y = -32+ Vivid.App.AppInfo.RH / 2;// (TileHeight * Layers[0].Height) / 2;
-
-
-            //foreach(var l in Lights)
-            //{
-             //   Graph.Add(l);
-            //}
-            return Graph;
-
         }
     }
 }

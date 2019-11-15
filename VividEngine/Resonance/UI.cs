@@ -191,27 +191,27 @@ namespace Vivid.Resonance
 
             //Vivid.Draw.IntelliDraw.BeginDraw();
 
-            GL.Viewport(0, 0, App.AppInfo.W, App.AppInfo.H);
+            //GL.Viewport(0, 0, App.AppInfo.W, App.AppInfo.H);
             Vivid.Draw.IntelliDraw.Draw_Z = 0.001f;
             
             foreach (var form in list)
             {
 
-                GL.Scissor(form.ViewX, Vivid.App.AppInfo.H - (form.ViewY + form.ViewH), form.ViewW, form.ViewH);
+              //  GL.Scissor(form.ViewX, Vivid.App.AppInfo.H - (form.ViewY + form.ViewH), form.ViewW, form.ViewH);
                 //  // GL.Scissor(form.ViewX, form.ViewY, form.ViewW, form.ViewH);
                 // GL.Scissor(0, 0, App.AppInfo.W, App.AppInfo.H);
                 //  GL.Scissor(form.ViewX, form.ViewY, form.ViewW, form.ViewH);
                 if (form.Clip)
                 {
-                    GL.Enable(EnableCap.ScissorTest);
+              //      GL.Enable(EnableCap.ScissorTest);
                 }
                 else
                 {
-                    GL.Disable(EnableCap.ScissorTest);
+               //     GL.Disable(EnableCap.ScissorTest);
                 }
 
 
-                form.PreDraw?.Invoke();
+//                form.PreDraw?.Invoke();
                 Vivid.Draw.IntelliDraw.BeginDraw(true);
                 form.Draw?.Invoke();
                 Vivid.Draw.IntelliDraw.EndDraw();

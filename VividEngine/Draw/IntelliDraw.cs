@@ -73,7 +73,7 @@ namespace Vivid.Draw
             Draws.Clear();
             if (!leavez)
             {
-                Draw_Z = 0.1f;
+                Draw_Z = 0.02f;
             }
             if (DrawFX == null)
             {
@@ -134,7 +134,7 @@ namespace Vivid.Draw
 
             draw_list.AddDraw(xc, yc, Draw_Z, img, col);
 
-            Draw_Z += 0.002f;
+            Draw_Z += 0.0002f;
 
         }
 

@@ -70,7 +70,8 @@ namespace SpaceEngine.Map.TileSet
                 var tex = new Vivid.Tex.Tex2D(data, alpha, w, h);
 
                 var ntile = new Tile.Tile(tex);
-
+                ntile.Width = w;
+                ntile.Height = h;
                 Tiles.Add(ntile);
 
             }

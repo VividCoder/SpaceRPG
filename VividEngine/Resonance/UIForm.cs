@@ -173,9 +173,10 @@ namespace Vivid.Resonance
                 }
                 else
                 {
-                    if (UI.Menu != null)
+                    if (UI.Menu != null & UI.Menu !=this)
                     {
                         y = y + 20;
+
                     }
                 }
                 y = y + Y;

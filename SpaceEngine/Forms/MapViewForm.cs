@@ -42,6 +42,8 @@ namespace SpaceEngine.Forms
         {
 
             Graph = Map.UpdateGraph();
+            Graph.X = -32 + W / 2;
+            Graph.Y = -32 + H / 2;
             //Graph.X -= 370;
             //Graph.Y -= 170;
         }

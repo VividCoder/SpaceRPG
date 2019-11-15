@@ -20,13 +20,20 @@ namespace Vivid.Resonance.Forms
         public List<TabPageForm> Pages = new List<TabPageForm>();
         TabPageForm Active;
         TabPageForm Over;
+        public TabPageForm Shown = null;
         public TabForm()
         {
             MouseDown = (b) =>
             {
                 if (Over != null)
                 {
+                    if(Shown!=null && Shown != Over)
+                    {
+                        this.Forms.Remove(Shown);
+                    }
                     Active = Over;
+                    Shown = Active;
+                    this.Forms.Add(Shown);
                 }
             };
             MouseMove = (x, y, xd, yd) =>

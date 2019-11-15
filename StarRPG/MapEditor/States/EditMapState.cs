@@ -22,6 +22,7 @@ namespace MapEditor.States
 {
     public class EditMapState : VividState
     {
+        public string ContentPath = "C:\\Projects\\GameInfo\\";
 
         public override void InitState()
         {
@@ -46,6 +47,28 @@ namespace MapEditor.States
             menu_map.Menu.AddItem("Save Map");
             menu_map.Menu.AddItem("New Map");
             menu_map.Menu.AddItem("Exit", (b) => { Environment.Exit(1); });
+
+            var menu_tiles = menu.AddItem("Tiles");
+
+            var tiles_addSet = menu_tiles.Menu.AddItem("Add set");
+
+            tiles_addSet.Click = (b) =>
+            {
+
+                var reqs = new RequestFileForm("Load tileset .ts..", ContentPath);
+                SUI.Top = reqs;
+                reqs.Selected = (path) =>
+                {
+                    var ts = new TileSet(path);
+                    ts.Load(path);
+                    SUI.Top = null;
+
+                    tileBrowse.AddTileSet(ts);
+
+                };
+
+            };
+
 
             menu.AddItem("Edit");
             //menu.AddItem("")

@@ -20,9 +20,25 @@ namespace MapEditor.Forms
 {
     public class TileBrowser : WindowForm
     {
-
+        public TabForm Tab = null;
         public TileBrowser()
         {
+
+            Tab = new TabForm();
+
+            Tab.AddPage(new TabPageForm("Test Page"));
+            Tab.AddPage(new TabPageForm("Other Page"));
+
+            body.Add(Tab);
+
+            AfterSet = () =>
+            {
+                Tab.X = 0;
+                Tab.Y = -15;
+                Tab.W = W;
+                Tab.H = body.H;
+
+            };
 
         }
 

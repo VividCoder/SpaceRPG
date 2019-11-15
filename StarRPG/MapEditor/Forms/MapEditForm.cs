@@ -20,9 +20,19 @@ namespace MapEditor.Forms
 {
     public class MapEditForm : WindowForm
     {
-    
+        public TabForm Tab = null;
         public MapEditForm()
         {
+
+            Tab = new TabForm();
+
+            AfterSet = () =>
+            {
+
+                Tab.W = W;
+                Tab.H = body.H;
+
+            };
 
         }
 

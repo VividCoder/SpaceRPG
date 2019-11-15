@@ -348,6 +348,7 @@
     <Compile Include="Resonance\Forms\RequestFileForm.cs" />
     <Compile Include="Resonance\Forms\ScrollBarV.cs" />
     <Compile Include="Resonance\Forms\SelectionForm.cs" />
+    <Compile Include="Resonance\Forms\TabForm.cs" />
     <Compile Include="Resonance\Forms\TextAreaForm.cs" />
     <Compile Include="Resonance\Forms\TextBoxForm.cs" />
     <Compile Include="Resonance\Forms\ToolBarForm.cs" />

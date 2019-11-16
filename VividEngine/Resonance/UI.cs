@@ -105,7 +105,7 @@ namespace Vivid.Resonance
             Font = new Font2D("data/font/times.ttf.vf");
             CursorImg = new Texture.Texture2D("data/ui/cursor1.png", Vivid.Texture.LoadMethod.Single, true);
         }
-
+        float MZD, MZ;
         public void Update()
         {
 
@@ -124,14 +124,17 @@ namespace Vivid.Resonance
             {
                 MX = Input.Input.MX;
                 MY = Input.Input.MY;
+                MZ = Input.Input.MZ;
                 FirstMouse = false;
             }
 
 
             MXD = Input.Input.MX - MX;
             MYD = Input.Input.MY - MY;
+            MZD = Input.Input.MZ - MZ;
             MX = Input.Input.MX;
             MY = Input.Input.MY;
+            MZ = Input.Input.MZ;
 
             
             //UpdateList.Clear();
@@ -643,12 +646,14 @@ namespace Vivid.Resonance
                 {
                     pm = true;
                     Pressed[i].MouseMove?.Invoke(MX - Pressed[i].GX, MY - Pressed[i].GY, MXD, MYD);
+                    Pressed[i].MouseWheelMoved?.Invoke(MZD);
                     break;
                 }
             }
             if (TopForm != null && pm == false)
             {
                 TopForm.MouseMove?.Invoke(MX - TopForm.GX, MY - TopForm.GY, MXD, MYD);
+                TopForm.MouseWheelMoved?.Invoke(MZD);
             }
 
             if (top == null)

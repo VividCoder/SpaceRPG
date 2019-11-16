@@ -224,10 +224,15 @@ namespace Vivid.App
             Input.Input.MB[bid] = false;
         }
 
+        protected override void OnMouseWheel(MouseWheelEventArgs e)
+        {
+            Input.Input.MZ = e.ValuePrecise;
+        }
         protected override void OnMouseMove(MouseMoveEventArgs e)
         {
             Input.Input.MX = e.Position.X;
             Input.Input.MY = e.Position.Y;
+            
         }
 
         private readonly bool fs = true;

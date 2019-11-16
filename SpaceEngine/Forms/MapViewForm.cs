@@ -53,7 +53,7 @@ namespace SpaceEngine.Forms
                 gx = Graph.X;
                 gy = Graph.Y;
                 gz = Graph.Z;
-                Graph = Map.UpdateGraph();
+                Graph = Map.UpdateGraph(Map.Layers[0].Width,Map.Layers[0].Height);
                 Graph.X = gx;
                 Graph.Y = gy;
                 Graph.Rot = gr;
@@ -63,7 +63,7 @@ namespace SpaceEngine.Forms
             }
             else
             {
-                Graph = Map.UpdateGraph();
+                Graph = Map.UpdateGraph(Map.Layers[0].Width,Map.Layers[0].Height);
                 //Graph.X = -32 + W / 2;
                 //Graph.Y = -32 + H / 2;
             }
@@ -127,7 +127,7 @@ namespace SpaceEngine.Forms
                 DrawFormSolid(new Vector4(1, 0.8f, 0.8f, 1.0f));
                 Col = new Vector4(1, 1, 1, 1);
                 DrawForm(MapFrame.BB,0,0,-1,-1,true);
-                Graph.Rot = r;
+               //Graph.Rot = r;
                 r = r + 1;
                 Changed = true;
 

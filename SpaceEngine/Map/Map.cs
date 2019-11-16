@@ -108,7 +108,7 @@ namespace SpaceEngine.Map
 
         }
 
-        public Vivid.Scene.SceneGraph2D UpdateGraph()
+        public Vivid.Scene.SceneGraph2D UpdateGraph(int tw,int th)
         {
 
             Vivid.Scene.SceneGraph2D Graph = new Vivid.Scene.SceneGraph2D();
@@ -144,6 +144,8 @@ namespace SpaceEngine.Map
 
                         int mx = x * TileWidth;
                         int my = y * TileHeight;
+
+
 
                         tileSpr.SetPos(mx, my);
                         tileSpr.Obj[0] = tile;

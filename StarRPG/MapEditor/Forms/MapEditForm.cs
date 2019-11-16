@@ -37,6 +37,9 @@ namespace MapEditor.Forms
         public int LayerNum = 0;
         bool MouseIn = false;
         int lx, ly;
+        bool MoveCam = false;
+        bool zoomCam = false;
+        bool rotCam = false;
         public MapEditForm()
         {
 
@@ -100,6 +103,16 @@ namespace MapEditor.Forms
 
             TView.MouseDown = (b) =>
             {
+                if (b == 2)
+                {
+                    rotCam = true;
+                    return;
+                }
+                if (b == 1)
+                {
+                    MoveCam = true;
+                    return;
+                }
                 MouseIn = true;
                 var hz = ONode; // TView.Graph.Pick(lx, ly);
 
@@ -111,14 +124,41 @@ namespace MapEditor.Forms
                
 
             };
+            TView.MouseWheelMoved = (z) =>
+            {
 
+                TView.Graph.Z += ((z * 0.1f)*TView.Graph.Z);
+
+            };
             TView.MouseUp = (b) =>
             {
+                if (b == 2)
+                {
+                    rotCam = false;
+                    return;
+                }
+                if (b == 1)
+                {
+                    MoveCam = false;
+                    return;
+                }
                 MouseIn = false;
             };
 
             TView.MouseMove = (x, y, dx, dy) =>
             {
+                if (rotCam)
+                {
+                    TView.Graph.Rot += dx;
+                }
+                if (MoveCam)
+                {
+                    TView.Graph.Move(-dx,-dy);
+                    //TView.Graph.X -= dx;
+                   // TView.Graph.Y -= dy;
+
+                }
+
                 lx = x;
                 ly = y;
                 if (TView.Graph != null)

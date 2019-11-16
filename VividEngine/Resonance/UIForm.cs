@@ -18,6 +18,8 @@ namespace Vivid.Resonance
 
     public delegate void MouseMove(int x, int y, int mx, int my);
 
+    public delegate void MouseWheel(float z);
+
     public delegate void MouseDown(int but);
 
     public delegate void MouseUp(int but);
@@ -67,6 +69,7 @@ namespace Vivid.Resonance
         public MouseMove MouseMove = null;
         public MouseDown MouseDown = null;
         public MouseUp MouseUp = null;
+        public MouseWheel MouseWheelMoved = null;
         public MousePressed MousePressed = null;
         public FormLogic FormLogic = null;
         public Click Click = null;

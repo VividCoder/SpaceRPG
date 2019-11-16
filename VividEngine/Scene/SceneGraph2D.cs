@@ -154,10 +154,10 @@ namespace Vivid.Scene
 
         public void Move(float x, float y)
         {
-            Vector2 r = Util.Maths.Rotate(-x, -y, (180.0f - Rot), 1.0f);
+            Vector2 r = Util.Maths.Rotate(-x, -y, (180.0f - Rot),1.0f);
 
-            X = X + r.X;
-            Y = Y + r.Y;
+            X = X + r.X/Z;
+            Y = Y + r.Y/Z;
         }
 
         public void Update()

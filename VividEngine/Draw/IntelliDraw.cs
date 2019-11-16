@@ -158,10 +158,9 @@ namespace Vivid.Draw
             if (!begun) return;
             begun = false;
             GL.Enable(EnableCap.DepthTest);
-            GL.Enable(EnableCap.Blend);
+          //  GL.Enable(EnableCap.Blend);
             GL.Disable(EnableCap.CullFace);
-            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
-
+          
             //GL.Viewport(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
 
            // DrawFX.Bind();

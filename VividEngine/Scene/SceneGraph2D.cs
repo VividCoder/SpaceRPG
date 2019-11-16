@@ -197,15 +197,7 @@ namespace Vivid.Scene
 
                 bool first = true;
 
-                foreach (GraphLight light in Lights)
-                {
-                    if (node.ImgFrame == null)
-                    {
-                        continue;
-                    }
-
-                    LitImage.Graph = this;
-                    LitImage.Light = light;
+            
 
                     if (first)
                     {
@@ -232,7 +224,7 @@ namespace Vivid.Scene
                     //Render.Image(xc, yc, node.ImgFrame);
 
                     
-                }
+                
             }
             foreach (GraphNode snode in node.Nodes)
             {
@@ -242,11 +234,19 @@ namespace Vivid.Scene
 
         public void Draw()
         {
+           // OpenTK.Graphics.OpenGL4.GL.Disable(OpenTK.Graphics.OpenGL4.EnableCap.Blend);
+
             Render.Begin();
             DrawNode(Root);
+            LitImage.Light = Lights[0];
+            LitImage.Graph = this;
             if (LitImage.Light != null)
             {
+
+
                 LitImage.Bind();
+                Render.SetBlend(BlendMode.Alpha); ;
+
                 Render.End2D();
                 LitImage.Release();
             }

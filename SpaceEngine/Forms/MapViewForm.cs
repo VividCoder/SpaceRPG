@@ -43,22 +43,29 @@ namespace SpaceEngine.Forms
 
             //Map.AddHL();
         }
+        float gr, gz;
         public void UpdateGraph()
         {
             float gx, gy;
             if (Graph != null)
             {
+                gr = Graph.Rot;
                 gx = Graph.X;
                 gy = Graph.Y;
+                gz = Graph.Z;
                 Graph = Map.UpdateGraph();
                 Graph.X = gx;
                 Graph.Y = gy;
+                Graph.Rot = gr;
+                Graph.Z = gz;
+               // Graph.X = -32 + W / 2;
+               // Graph.Y = -32 + H / 2;
             }
             else
             {
                 Graph = Map.UpdateGraph();
-                Graph.X = -32 + W / 2;
-                Graph.Y = -32 + H / 2;
+                //Graph.X = -32 + W / 2;
+                //Graph.Y = -32 + H / 2;
             }
             Changed = true;
             Console.WriteLine("Changed..");
@@ -113,13 +120,16 @@ namespace SpaceEngine.Forms
 
 
             };
-
+            float r = 1.0f;
             Draw = () =>
             {
 
                 DrawFormSolid(new Vector4(1, 0.8f, 0.8f, 1.0f));
+                Col = new Vector4(1, 1, 1, 1);
                 DrawForm(MapFrame.BB,0,0,-1,-1,true);
-               
+                Graph.Rot = r;
+                r = r + 1;
+                Changed = true;
 
 
 

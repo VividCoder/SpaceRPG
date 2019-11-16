@@ -73,8 +73,8 @@ namespace MapViewer.States
                         tView.Map.HL.Clear();
                         tView.Map.HighlightTile(node.TileX, node.TileY);
                         tileSet_View.UpdateGraph();
-                        tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
-                        tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
+                       // tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
+                        //tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
                         // Console.WriteLine("MX:" + x + " MY:" + y);
                     }
                     else
@@ -174,8 +174,8 @@ namespace MapViewer.States
         private static void ResetMap(MapViewForm tileSet_View)
         {
             tileSet_View.UpdateGraph();
-            tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
-            tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
+         //   tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
+          //  tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
         }
 
         private void FAddTile(string path)
@@ -199,9 +199,9 @@ namespace MapViewer.States
 
                     tView.Map.HL.Clear();
                     tileSet_View.UpdateGraph();
-                    tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
-                    tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
-
+                //    tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
+                   // tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
+                    
 
                 }
 
@@ -275,8 +275,8 @@ namespace MapViewer.States
                     }
 
                     tView.UpdateGraph();
-                    tView.Graph.X = -32 + tView.W / 2;
-                    tView.Graph.Y = -32 + tView.H / 2;
+                   // tView.Graph.X = -32 + tView.W / 2;
+                   // tView.Graph.Y = -32 + tView.H / 2;
                     SUI.Top = null;
 
                 };
@@ -331,8 +331,8 @@ namespace MapViewer.States
                     CurSetMap.HighlightTile(hx, hy);
                     //CurSetMap.UpdateGraph();
                     tView.Graph = CurSetMap.UpdateGraph();
-                    tView.Graph.X = -32 + tView.W / 2;
-                    tView.Graph.Y = -32 + tView.H / 2;
+                  //  tView.Graph.X = -32 + tView.W / 2;
+                   // tView.Graph.Y = -32 + tView.H / 2;
                 }
             }
 

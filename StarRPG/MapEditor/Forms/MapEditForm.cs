@@ -46,7 +46,7 @@ namespace MapEditor.Forms
             for(int i = 0; i < 4; i++)
             {
 
-                Layers.Add(new MapLayer(32, 32));
+                Layers.Add(new MapLayer(6, 6));
                 CurMap.AddLayer(Layers[i]);
             }
             //CurMap.AddLayer(layer[0]);
@@ -63,9 +63,11 @@ namespace MapEditor.Forms
             View.Map.AddLight(l1);
 
             LabelForm cLab = null;
-;
+            ; var TView = View;
 
+            float r = 0;
             Update = () =>
+
             {
 
                 if (lMode != Mode)
@@ -73,8 +75,9 @@ namespace MapEditor.Forms
                     updateModeLabel();
                     lMode = Mode;
                 }
-
-
+                TView.Map.Lights[0].SetPos(300, 300);
+                TView.Map.Lights[0].Range = 1200;
+              
             };
 
             void updateModeLabel()
@@ -93,7 +96,7 @@ namespace MapEditor.Forms
 
             body.Add(View);
 
-            var TView = View;
+          
 
             TView.MouseDown = (b) =>
             {
@@ -104,6 +107,8 @@ namespace MapEditor.Forms
                 {
                    
                 }
+
+               
 
             };
 
@@ -143,8 +148,8 @@ namespace MapEditor.Forms
                         TView.Map.HighlightTile(node.TileX, node.TileY);
                         TView.UpdateGraph();
 
-                        TView.Graph.X = -32 + TView.W / 2;
-                        TView.Graph.Y = -32 + TView.H / 2;
+                      //  TView.Graph.X = -32 + TView.W / 2;
+                       // TView.Graph.Y = -32 + TView.H / 2;
                         // Console.WriteLine("MX:" + x + " MY:" + y);
                     }
                     else
@@ -167,6 +172,8 @@ namespace MapEditor.Forms
 
             };
 
+          
+
         }
 
         private void ClearHL(MapViewForm tileSet_View)
@@ -181,8 +188,8 @@ namespace MapEditor.Forms
 
                     View.Map.HL.Clear();
                     tileSet_View.UpdateGraph();
-                    tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
-                    tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
+                    //tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
+                    //tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
 
 
                 }

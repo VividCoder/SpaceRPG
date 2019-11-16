@@ -82,8 +82,8 @@ namespace MapEditor.Forms
                         TView.Map.HL.Clear();
                         TView.Map.HighlightTile(node.TileX, node.TileY);
                         TView.UpdateGraph();
-                        TView.Graph.X = -32 + TView.W / 2;
-                        TView.Graph.Y = -32 + TView.H / 2;
+                        //TView.Graph.X = -32 + TView.W / 2;
+                       // TView.Graph.Y = -32 + TView.H / 2;
                         // Console.WriteLine("MX:" + x + " MY:" + y);
                     }
                     else
@@ -110,8 +110,8 @@ namespace MapEditor.Forms
 
                     TView.Map.HL.Clear();
                     tileSet_View.UpdateGraph();
-                    tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
-                    tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
+                  //  tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
+                   // tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
 
 
                 }
@@ -160,8 +160,8 @@ namespace MapEditor.Forms
 
           
             actp.TView.UpdateGraph();
-            actp.TView.Graph.X = -32 + actp.TView.W / 2;
-            actp.TView.Graph.Y = -32 + actp.TView.H / 2;
+           // actp.TView.Graph.X = -32 + actp.TView.W / 2;
+            //actp.TView.Graph.Y = -32 + actp.TView.H / 2;
         }
 
         public void newSet()

@@ -119,7 +119,7 @@ namespace SpaceEngine.Forms
 
 
                     Vivid.Draw.IntelliDraw.BeginDraw();
-                    Vivid.Draw.IntelliDraw.DrawImg(0, 0, AppInfo.RW, AppInfo.RH, Graph.ShadowBuf.BB, new Vector4(1, 1, 1, 1),true);
+                    Vivid.Draw.IntelliDraw.DrawImg(0, 0, AppInfo.RW, AppInfo.RH, Graph.ShadowBuf.BB, new Vector4(1, 1, 0.1f, 1),true);
                     Vivid.Draw.IntelliDraw.EndDraw();
 
                     Graph.ReleaseShadowBuf2();

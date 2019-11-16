@@ -116,12 +116,12 @@ namespace Vivid.Draw
             return draw_listr;
         }
 
-        public static void DrawImg(int x, int y, int w, int h, Texture2D img, Vector4 col,bool flipuv = false)
+        public static void DrawImg(int x, int y, int w, int h, Texture2D img, Vector4 col, bool flipuv = false)
         {
             if (!begun) return;
             var draw_list = GetDrawList(img);
 
-            draw_list.AddDraw(x, y, w, h, img, col, Draw_Z,flipuv);
+            draw_list.AddDraw(x, y, w, h, img, col, Draw_Z, flipuv);
 
             Draw_Z += 0.002f;
         }
@@ -158,12 +158,12 @@ namespace Vivid.Draw
             if (!begun) return;
             begun = false;
             GL.Enable(EnableCap.DepthTest);
-          //  GL.Enable(EnableCap.Blend);
+            //  GL.Enable(EnableCap.Blend);
             GL.Disable(EnableCap.CullFace);
-          
+
             //GL.Viewport(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
 
-           // DrawFX.Bind();
+            // DrawFX.Bind();
 
             foreach (var draw_list in Draws)
             {
@@ -274,20 +274,20 @@ namespace Vivid.Draw
             }
 
 
-           // DrawFX.Release();
+            // DrawFX.Release();
         }
-    
 
-        public static void EndDraw(Effect3D fx,Binder bind)
+
+        public static void EndDraw(Effect3D fx, Binder bind)
         {
 
             if (!begun) return;
             begun = false;
             GL.Enable(EnableCap.DepthTest);
-       
+
             GL.Disable(EnableCap.CullFace);
 
-          //  GL.Viewport(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
+            //  GL.Viewport(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
 
             fx.Bind();
 
@@ -397,7 +397,7 @@ namespace Vivid.Draw
                 GL.DeleteVertexArray(vert_arr);
                 // GL.DeleteBuffer(ind_buf);
 
-               // draw_list.Data[0].Img.Release(0);
+                // draw_list.Data[0].Img.Release(0);
             }
 
 
@@ -405,7 +405,161 @@ namespace Vivid.Draw
         }
 
         public delegate void Binder();
+        public static void EndDraw3()
+        {
 
+            if (!begun) return;
+            begun = false;
+            GL.Enable(EnableCap.DepthTest);
+            // GL.Enable(EnableCap.Blend);
+            GL.Disable(EnableCap.CullFace);
+            // GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+
+            //GL.Viewport(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
+
+            DrawFX.Bind();
+
+            foreach (var draw_list in Draws)
+            {
+                var vert_arr = GL.GenVertexArray();
+                var vert_buf = GL.GenBuffer();
+                // var ind_buf = GL.GenBuffer();
+
+                int draw_c = draw_list.Data.Count * 4;
+
+                int draw_i = 0;
+
+                float[] vert_data = new float[draw_c * 9];
+                uint[] ind_data = new uint[draw_c];
+
+                int vert_i = 0;
+                int int_i = 0;
+
+                draw_list.Data[0].Img.Bind(0);
+
+                foreach (var data in draw_list.Data)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        ind_data[int_i] = (uint)int_i++;
+                    }
+
+                    vert_data[vert_i++] = data.X;
+                    vert_data[vert_i++] = data.Y;
+                    vert_data[vert_i++] = data.Z;
+
+                    if (data.flipuv)
+                    {
+                        vert_data[vert_i++] = 0;
+                        vert_data[vert_i++] = 1;
+                    }
+                    else
+                    {
+                        vert_data[vert_i++] = 0;
+                        vert_data[vert_i++] = 0;
+                    }
+                    vert_data[vert_i++] = data.Col.X;
+                    vert_data[vert_i++] = data.Col.Y;
+                    vert_data[vert_i++] = data.Col.Z;
+                    vert_data[vert_i++] = data.Col.W;
+
+                    vert_data[vert_i++] = data.X + data.W;
+                    vert_data[vert_i++] = data.Y;
+                    vert_data[vert_i++] = data.Z;
+
+                    if (data.flipuv)
+                    {
+                        vert_data[vert_i++] = 1;
+                        vert_data[vert_i++] = 1;
+                    }
+                    else
+                    {
+                        vert_data[vert_i++] = 1;
+                        vert_data[vert_i++] = 0;
+                    }
+
+                    vert_data[vert_i++] = data.Col.X;
+                    vert_data[vert_i++] = data.Col.Y;
+                    vert_data[vert_i++] = data.Col.Z;
+                    vert_data[vert_i++] = data.Col.W;
+
+                    vert_data[vert_i++] = data.X + data.W;
+                    vert_data[vert_i++] = data.Y + data.H;
+                    vert_data[vert_i++] = data.Z;
+
+                    if (data.flipuv)
+                    {
+                        vert_data[vert_i++] = 1;
+                        vert_data[vert_i++] = -0;
+
+                    }
+                    else
+                    {
+                        vert_data[vert_i++] = 1;
+                        vert_data[vert_i++] = 1;
+                    }
+                    vert_data[vert_i++] = data.Col.X;
+                    vert_data[vert_i++] = data.Col.Y;
+                    vert_data[vert_i++] = data.Col.Z;
+                    vert_data[vert_i++] = data.Col.W;
+
+                    vert_data[vert_i++] = data.X;
+                    vert_data[vert_i++] = data.Y + data.H;
+                    vert_data[vert_i++] = data.Z;
+
+                    if (data.flipuv)
+                    {
+                        vert_data[vert_i++] = 0;
+                        vert_data[vert_i++] = 0;
+                    }
+                    else
+                    {
+                        vert_data[vert_i++] = 0;
+                        vert_data[vert_i++] = 1;
+                    }
+                    vert_data[vert_i++] = data.Col.X;
+                    vert_data[vert_i++] = data.Col.Y;
+                    vert_data[vert_i++] = data.Col.Z;
+                    vert_data[vert_i++] = data.Col.W;
+                }
+
+                //   GL.BindBuffer(BufferTarget.ElementArrayBuffer, ind_buf);
+                //  GL.BufferData(BufferTarget.ElementArrayBuffer, 4 * 4, ind_data, BufferUsageHint.StaticDraw);
+
+                GL.BindVertexArray(vert_arr);
+
+                GL.BindBuffer(BufferTarget.ArrayBuffer, vert_buf);
+
+                GL.BufferData(BufferTarget.ArrayBuffer, vert_data.Length * 4, vert_data, BufferUsageHint.StaticDraw);
+
+                GL.EnableVertexAttribArray(0);
+                GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 9 * 4, 0);
+
+                GL.EnableVertexAttribArray(1);
+                GL.VertexAttribPointer(1, 2, VertexAttribPointerType.Float, false, 9 * 4, 3 * 4);
+
+                GL.EnableVertexAttribArray(2);
+                GL.VertexAttribPointer(2, 4, VertexAttribPointerType.Float, false, 9 * 4, 5 * 4);
+
+                GL.DrawElements<uint>(PrimitiveType.Quads, draw_c, DrawElementsType.UnsignedInt, ind_data);
+
+                GL.DisableVertexAttribArray(0);
+                GL.DisableVertexAttribArray(1);
+                GL.DisableVertexAttribArray(2);
+
+                GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+                //  GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+
+                GL.DeleteBuffer(vert_buf);
+                GL.DeleteVertexArray(vert_arr);
+                // GL.DeleteBuffer(ind_buf);
+
+                draw_list.Data[0].Img.Release(0);
+            }
+
+
+            //  DrawFX.Release();
+        }
         public static void EndDraw()
         {
             if (!begun) return;

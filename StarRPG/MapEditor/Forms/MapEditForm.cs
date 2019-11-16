@@ -72,7 +72,7 @@ namespace MapEditor.Forms
             for(int i = 0; i < 4; i++)
             {
 
-                Layers.Add(new MapLayer(6, 6));
+                Layers.Add(new MapLayer(24, 24));
                 CurMap.AddLayer(Layers[i]);
             }
             //CurMap.AddLayer(layer[0]);
@@ -101,8 +101,8 @@ namespace MapEditor.Forms
                     updateModeLabel();
                     lMode = Mode;
                 }
-                TView.Map.Lights[0].SetPos(64,0);
-                TView.Map.Lights[0].Range = 250;
+                TView.Map.Lights[0].SetPos(300,300);
+                TView.Map.Lights[0].Range = 1200;
 
               
             };

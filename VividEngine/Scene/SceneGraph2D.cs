@@ -24,7 +24,16 @@ namespace Vivid.Scene
             get;
             set;
         }
-
+        public FXDrawShadow DrawShadow
+        {
+            get;
+            set;
+        }
+        public FXShadowImage ShadowImage
+        {
+            get;
+            set;
+        }
         public FXLitImage LitImage
         {
             get;
@@ -79,6 +88,7 @@ namespace Vivid.Scene
             Root = new GraphNode();
             Lights = new List<GraphLight>();
             LitImage = new FXLitImage();
+            ShadowImage = new FXShadowImage();
         }
 
         public void Copy()
@@ -240,28 +250,68 @@ namespace Vivid.Scene
             ShadowBuf = new FrameBuffer.FrameBufferColor(w, h);
 
         }
+        public FrameBuffer.FrameBufferColor ShadowBuffer2;
+        public void BindShadowBuf(FrameBuffer.FrameBufferColor from)
+        {
+            if (ShadowBuffer2 == null || ShadowBuffer2.IW != ShadowBuf.IW || ShadowBuffer2.IH != ShadowBuf.IH)
+            {
+                ShadowBuffer2 = new FrameBuffer.FrameBufferColor(ShadowBuf.IW, ShadowBuf.IH);
+
+            }
+            ShadowBuffer2.Bind();
+
+           
+        
+        }
+
+        public void ReleaseShadowBuf()
+        {
+
+            ShadowBuffer2.Release();
+
+        }
 
         public void DrawShadowBuf()
         {
             ShadowBuf.Bind();
             Render.Begin();
             DrawNodeShadow(Root);
-            LitImage.Light = Lights[0];
-            LitImage.Graph = this;
-            if (LitImage.Light != null)
-            {
+            //LitImage.Light = Lights[0];
+            //LitImage.Graph = this;
+           // if (LitImage.Light != null)
+            //{
 
 
-                LitImage.Bind();
+
+                ShadowImage.Bind();
               
                 Render.SetBlend(BlendMode.Alpha); ;
 
                 Render.End2D();
            
-                LitImage.Release();
-            }
+                ShadowImage.Release();
+           // }
 
             ShadowBuf.Release();
+
+            //ShadowBuffer2.Bind();
+      
+        }
+
+        public void BindShadowBuf2()
+        {
+            BindShadowBuf(null);
+
+
+
+          
+
+        }
+
+        public void ReleaseShadowBuf2()
+        {
+            ShadowBuffer2.Release();
+
         }
 
         public void DrawNodeShadow(GraphNode node)
@@ -329,9 +379,9 @@ namespace Vivid.Scene
 
                 LitImage.Bind();
                 Render.SetBlend(BlendMode.Alpha); ;
-                ShadowBuf.BB.Bind(1);
+                ShadowBuffer2.BB.Bind(1);
                 Render.End2D();
-                ShadowBuf.BB.Release(1);
+                ShadowBuffer2.BB.Release(1);
                 LitImage.Release();
             }
 

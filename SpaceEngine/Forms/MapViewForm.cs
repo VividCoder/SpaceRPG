@@ -53,19 +53,27 @@ namespace SpaceEngine.Forms
                 gx = Graph.X;
                 gy = Graph.Y;
                 gz = Graph.Z;
+                var sb = Graph.ShadowBuf;
                 Graph = Map.UpdateGraph(Map.Layers[0].Width,Map.Layers[0].Height);
                 Graph.X = gx;
                 Graph.Y = gy;
                 Graph.Rot = gr;
                 Graph.Z = gz;
-                Graph.CreateShadowBuf(W, H);
+                if (Graph.ShadowBuf == null)
+                {
+                    Graph.ShadowBuf = sb;
+                    //Graph.CreateShadowBuf(W, H);
+                }
                 // Graph.X = -32 + W / 2;
                 // Graph.Y = -32 + H / 2;
             }
             else
             {
                 Graph = Map.UpdateGraph(Map.Layers[0].Width,Map.Layers[0].Height);
-                Graph.CreateShadowBuf(W, H);
+                if (Graph.ShadowBuf == null)
+                {
+                    Graph.CreateShadowBuf(W, H);
+                }
                 //Graph.X = -32 + W / 2;
                 //Graph.Y = -32 + H / 2;
             }
@@ -104,6 +112,22 @@ namespace SpaceEngine.Forms
                 {
                 
                     Graph.DrawShadowBuf();
+                    Graph.BindShadowBuf2();
+
+                    //Graph.ShadowBuf.BB.Bind(0);
+
+
+
+                    Vivid.Draw.IntelliDraw.BeginDraw();
+                    Vivid.Draw.IntelliDraw.DrawImg(0, 0, AppInfo.RW, AppInfo.RH, Graph.ShadowBuf.BB, new Vector4(1, 1, 1, 1),true);
+                    Vivid.Draw.IntelliDraw.EndDraw();
+
+                    Graph.ReleaseShadowBuf2();
+                   // Graph.GenShadow();
+
+                   
+
+                    //return;
                     MapFrame.Bind();
                     Changed = false;
                     //Console.WriteLine("Rendering map");
@@ -132,9 +156,17 @@ namespace SpaceEngine.Forms
                 DrawFormSolid(new Vector4(1, 0.8f, 0.8f, 1.0f));
                 Col = new Vector4(1, 1, 1, 1);
                 DrawForm(MapFrame.BB,0,0,-1,-1,true);
-               //Graph.Rot = r;
+                if (Graph != null)
+                {
+                    if (Graph.ShadowBuffer2 != null)
+                    {
+                        DrawForm(Graph.ShadowBuf.BB, 0, 0, 256, 256);
+                        DrawForm(Graph.ShadowBuffer2.BB, 260, 0,256, 256);
+                        //Graph.Rot = r;
+                    }
+                }
                 r = r + 1;
-                Changed = true;
+                //Changed = true;
 
 
 

@@ -58,12 +58,14 @@ namespace SpaceEngine.Forms
                 Graph.Y = gy;
                 Graph.Rot = gr;
                 Graph.Z = gz;
-               // Graph.X = -32 + W / 2;
-               // Graph.Y = -32 + H / 2;
+                Graph.CreateShadowBuf(W, H);
+                // Graph.X = -32 + W / 2;
+                // Graph.Y = -32 + H / 2;
             }
             else
             {
                 Graph = Map.UpdateGraph(Map.Layers[0].Width,Map.Layers[0].Height);
+                Graph.CreateShadowBuf(W, H);
                 //Graph.X = -32 + W / 2;
                 //Graph.Y = -32 + H / 2;
             }
@@ -90,6 +92,7 @@ namespace SpaceEngine.Forms
             {
 
                 MapFrame = new Vivid.FrameBuffer.FrameBufferColor (W, H);
+               
                 Changed = true;
             };
 
@@ -99,6 +102,8 @@ namespace SpaceEngine.Forms
                 
                 if (Graph != null && Changed)
                 {
+                
+                    Graph.DrawShadowBuf();
                     MapFrame.Bind();
                     Changed = false;
                     //Console.WriteLine("Rendering map");

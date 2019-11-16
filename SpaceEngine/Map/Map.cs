@@ -112,6 +112,8 @@ namespace SpaceEngine.Map
         {
 
             Vivid.Scene.SceneGraph2D Graph = new Vivid.Scene.SceneGraph2D();
+            
+
             int li = 0;
             foreach (var layer in Layers)
             {
@@ -150,6 +152,10 @@ namespace SpaceEngine.Map
                         tileSpr.SetPos(mx, my);
                         tileSpr.Obj[0] = tile;
                         Graph.Add(tileSpr);
+                        if (li > 1)
+                        {
+                            tileSpr.CastShadow = true;
+                        }
 
                     }
                 }
@@ -159,6 +165,17 @@ namespace SpaceEngine.Map
             NewMethod(Graph);
 
             Graph.Add(Lights.ToArray());
+            foreach (var l in Lights)
+            {
+
+                var lg = new GraphSprite(new Tex2D("content/edit/light.png", true), 64, 64);
+                lg.X = l.X;
+                lg.Y = l.Y;
+                lg.Z = l.Z;
+                Graph.Add(lg);
+
+            }
+
             // Graph.X = -32+ Vivid.App.AppInfo.RW/2;// (TileWidth * Layers[0].Width) / 2;
             //Graph.Y = -32+ Vivid.App.AppInfo.RH / 2;// (TileHeight * Layers[0].Height) / 2;
 

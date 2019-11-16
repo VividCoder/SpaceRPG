@@ -16,7 +16,11 @@ namespace Vivid.Scene
             get;
             set;
         }
-
+        public bool CastShadow
+        {
+            get;
+            set;
+        }
         public List<GraphNode> Nodes
         {
             get;

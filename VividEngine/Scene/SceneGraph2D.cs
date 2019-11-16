@@ -67,6 +67,8 @@ namespace Vivid.Scene
             set;
         }
 
+        public FrameBuffer.FrameBufferColor ShadowBuf = null;
+
         public SceneGraph2D()
         {
             Running = false;
@@ -232,9 +234,90 @@ namespace Vivid.Scene
             }
         }
 
+        public void CreateShadowBuf(int w,int h)
+        {
+
+            ShadowBuf = new FrameBuffer.FrameBufferColor(w, h);
+
+        }
+
+        public void DrawShadowBuf()
+        {
+            ShadowBuf.Bind();
+            Render.Begin();
+            DrawNodeShadow(Root);
+            LitImage.Light = Lights[0];
+            LitImage.Graph = this;
+            if (LitImage.Light != null)
+            {
+
+
+                LitImage.Bind();
+              
+                Render.SetBlend(BlendMode.Alpha); ;
+
+                Render.End2D();
+           
+                LitImage.Release();
+            }
+
+            ShadowBuf.Release();
+        }
+
+        public void DrawNodeShadow(GraphNode node)
+        {
+            if (node.ImgFrame != null && node.CastShadow)
+            {
+                if (node.ImgFrame.Width < 2)
+                {
+                    Console.WriteLine("Illegal Image ID:" + node.ImgFrame.ID);
+                    while (true)
+                    {
+                    }
+                }
+
+                bool first = true;
+
+
+
+                if (first)
+                {
+                    //     Render.SetBlend(BlendMode.Alpha);
+                    first = false;
+                }
+                else
+                {
+                    //       Render.SetBlend(BlendMode.Add);
+                }
+
+                //    LitImage.Bind();
+
+                float[] xc;
+                float[] yc;
+
+                node.SyncCoords();
+
+                xc = node.XC;
+                yc = node.YC;
+
+                Render.Image(node.DrawP, node.ImgFrame);
+
+                //Render.Image(xc, yc, node.ImgFrame);
+
+
+
+            }
+            foreach (GraphNode snode in node.Nodes)
+            {
+                DrawNodeShadow(snode);
+            }
+        }
+
         public void Draw()
         {
            // OpenTK.Graphics.OpenGL4.GL.Disable(OpenTK.Graphics.OpenGL4.EnableCap.Blend);
+
+           
 
             Render.Begin();
             DrawNode(Root);
@@ -246,8 +329,9 @@ namespace Vivid.Scene
 
                 LitImage.Bind();
                 Render.SetBlend(BlendMode.Alpha); ;
-
+                ShadowBuf.BB.Bind(1);
                 Render.End2D();
+                ShadowBuf.BB.Release(1);
                 LitImage.Release();
             }
 

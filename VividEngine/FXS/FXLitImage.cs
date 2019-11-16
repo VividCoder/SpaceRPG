@@ -43,8 +43,9 @@ namespace Vivid.FXS
 
             res = Maths.Push(res, sw / 2, sh / 2);
 
-            SetTex("tR", 0);
-            
+            SetTex("tDiffuse", 0);
+            SetTex("tShadow", 1);
+
             SetVec3("lPos", new OpenTK.Vector3(res.X, res.Y, 0));
             SetVec3("lDif", Light.Diffuse);
             SetVec3("lSpec", Light.Specular);

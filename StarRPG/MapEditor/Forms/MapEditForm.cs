@@ -40,9 +40,32 @@ namespace MapEditor.Forms
         bool MoveCam = false;
         bool zoomCam = false;
         bool rotCam = false;
+        public int EditZ = 0;
         public MapEditForm()
         {
 
+            var layDown = new ButtonForm().Set(140, -20, 30, 20, "\\/");
+            var layUp = new ButtonForm().Set(240, -20,30, 20, "/\\");
+            var lay = new TextBoxForm().Set(175, -20, 70, 20, "0");
+                body.Add(layDown);
+            body.Add(layUp);
+            body.Add(lay);
+
+            layDown.Click = (b) =>
+              {
+                  EditZ--;
+                  if (EditZ < 0) EditZ = 0;
+                  lay.Text = EditZ.ToString();
+              };
+            layUp.Click = (b) =>
+            {
+                EditZ++;
+                if (EditZ >= View.Map.Layers.Count)
+                {
+                    EditZ = View.Map.Layers.Count - 1;
+                };
+                lay.Text = EditZ.ToString();
+            };
             Tab = new TabForm();
 
             CurMap = new Map();
@@ -78,8 +101,9 @@ namespace MapEditor.Forms
                     updateModeLabel();
                     lMode = Mode;
                 }
-                TView.Map.Lights[0].SetPos(300, 300);
-                TView.Map.Lights[0].Range = 1200;
+                TView.Map.Lights[0].SetPos(64,0);
+                TView.Map.Lights[0].Range = 250;
+
               
             };
 
@@ -90,7 +114,7 @@ namespace MapEditor.Forms
                 {
                     View.Forms.Remove(cLab);
                 }
-                cLab = new LabelForm().Set(2, -23, 200, 20, "Mode:Paste") as LabelForm;
+                cLab = new LabelForm().Set(2, -23, 30, 20, "Mode:Paste") as LabelForm;
 
                 View.Add(cLab);
             }
@@ -174,11 +198,11 @@ namespace MapEditor.Forms
                             switch (Mode)
                             {
                                 case EditMode.Paste:
-                                    TView.Map.Layers[0].SetTile(node.TileX, node.TileY, TileBrowser.ActiveTile);
+                                    TView.Map.Layers[EditZ].SetTile(node.TileX, node.TileY, TileBrowser.ActiveTile);
                                     //TView.UpdateGraph();
                                     break;
                                 case EditMode.Fill:
-                                    TView.Map.Layers[0].Fill(TileBrowser.ActiveTile);
+                                    TView.Map.Layers[EditZ].Fill(TileBrowser.ActiveTile);
                                     break;
                             }
                         }

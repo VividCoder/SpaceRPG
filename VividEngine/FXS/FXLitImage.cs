@@ -4,6 +4,19 @@ using Vivid.Util;
 
 namespace Vivid.FXS
 {
+    public class FXBlurShadow : VEffect
+    {
+        public FXBlurShadow() : base("","data/shader/blurShadowVS.glsl","data/shader/blurShadowFS.glsl")
+        {
+        
+        }
+        public override void SetPars()
+        {
+            base.SetPars();
+            SetMat("proj", OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));
+            SetTex("tShadow", 0);
+        }
+    }
     public class FXDrawShadow : VEffect
     {
         public GraphLight Light
@@ -42,10 +55,11 @@ namespace Vivid.FXS
 
             res = Maths.Push(res, sw / 2, sh / 2);
             SetVec3("lPos", new OpenTK.Vector3(res.X, res.Y, 0));
-        
+            SetTex("tShadow", 0);
             SetFloat("lRange", Light.Range * Graph.Z);
             SetFloat("sWidth", Vivid.App.AppInfo.RW);
             SetFloat("sHeight", Vivid.App.AppInfo.RH);
+            SetMat("proj", OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));
 
         }
 

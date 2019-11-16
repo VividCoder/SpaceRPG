@@ -560,7 +560,7 @@ namespace Vivid.Draw
 
             //  DrawFX.Release();
         }
-        public static void EndDraw()
+        public static void EndDraw(Vivid.FX.VEffect fxOver = null)
         {
             if (!begun) return;
             begun = false;
@@ -571,8 +571,14 @@ namespace Vivid.Draw
 
             //GL.Viewport(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
 
-            DrawFX.Bind();
-
+            if (fxOver != null)
+            {
+                fxOver.Bind();
+            }
+            else
+            {
+                DrawFX.Bind();
+            }
             foreach (var draw_list in Draws)
             {
                 var vert_arr = GL.GenVertexArray();
@@ -625,8 +631,9 @@ namespace Vivid.Draw
                     {
                         vert_data[vert_i++] = 1;
                         vert_data[vert_i++] = 1;
-                     }
-                    else { 
+                    }
+                    else
+                    {
                         vert_data[vert_i++] = 1;
                         vert_data[vert_i++] = 0;
                     }
@@ -709,9 +716,16 @@ namespace Vivid.Draw
 
                 draw_list.Data[0].Img.Release(0);
             }
-         
 
-            DrawFX.Release();
+            if (fxOver == null)
+            {
+
+                DrawFX.Release();
+            }
+            else
+            {
+                fxOver.Release();
+            }
         }
     }
 

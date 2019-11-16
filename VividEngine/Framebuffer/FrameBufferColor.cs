@@ -15,6 +15,19 @@ namespace Vivid.FrameBuffer
         public int IW, IH;
         public int DRB = 0;
 
+        ~FrameBufferColor()
+        {
+
+            try {
+               // GL.DeleteFramebuffer(FBO);
+               // GL.DeleteRenderbuffer(DRB);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
         public FrameBufferColor(int w, int h, TextureFormat format = TextureFormat.Normal)
         {
             IW = w;

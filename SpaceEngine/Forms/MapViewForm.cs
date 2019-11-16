@@ -53,15 +53,16 @@ namespace SpaceEngine.Forms
                 gx = Graph.X;
                 gy = Graph.Y;
                 gz = Graph.Z;
-                var sb = Graph.ShadowBuf;
+
+                //var sb  SceneGraph.ShadowBuf;
                 Graph = Map.UpdateGraph(Map.Layers[0].Width,Map.Layers[0].Height);
                 Graph.X = gx;
                 Graph.Y = gy;
                 Graph.Rot = gr;
                 Graph.Z = gz;
-                if (Graph.ShadowBuf == null)
+               // if (Graph.ShadowBuf == null)
                 {
-                    Graph.ShadowBuf = sb;
+                  //  Graph.ShadowBuf = sb;
                     //Graph.CreateShadowBuf(W, H);
                 }
                 // Graph.X = -32 + W / 2;
@@ -70,9 +71,9 @@ namespace SpaceEngine.Forms
             else
             {
                 Graph = Map.UpdateGraph(Map.Layers[0].Width,Map.Layers[0].Height);
-                if (Graph.ShadowBuf == null)
+                //if (Graph.ShadowBuf == null)
                 {
-                    Graph.CreateShadowBuf(W, H);
+                //    Graph.CreateShadowBuf(W, H);
                 }
                 //Graph.X = -32 + W / 2;
                 //Graph.Y = -32 + H / 2;
@@ -83,9 +84,10 @@ namespace SpaceEngine.Forms
             //Graph.Y -= 170;
         }
         public bool Changed = true;
-        public MapViewForm(Map.Map map)
+        bool shadows = false;
+        public MapViewForm(Map.Map map, bool Shadows = true)
         {
-
+            shadows = Shadows;
             Map = map;
 
             if (MapFrame == null)
@@ -110,19 +112,20 @@ namespace SpaceEngine.Forms
                 
                 if (Graph != null && Changed)
                 {
-                
-                    Graph.DrawShadowBuf();
-                    Graph.BindShadowBuf2();
-
-                    //Graph.ShadowBuf.BB.Bind(0);
-
-
-
-                    Vivid.Draw.IntelliDraw.BeginDraw();
-                    Vivid.Draw.IntelliDraw.DrawImg(0, 0, AppInfo.RW, AppInfo.RH, Graph.ShadowBuf.BB, new Vector4(1, 1, 0.1f, 1),true);
-                    Vivid.Draw.IntelliDraw.EndDraw();
-
-                    Graph.ReleaseShadowBuf2();
+                    if (shadows)
+                    {
+                        if(SceneGraph2D.ShadowBuf == null)
+                        {
+                            SceneGraph2D.ShadowBuf = new Vivid.FrameBuffer.FrameBufferColor(MapFrame.IW, MapFrame.IH);
+                            SceneGraph2D.ShadowBuffer2 = new Vivid.FrameBuffer.FrameBufferColor(MapFrame.IW, MapFrame.IH);
+                            SceneGraph2D.Shadow3 = new Vivid.FrameBuffer.FrameBufferColor(MapFrame.IW, MapFrame.IH);
+                        }
+                        Graph.DrawShadowBuf();
+                        if (SceneGraph2D.ShadowBuf.IW != MapFrame.IW)
+                        {
+                            
+                        }
+                    }
                    // Graph.GenShadow();
 
                    
@@ -133,7 +136,7 @@ namespace SpaceEngine.Forms
                     //Console.WriteLine("Rendering map");
                    // AppInfo.RW = AppInfo.RW;
                     //AppInfo.RH = AppInfo.RH;
-                    Graph.Draw();
+                    Graph.Draw(shadows);
 
                     //Graph.X += 1;
                     //Graph.Y += 1;
@@ -155,13 +158,19 @@ namespace SpaceEngine.Forms
 
                 DrawFormSolid(new Vector4(1, 0.8f, 0.8f, 1.0f));
                 Col = new Vector4(1, 1, 1, 1);
+                if (shadows)
+                {
+                    int bv = 2;
+
+                }
                 DrawForm(MapFrame.BB,0,0,-1,-1,true);
                 if (Graph != null)
                 {
-                    if (Graph.ShadowBuffer2 != null)
+                    if (SceneGraph2D.ShadowBuffer2 != null)
                     {
-                        DrawForm(Graph.ShadowBuf.BB, 0, 0, 256, 256);
-                        DrawForm(Graph.ShadowBuffer2.BB, 260, 0,256, 256);
+                       DrawForm(SceneGraph2D.ShadowBuf.BB, 0, 0, 256, 256);
+                        DrawForm(SceneGraph2D.ShadowBuffer2.BB, 260, 0,256, 256);
+                        DrawForm(SceneGraph2D.Shadow3.BB, 0, 260, 256, 256);
                         //Graph.Rot = r;
                     }
                 }

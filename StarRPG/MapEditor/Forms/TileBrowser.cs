@@ -39,7 +39,7 @@ namespace MapEditor.Forms
 
 
 
-            TView = new MapViewForm(TileMap);
+            TView = new MapViewForm(TileMap,false);
             Add(TView);
             AfterSet = () =>
             {

@@ -31,6 +31,11 @@ namespace Vivid.Tex
             return "Img:" + Name;
         }
 
+        ~Tex2D()
+        {
+           // GL.DeleteTexture(ID);
+        }
+       
         public Tex2D(Bitmap bit, bool alpha)
         {
             if (TmpStore == null)

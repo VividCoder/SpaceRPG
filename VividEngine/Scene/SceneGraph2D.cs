@@ -24,6 +24,12 @@ namespace Vivid.Scene
             get;
             set;
         }
+        public FXBlurShadow BlurShadow
+        {
+            get;
+            set;
+                
+        }
         public FXDrawShadow DrawShadow
         {
             get;
@@ -76,10 +82,15 @@ namespace Vivid.Scene
             set;
         }
 
-        public FrameBuffer.FrameBufferColor ShadowBuf = null;
-
+        public static FrameBuffer.FrameBufferColor ShadowBuf = null;
+        public static Texture.Texture2D White1 = null;
+        static int sc = 0;
         public SceneGraph2D()
         {
+            Console.WriteLine("Created Scene:" + sc);
+            sc++;
+            White1 = new Texture.Texture2D("data/tex/white1.png", Texture.LoadMethod.Single, false);
+
             Running = false;
             X = 0;
             Y = 0;
@@ -89,6 +100,8 @@ namespace Vivid.Scene
             Lights = new List<GraphLight>();
             LitImage = new FXLitImage();
             ShadowImage = new FXShadowImage();
+            DrawShadow = new FXDrawShadow();
+            BlurShadow = new FXBlurShadow();
         }
 
         public void Copy()
@@ -247,15 +260,15 @@ namespace Vivid.Scene
         public void CreateShadowBuf(int w,int h)
         {
 
-            ShadowBuf = new FrameBuffer.FrameBufferColor(w, h);
+           // ShadowBuf = new FrameBuffer.FrameBufferColor(w, h);
 
         }
-        public FrameBuffer.FrameBufferColor ShadowBuffer2;
+        public static FrameBuffer.FrameBufferColor ShadowBuffer2;
         public void BindShadowBuf(FrameBuffer.FrameBufferColor from)
         {
             if (ShadowBuffer2 == null || ShadowBuffer2.IW != ShadowBuf.IW || ShadowBuffer2.IH != ShadowBuf.IH)
             {
-                ShadowBuffer2 = new FrameBuffer.FrameBufferColor(ShadowBuf.IW, ShadowBuf.IH);
+                //ShadowBuffer2 = new FrameBuffer.FrameBufferColor(ShadowBuf.IW, ShadowBuf.IH);
 
             }
             ShadowBuffer2.Bind();
@@ -270,9 +283,14 @@ namespace Vivid.Scene
             ShadowBuffer2.Release();
 
         }
-
+        public static FrameBuffer.FrameBufferColor Shadow3 = null;
         public void DrawShadowBuf()
         {
+            if (ShadowBuf == null)
+            {
+               // ShadowBuf = new FrameBuffer.FrameBufferColor(App.AppInfo.RW, App.AppInfo.RH);
+               // Shadow3 = new FrameBuffer.FrameBufferColor(App.AppInfo.RW, App.AppInfo.H);
+            }
             ShadowBuf.Bind();
             Render.Begin();
             DrawNodeShadow(Root);
@@ -294,8 +312,32 @@ namespace Vivid.Scene
 
             ShadowBuf.Release();
 
+            BindShadowBuf2();
+
+            //Graph.ShadowBuf.BB.Bind(0);
+
+            DrawShadow.Graph = this;
+            DrawShadow.Light = this.Lights[0];
+
+            Vivid.Draw.IntelliDraw.BeginDraw();
+            Vivid.Draw.IntelliDraw.DrawImg(0, 0, Vivid.App.AppInfo.RW,Vivid.App.AppInfo.RH,ShadowBuf.BB, new Vector4(1, 1, 1f, 1), true);
+            Vivid.Draw.IntelliDraw.EndDraw(DrawShadow);
+
+            ReleaseShadowBuf2();
+
+            //return;
+
+
+            Shadow3.Bind();
+
+            Vivid.Draw.IntelliDraw.BeginDraw();
+            Vivid.Draw.IntelliDraw.DrawImg(0, 0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, ShadowBuffer2.BB, new Vector4(1, 1, 1f, 1),false);
+            Vivid.Draw.IntelliDraw.EndDraw(BlurShadow);
+
+            Shadow3.Release();
+
             //ShadowBuffer2.Bind();
-      
+
         }
 
         public void BindShadowBuf2()
@@ -363,7 +405,7 @@ namespace Vivid.Scene
             }
         }
 
-        public void Draw()
+        public void Draw(bool shadows)
         {
            // OpenTK.Graphics.OpenGL4.GL.Disable(OpenTK.Graphics.OpenGL4.EnableCap.Blend);
 
@@ -379,10 +421,24 @@ namespace Vivid.Scene
 
                 LitImage.Bind();
                 Render.SetBlend(BlendMode.Alpha); ;
-                ShadowBuffer2.BB.Bind(1);
+                if (shadows)
+                {
+                    Shadow3.BB.Bind(1);
+                }
+                else
+                {
+                    White1.Bind(1);
+                }
                 Render.End2D();
-                ShadowBuffer2.BB.Release(1);
-                LitImage.Release();
+                if (shadows)
+                {
+                    Shadow3.BB.Release(1);
+                }
+                else
+                {
+                    White1.Release(1);
+                }
+                    LitImage.Release();
             }
 
         }

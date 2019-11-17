@@ -112,8 +112,8 @@ namespace SpaceEngine.Map
         {
 
             Vivid.Scene.SceneGraph2D Graph = new Vivid.Scene.SceneGraph2D();
-            
 
+            float sp = 0;
             int li = 0;
             foreach (var layer in Layers)
             {
@@ -151,6 +151,7 @@ namespace SpaceEngine.Map
 
                         tileSpr.SetPos(mx, my);
                         tileSpr.Obj[0] = tile;
+                        tileSpr.ShadowPlane = sp;
                         Graph.Add(tileSpr);
                         if (li > 1)
                         {
@@ -160,7 +161,7 @@ namespace SpaceEngine.Map
 
                     }
                 }
-
+                sp = sp + 0.1f;
             }
 
             NewMethod(Graph);

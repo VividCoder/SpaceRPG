@@ -39,6 +39,13 @@ namespace Vivid.Scene
             set;
         }
 
+        public float ShadowPlane
+        {
+            get;
+            set;
+
+        }
+
         public dynamic[] Obj = new dynamic[255];
 
         public void CopyProps()
@@ -207,6 +214,7 @@ namespace Vivid.Scene
             RecvShadow = true;
             Z = 1.0f;
             Nodes = new List<GraphNode>();
+            ShadowPlane = 0;
         }
 
         public void Translate(float x, float y, float z = 0.0f)

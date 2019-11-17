@@ -54,7 +54,7 @@ namespace Vivid.Draw
             }
         }
 
-        public static void Image(Vector2[] p, Tex2D img)
+        public static void Image(Vector2[] p, Tex2D img,float z=1.0f)
         {
             float[] x = new float[4];
             float[] y = new float[4];
@@ -63,7 +63,7 @@ namespace Vivid.Draw
                 x[i] = p[i].X;
                 y[i] = p[i].Y;
             }
-            Image(x, y, img);
+            Image(x, y, img,z);
         }
         public static void Begin()
         {
@@ -76,13 +76,13 @@ namespace Vivid.Draw
 
         }
 
-        public static void Image(float[] xc, float[] yc, Tex2D img)
+        public static void Image(float[] xc, float[] yc, Tex2D img,float z=1.0f)
         {
             //img.Bind(0);
 
 
 
-            Draw.IntelliDraw.DrawImg2D(xc, yc, img, new Vector4(1, 1, 1, 1));
+            Draw.IntelliDraw.DrawImg2D(xc, yc, img, new Vector4(1, 1, 1, 1),z);
 
 
             //'  Col = new Vector4(1, 1, 1, 0.5f);

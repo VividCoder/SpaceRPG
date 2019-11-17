@@ -242,8 +242,8 @@ namespace Vivid.Scene
                 xc = node.XC;
                 yc = node.YC;
 
-                Render.Image(node.DrawP, node.ImgFrame);
-
+                Render.Image(node.DrawP, node.ImgFrame,node.ShadowPlane);
+            
                 //Render.Image(xc, yc, node.ImgFrame);
 
 
@@ -368,6 +368,8 @@ namespace Vivid.Scene
                 DrawNode(Root);
                 LitImage.Light = l;
                 LitImage.Graph = this;
+                LitImage.LightZ = l.Z;
+              //  Console.WriteLine("LZ:" + l.Z);
                 if (LitImage.Light != null)
                 {
 

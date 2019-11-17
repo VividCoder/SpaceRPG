@@ -108,6 +108,8 @@ namespace MapEditor.Forms
                 TView.Map.Lights[0].Diffuse = new OpenTK.Vector3(0, 1, 1);
                 TView.Map.Lights[1].SetPos(650, 400);
                 TView.Map.Lights[1].Range = 400;
+                TView.Map.Lights[0].Z = 0.1f;
+                TView.Map.Lights[1].Z = 0.1f;
 
               
             };

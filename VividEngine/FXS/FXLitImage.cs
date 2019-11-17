@@ -95,6 +95,7 @@ namespace Vivid.FXS
             set;
         }
 
+        public float LightZ = 0;
         public FXLitImage() : base("", "data/Shader/LitImageVS.glsl", "data/Shader/LitImageFS1.glsl")
         {
         }
@@ -122,6 +123,7 @@ namespace Vivid.FXS
 
             SetTex("tDiffuse", 0);
             SetTex("tShadow", 1);
+            SetFloat("lZ", LightZ);
             SetInt("sShadow", isShadowed ? 1 : 0);
             SetVec3("lPos", new OpenTK.Vector3(res.X, res.Y, 0));
             SetVec3("lDif", Light.Diffuse);

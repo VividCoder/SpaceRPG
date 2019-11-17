@@ -42,7 +42,7 @@ namespace Vivid.VFX
 
             Draw.Render.Col = new Vector4(1, 1, 1, Alpha);
 
-            Draw.Render.Image(p, Img);
+           // Draw.Render.Image(p, Img,z);
 
             /*
             p = Maths.Rotate(p, Rot, 1.0f);

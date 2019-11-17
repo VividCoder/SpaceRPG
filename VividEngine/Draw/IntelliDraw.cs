@@ -125,13 +125,13 @@ namespace Vivid.Draw
             Draw_Z += 0.002f;
         }
 
-        public static void DrawImg2D(float[] xc, float[] yc, Tex.Tex2D img, Vector4 col)
+        public static void DrawImg2D(float[] xc, float[] yc, Tex.Tex2D img, Vector4 col,float z=1.0f)
         {
 
             if (!begun) return;
             var draw_list = GetDrawList(img);
 
-            draw_list.AddDraw(xc, yc, Draw_Z, img, col);
+            draw_list.AddDraw(xc, yc,z, img, col);
 
             Draw_Z += 0.0002f;
 

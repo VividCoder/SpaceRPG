@@ -1,8 +1,7 @@
-﻿using Vivid.Data;
+﻿using OpenTK;
+using Vivid.Data;
 using Vivid.Scene;
 using Vivid.Texture;
-
-using OpenTK;
 
 namespace Vivid.ParticleSystem
 {

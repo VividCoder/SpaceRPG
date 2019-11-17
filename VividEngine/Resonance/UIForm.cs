@@ -1,10 +1,7 @@
-﻿using Vivid.Draw;
-using Vivid.Logic;
-using Vivid.Texture;
-
-using OpenTK;
-
+﻿using OpenTK;
 using System.Collections.Generic;
+using Vivid.Draw;
+using Vivid.Texture;
 
 namespace Vivid.Resonance
 {
@@ -50,7 +47,7 @@ namespace Vivid.Resonance
         public bool Clip = true;
         public bool CheckBounds = true;
         public bool PushArea = false;
-    
+
 
         public Vector4 Col = new Vector4(1, 1, 1, 0.7f);
         public float Blur = 0.4f;
@@ -85,7 +82,7 @@ namespace Vivid.Resonance
         public int X = 0, Y = 0;
         public int W = 0, H = 0;
         //public 
-       
+
         public string Text = "";
         public DockMethod DockStyle = DockMethod.None;
         public UIForm Root = null;
@@ -120,7 +117,7 @@ namespace Vivid.Resonance
 
         public UIForm Add(UIForm form)
         {
-            foreach(var cform in Forms)
+            foreach (var cform in Forms)
             {
                 if (cform == form) return form;
             }
@@ -134,7 +131,7 @@ namespace Vivid.Resonance
 
             Resized?.Invoke();
 
-            foreach(var f in Forms)
+            foreach (var f in Forms)
             {
                 f.Resize();
             }
@@ -176,7 +173,7 @@ namespace Vivid.Resonance
                 }
                 else
                 {
-                    if (UI.Menu != null & UI.Menu !=this)
+                    if (UI.Menu != null & UI.Menu != this)
                     {
                         y = y + 20;
 
@@ -206,8 +203,8 @@ namespace Vivid.Resonance
 
             //  Pen2D.Line(GX + x, GY + y, GX + x2, GY + y2);
         }
-        
-        public void DrawForm(Texture2D tex, int x = 0, int y = 0, int w = -1, int h = -1,bool flipuv = false)
+
+        public void DrawForm(Texture2D tex, int x = 0, int y = 0, int w = -1, int h = -1, bool flipuv = false)
         {
             Pen2D.BlendMod = PenBlend.Alpha;
 
@@ -219,7 +216,7 @@ namespace Vivid.Resonance
                 dw = w;
                 dh = h;
             }
-            Vivid.Draw.IntelliDraw.DrawImg(GX + x + OffX, GY + y + OffY, dw, dh, tex, Col,flipuv);
+            Vivid.Draw.IntelliDraw.DrawImg(GX + x + OffX, GY + y + OffY, dw, dh, tex, Col, flipuv);
 
             // Pen2D.Rect(GX + x + OffX, GY + y + OffY, dw, dh, tex, Col * UI.BootAlpha);
         }
@@ -264,7 +261,7 @@ namespace Vivid.Resonance
                 // GL.Viewport(form.ViewX, form.ViewY, form.ViewW, form.ViewH);
             }
         }
-       
+
         public void DrawFormSolid(Vector4 col, int x = 0, int y = 0, int w = -1, int h = -1)
         {
             if (w == -1)
@@ -326,13 +323,13 @@ namespace Vivid.Resonance
             DrawText(txt, x, y, new Vector4(0, 0, 0, 1) * UI.BootAlpha);
         }
 
-        public void SetClip(int x,int y,int w,int h)
+        public void SetClip(int x, int y, int w, int h)
         {
             ViewX = x;
             ViewY = y;
             ViewW = w;
             ViewH = h;
-            foreach(var c in Forms)
+            foreach (var c in Forms)
             {
                 c.SetClip(x, y, w, h);
             }
@@ -369,8 +366,8 @@ namespace Vivid.Resonance
             Y = y;
             W = w;
             H = h;
-            
-      
+
+
 
 
             Text = text;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vivid.Scene.Anim
+﻿namespace Vivid.Scene.Anim
 {
     public class AnimNode
     {
@@ -51,7 +45,7 @@ namespace Vivid.Scene.Anim
 
             BeginTime = Endtime = 0.0;
             TimeMod = 1.0;
-            
+
         }
 
 

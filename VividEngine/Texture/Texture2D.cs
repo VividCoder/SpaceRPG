@@ -197,7 +197,7 @@ namespace Vivid.Texture
             Load(path, alpha);
         }
 
-        public void Load(string path,bool alpha)
+        public void Load(string path, bool alpha)
         {
             if (File.Exists(path) == false)
             {
@@ -477,7 +477,7 @@ namespace Vivid.Texture
         {
             Alpha = Help.IOHelp.ReadBool();
             Path = Help.IOHelp.ReadString();
-            Load(Path,Alpha);
+            Load(Path, Alpha);
 
             return;
             W = Help.IOHelp.ReadInt();

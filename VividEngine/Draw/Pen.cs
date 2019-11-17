@@ -1,12 +1,10 @@
-﻿using Vivid.App;
-using Vivid.Effect;
-using Vivid.Texture;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
-
 using System;
+using Vivid.App;
+using Vivid.Effect;
+using Vivid.Texture;
 
 namespace Vivid.Draw
 {

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vivid.Scene;
-using Vivid.FrameBuffer;
+﻿using OpenTK.Graphics.OpenGL4;
 using Vivid.Effect;
-using OpenTK.Graphics.OpenGL4;
+using Vivid.FrameBuffer;
+using Vivid.Scene;
 
 namespace Vivid.Deffered
 {
@@ -45,7 +40,7 @@ namespace Vivid.Deffered
             NormalFB = new FrameBufferColor(w, h);
             SpecFB = new FrameBufferColor(w, h);
             PositionFB = new FrameBufferColor(w, h);
-            NormalsFB = new FrameBufferColor(w,h);
+            NormalsFB = new FrameBufferColor(w, h);
             FinalFB = new FrameBufferColor(w, h);
             W = w;
 
@@ -61,11 +56,11 @@ namespace Vivid.Deffered
             FXG.Cam = Graph.Cams[0];
 
             DiffuseFB.Bind();
-            
+
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-         
-            RenderNode(Graph.Root,DiffFx);
-           
+
+            RenderNode(Graph.Root, DiffFx);
+
             DiffuseFB.Release();
 
             NormalFB.Bind();
@@ -95,7 +90,7 @@ namespace Vivid.Deffered
             RenderFinal();
 
 
-            
+
         }
 
         public void RenderFinal()
@@ -169,14 +164,14 @@ namespace Vivid.Deffered
 
         public Scene.Node.Light3D Light = null;
 
-        public DRFinalPass() : base("","data/fx/finalPassVS.glsl","data/fx/finalPassFS.glsl")
+        public DRFinalPass() : base("", "data/fx/finalPassVS.glsl", "data/fx/finalPassFS.glsl")
         {
 
         }
 
         public override void SetPars()
         {
-            SetMat("proj",OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));
+            SetMat("proj", OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));
             SetTex("posMap", 0);
             SetTex("normMap", 1);
             SetTex("normsMap", 2);
@@ -194,7 +189,7 @@ namespace Vivid.Deffered
     public class DRNormals : Effect3D
     {
 
-        public DRNormals() : base("","data/fx/normalsVS.glsl","data/fx/normalsFS.glsl")
+        public DRNormals() : base("", "data/fx/normalsVS.glsl", "data/fx/normalsFS.glsl")
         {
 
         }
@@ -208,7 +203,7 @@ namespace Vivid.Deffered
 
     public class DRPosition : Effect3D
     {
-        public DRPosition() : base("","data/fx/positionVS.glsl","data/fx/positionFS.glsl")
+        public DRPosition() : base("", "data/fx/positionVS.glsl", "data/fx/positionFS.glsl")
         {
 
         }
@@ -219,7 +214,7 @@ namespace Vivid.Deffered
             SetMat("view", FXG.Cam.CamWorld);
             SetMat("proj", FXG.Cam.ProjMat);
 
-            
+
         }
 
     }
@@ -227,7 +222,7 @@ namespace Vivid.Deffered
     public class DRNormal : Effect3D
     {
 
-        public DRNormal() : base("","data/fx/normalVS.glsl","data/fx/normalFS.glsl")
+        public DRNormal() : base("", "data/fx/normalVS.glsl", "data/fx/normalFS.glsl")
         {
         }
 
@@ -244,7 +239,7 @@ namespace Vivid.Deffered
     public class DRDiffuse : Effect3D
     {
 
-        public DRDiffuse() : base("","data/fx/diffuseVS.glsl","data/fx/diffuseFS.glsl")
+        public DRDiffuse() : base("", "data/fx/diffuseVS.glsl", "data/fx/diffuseFS.glsl")
         {
 
         }
@@ -261,8 +256,8 @@ namespace Vivid.Deffered
         }
 
     }
-       
-        
+
+
 
 
 }

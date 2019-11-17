@@ -1,12 +1,10 @@
 ﻿using Assimp;
-
-using Vivid.Data;
-using Vivid.Scene;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Vivid.Data;
+using Vivid.Scene;
 
 namespace Vivid.Import
 {
@@ -539,7 +537,7 @@ namespace Vivid.Import
                 Console.WriteLine("SC:" + sc);
                 if (mat.HasColorDiffuse)
                 {
-                     vm.Diff = CTV ( mat.ColorDiffuse );
+                    vm.Diff = CTV(mat.ColorDiffuse);
                     Console.WriteLine("Diff:" + vm.Diff);
                 }
                 if (mat.HasColorSpecular)

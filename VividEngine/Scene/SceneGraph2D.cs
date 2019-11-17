@@ -1,13 +1,11 @@
-﻿using Vivid.Draw;
-using Vivid.FXS;
-using Vivid.Reflect;
-
-using OpenTK;
-
+﻿using OpenTK;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Vivid.Draw;
+using Vivid.FXS;
+using Vivid.Reflect;
 
 namespace Vivid.Scene
 {
@@ -28,7 +26,7 @@ namespace Vivid.Scene
         {
             get;
             set;
-                
+
         }
         public FXDrawShadow DrawShadow
         {
@@ -179,10 +177,10 @@ namespace Vivid.Scene
 
         public void Move(float x, float y)
         {
-            Vector2 r = Util.Maths.Rotate(-x, -y, (180.0f - Rot),1.0f);
+            Vector2 r = Util.Maths.Rotate(-x, -y, (180.0f - Rot), 1.0f);
 
-            X = X + r.X/Z;
-            Y = Y + r.Y/Z;
+            X = X + r.X / Z;
+            Y = Y + r.Y / Z;
         }
 
         public void Update()
@@ -222,34 +220,34 @@ namespace Vivid.Scene
 
                 bool first = true;
 
-            
 
-                    if (first)
-                    {
-                   //     Render.SetBlend(BlendMode.Alpha);
-                        first = false;
-                    }
-                    else
-                    {
-                 //       Render.SetBlend(BlendMode.Add);
-                    }
+
+                if (first)
+                {
+                    //     Render.SetBlend(BlendMode.Alpha);
+                    first = false;
+                }
+                else
+                {
+                    //       Render.SetBlend(BlendMode.Add);
+                }
 
                 //    LitImage.Bind();
 
-                    float[] xc;
-                    float[] yc;
+                float[] xc;
+                float[] yc;
 
-                    node.SyncCoords();
+                node.SyncCoords();
 
-                    xc = node.XC;
-                    yc = node.YC;
+                xc = node.XC;
+                yc = node.YC;
 
-                    Render.Image(node.DrawP, node.ImgFrame);
+                Render.Image(node.DrawP, node.ImgFrame);
 
-                    //Render.Image(xc, yc, node.ImgFrame);
+                //Render.Image(xc, yc, node.ImgFrame);
 
-                    
-                
+
+
             }
             foreach (GraphNode snode in node.Nodes)
             {
@@ -257,10 +255,10 @@ namespace Vivid.Scene
             }
         }
 
-        public void CreateShadowBuf(int w,int h)
+        public void CreateShadowBuf(int w, int h)
         {
 
-           // ShadowBuf = new FrameBuffer.FrameBufferColor(w, h);
+            // ShadowBuf = new FrameBuffer.FrameBufferColor(w, h);
 
         }
         public static FrameBuffer.FrameBufferColor ShadowBuffer2;
@@ -273,8 +271,8 @@ namespace Vivid.Scene
             }
             ShadowBuffer2.Bind();
 
-           
-        
+
+
         }
 
         public void ReleaseShadowBuf()
@@ -286,56 +284,8 @@ namespace Vivid.Scene
         public static FrameBuffer.FrameBufferColor Shadow3 = null;
         public void DrawShadowBuf()
         {
-            if (ShadowBuf == null)
-            {
-               // ShadowBuf = new FrameBuffer.FrameBufferColor(App.AppInfo.RW, App.AppInfo.RH);
-               // Shadow3 = new FrameBuffer.FrameBufferColor(App.AppInfo.RW, App.AppInfo.H);
-            }
-            ShadowBuf.Bind();
-            Render.Begin();
-            DrawNodeShadow(Root);
-            //LitImage.Light = Lights[0];
-            //LitImage.Graph = this;
-           // if (LitImage.Light != null)
-            //{
 
-
-
-                ShadowImage.Bind();
-              
-                Render.SetBlend(BlendMode.Alpha); ;
-
-                Render.End2D();
-           
-                ShadowImage.Release();
-           // }
-
-            ShadowBuf.Release();
-
-            BindShadowBuf2();
-
-            //Graph.ShadowBuf.BB.Bind(0);
-
-            DrawShadow.Graph = this;
-            DrawShadow.Light = this.Lights[0];
-
-            Vivid.Draw.IntelliDraw.BeginDraw();
-            Vivid.Draw.IntelliDraw.DrawImg(0, 0, Vivid.App.AppInfo.RW,Vivid.App.AppInfo.RH,ShadowBuf.BB, new Vector4(1, 1, 1f, 1), true);
-            Vivid.Draw.IntelliDraw.EndDraw(DrawShadow);
-
-            ReleaseShadowBuf2();
-
-            //return;
-
-
-            Shadow3.Bind();
-
-            Vivid.Draw.IntelliDraw.BeginDraw();
-            Vivid.Draw.IntelliDraw.DrawImg(0, 0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, ShadowBuffer2.BB, new Vector4(1, 1, 1f, 1),false);
-            Vivid.Draw.IntelliDraw.EndDraw(BlurShadow);
-
-            Shadow3.Release();
-
+            Lights[0].RenderShadowBuffer(this);
             //ShadowBuffer2.Bind();
 
         }
@@ -346,7 +296,7 @@ namespace Vivid.Scene
 
 
 
-          
+
 
         }
 
@@ -407,40 +357,54 @@ namespace Vivid.Scene
 
         public void Draw(bool shadows)
         {
-           // OpenTK.Graphics.OpenGL4.GL.Disable(OpenTK.Graphics.OpenGL4.EnableCap.Blend);
+            // OpenTK.Graphics.OpenGL4.GL.Disable(OpenTK.Graphics.OpenGL4.EnableCap.Blend);
 
-           
+            bool first = true;
 
-            Render.Begin();
-            DrawNode(Root);
-            LitImage.Light = Lights[0];
-            LitImage.Graph = this;
-            if (LitImage.Light != null)
+            foreach (var l in Lights)
             {
 
+                Render.Begin();
+                DrawNode(Root);
+                LitImage.Light = l;
+                LitImage.Graph = this;
+                if (LitImage.Light != null)
+                {
 
-                LitImage.Bind();
-                Render.SetBlend(BlendMode.Alpha); ;
-                if (shadows)
-                {
-                    Shadow3.BB.Bind(1);
-                }
-                else
-                {
-                    White1.Bind(1);
-                }
-                Render.End2D();
-                if (shadows)
-                {
-                    Shadow3.BB.Release(1);
-                }
-                else
-                {
-                    White1.Release(1);
-                }
+
+                    LitImage.Bind();
+                    Render.SetBlend(BlendMode.Alpha); ;
+                    if (shadows)
+                    {
+                        l.SB1.BB.Bind(1);
+                    }
+                    else
+                    {
+                        White1.Bind(1);
+                    }
+                    if (first)
+                    {
+                        Render.SetBlend(BlendMode.Alpha);
+                        first = false;
+                    }
+                    else
+                    {
+                        Render.SetBlend(BlendMode.Add);
+                    }
+
+                    Render.End2D();
+                    if (shadows)
+                    {
+                        l.SB1.BB.Release(1);
+                    }
+                    else
+                    {
+                        White1.Release(1);
+                    }
                     LitImage.Release();
-            }
+                }
 
+            }
         }
 
         private float sign(Vector2 p1, Vector2 p2, Vector2 p3)
@@ -494,7 +458,7 @@ namespace Vivid.Scene
             public int X, Y, Z;
         }
 
-       
+
         public GraphNode Pick(int x, int y)
         {
             return PickNode(Root, x, y);

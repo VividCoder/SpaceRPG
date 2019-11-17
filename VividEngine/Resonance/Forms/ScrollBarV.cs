@@ -1,8 +1,6 @@
-﻿using Vivid.Texture;
-
-using OpenTK;
-
+﻿using OpenTK;
 using System;
+using Vivid.Texture;
 
 namespace Vivid.Resonance.Forms
 {
@@ -38,7 +36,7 @@ namespace Vivid.Resonance.Forms
         public static Texture2D ScrollTex = null;
         public ScrollBarV()
         {
-            if (ScrollTex== null)
+            if (ScrollTex == null)
             {
                 ScrollTex = new Texture2D("data/nxUI/slider/slider1.png", LoadMethod.Single, true);
             }

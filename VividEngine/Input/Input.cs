@@ -16,7 +16,7 @@ namespace Vivid.Input
 
         public static bool ShiftIn = false;
         public static int MX = 0, MY = 0;
-            public static float MZ = 0;
+        public static float MZ = 0;
         public static int MDX = 0, MDY = 0, MDZ = 0;
         public static bool[] MB = new bool[32];
         public static Dictionary<Key, bool> Keys = new Dictionary<OpenTK.Input.Key, bool>();

@@ -1,6 +1,5 @@
-﻿using Vivid.Texture;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Vivid.Texture;
 
 namespace Vivid.Resonance.Forms
 {

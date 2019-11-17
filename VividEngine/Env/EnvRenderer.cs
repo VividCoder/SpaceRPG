@@ -1,8 +1,7 @@
-﻿using Vivid.FrameBuffer;
-using Vivid.Scene;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL4;
+using Vivid.FrameBuffer;
+using Vivid.Scene;
 
 namespace Vivid.Enviro
 {

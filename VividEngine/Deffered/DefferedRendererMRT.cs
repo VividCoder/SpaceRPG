@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vivid.Scene;
-using Vivid.FrameBuffer;
+﻿using OpenTK.Graphics.OpenGL4;
 using Vivid.Effect;
-using OpenTK.Graphics.OpenGL4;
+using Vivid.FrameBuffer;
+using Vivid.Scene;
 
 namespace Vivid.Deffered
 {
@@ -20,7 +15,7 @@ namespace Vivid.Deffered
         public DRFinalPass FinalFX = null;
         public int W, H;
 
-        public DefferedRendererMRT(int w,int h)
+        public DefferedRendererMRT(int w, int h)
         {
             W = w;
             H = h;
@@ -29,7 +24,7 @@ namespace Vivid.Deffered
             FinalFX = new DRFinalPass();
         }
 
-        public void Init(int w,int h)
+        public void Init(int w, int h)
         {
 
             FinalFB = new FrameBufferColor(w, h);
@@ -75,7 +70,8 @@ namespace Vivid.Deffered
                     GL.BlendFunc(BlendingFactor.One, BlendingFactor.Zero);
                     first = false;
 
-                }else if (second)
+                }
+                else if (second)
                 {
                     GL.BlendFunc(BlendingFactor.One, BlendingFactor.One);
                     second = false;
@@ -89,7 +85,7 @@ namespace Vivid.Deffered
                 Draw.IntelliDraw.Binder bind = () =>
                 {
 
-                    for(int i = 0; i < FB.Targets.Count; i++)
+                    for (int i = 0; i < FB.Targets.Count; i++)
                     {
 
                         FB.Targets[i].Bind(i);
@@ -152,7 +148,7 @@ namespace Vivid.Deffered
     public class DROutput : Effect3D
     {
 
-        public DROutput() : base("","data/fx/drOutVS.glsl","data/fx/drOutFS.glsl")
+        public DROutput() : base("", "data/fx/drOutVS.glsl", "data/fx/drOutFS.glsl")
         {
 
         }

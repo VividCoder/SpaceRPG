@@ -42,7 +42,7 @@ namespace Vivid.Physics
 
         public void CreateMesh(Scene.Entity3D ent)
         {
-            System.Collections.Generic.List<OpenTK.Vector3> verts = ent.GetAllVerts() ;
+            System.Collections.Generic.List<OpenTK.Vector3> verts = ent.GetAllVerts();
             System.Collections.Generic.List<int> tris = ent.GetAllTris();
 
 
@@ -56,7 +56,7 @@ namespace Vivid.Physics
                 vi++;
             }
 
-            int[] at = new int[tris.Count] ;
+            int[] at = new int[tris.Count];
 
             for (int i = 0; i < tris.Count; i++)
             {
@@ -263,10 +263,10 @@ namespace Vivid.Physics
 
         }
 
-        public void ApplyForceLocal(OpenTK.Vector3 imp,OpenTK.Vector3 local)
+        public void ApplyForceLocal(OpenTK.Vector3 imp, OpenTK.Vector3 local)
         {
-            
-            ID.AddForceAtLocalPosition(new System.Numerics.Vector3(imp.X, imp.Y, imp.Z),new System.Numerics.Vector3(local.X,local.Y,local.Z), ForceMode.Force, true);
+
+            ID.AddForceAtLocalPosition(new System.Numerics.Vector3(imp.X, imp.Y, imp.Z), new System.Numerics.Vector3(local.X, local.Y, local.Z), ForceMode.Force, true);
         }
 
         public void AddTorque(OpenTK.Vector3 tr)
@@ -285,6 +285,6 @@ namespace Vivid.Physics
     }
     public enum ForceType
     {
-        Local,Center
+        Local, Center
     }
 }

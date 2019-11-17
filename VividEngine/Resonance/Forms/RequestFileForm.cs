@@ -1,9 +1,8 @@
-﻿using Vivid.App;
-using Vivid.Texture;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Vivid.App;
+using Vivid.Texture;
 
 namespace Vivid.Resonance.Forms
 {
@@ -23,7 +22,7 @@ namespace Vivid.Resonance.Forms
         public TextBoxForm DirBox, FileBox;
         public static string DefDir = "";
 
-        public RequestFileForm(string title = "", string defdir = "",bool folder=false)
+        public RequestFileForm(string title = "", string defdir = "", bool folder = false)
         {
             Folder = folder;
             if (FolderPic == null)

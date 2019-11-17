@@ -1,9 +1,7 @@
-﻿using Vivid.Draw;
-using Vivid.Texture;
-
-using OpenTK;
-
+﻿using OpenTK;
 using System;
+using Vivid.Draw;
+using Vivid.Texture;
 
 namespace Vivid.Resonance.Forms
 {
@@ -35,7 +33,7 @@ namespace Vivid.Resonance.Forms
                 Pen2D.BlendMod = PenBlend.Alpha;
 
                 DrawFormSolid(new Vector4(0, 0, 0, 1));
-                DrawForm(CoreTex,1,1,W-2,H-2);
+                DrawForm(CoreTex, 1, 1, W - 2, H - 2);
                 //DrawText(Text, (W / 2 - Font.Width(Text) / 2)+4, (H / 2 - Font.Height())+4, new Vector4(0, 0, 0, 1));
                 DrawText(Text, W / 2 - Font.Width(Text) / 2, H / 2 - Font.Height(), new Vector4(0, 0, 0, 1));
             }

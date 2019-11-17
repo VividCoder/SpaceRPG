@@ -21,6 +21,12 @@ namespace Vivid.Scene
             get;
             set;
         }
+
+        public bool RecvShadow
+        {
+            get;
+            set;
+        }
         public List<GraphNode> Nodes
         {
             get;
@@ -148,7 +154,7 @@ namespace Vivid.Scene
         }
 
 
-        
+
 
         public void SyncCoords()
         {
@@ -198,6 +204,7 @@ namespace Vivid.Scene
         {
             W = 64;
             H = 64;
+            RecvShadow = true;
             Z = 1.0f;
             Nodes = new List<GraphNode>();
         }

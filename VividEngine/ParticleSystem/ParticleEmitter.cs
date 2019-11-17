@@ -1,10 +1,8 @@
-﻿using Vivid.Effect;
+﻿using OpenTK;
+using System.Collections.Generic;
+using Vivid.Effect;
 using Vivid.Material;
 using Vivid.Visuals;
-
-using OpenTK;
-
-using System.Collections.Generic;
 
 namespace Vivid.ParticleSystem
 {

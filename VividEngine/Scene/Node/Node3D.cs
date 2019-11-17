@@ -1,16 +1,11 @@
-﻿using Vivid.Data;
-using Vivid.Reflect;
-using Vivid.Script;
-
-using OpenTK;
-
-using Vivid.Help;
-
+﻿using OpenTK;
 using System;
 using System.Collections.Generic;
-using Vivid.Scripting;
 using System.IO;
+using Vivid.Data;
 using Vivid.Help;
+using Vivid.Reflect;
+using Vivid.Scripting;
 namespace Vivid.Scene
 {
     public delegate void NodeSelected(Node3D node);
@@ -30,7 +25,7 @@ namespace Vivid.Scene
             set;
         }
 
-     
+
         public bool NoSave
         {
             get;
@@ -92,7 +87,7 @@ namespace Vivid.Scene
             {
                 _NodeScripts = value;
             }
-        
+
         }
 
         public virtual void Read()
@@ -105,21 +100,21 @@ namespace Vivid.Scene
 
 
         }
-       public virtual void Write()
+        public virtual void Write()
         {
             Help.IOHelp.WriteMatrix(LocalTurn);
             Help.IOHelp.WriteVec(LocalPos);
             Help.IOHelp.WriteVec(LocalScale);
             Help.IOHelp.WriteString(Name);
             WriteScripts();
-            
+
         }
 
         public void ReadClass(object cls)
         {
             var cn = IOHelp.ReadString();
             var np = IOHelp.ReadInt();
-            foreach(var prop in cls.GetType().GetProperties())
+            foreach (var prop in cls.GetType().GetProperties())
             {
                 var pn = IOHelp.ReadString();
                 int pt = IOHelp.ReadInt();
@@ -163,9 +158,9 @@ namespace Vivid.Scene
 
                         int ec = IOHelp.ReadInt();
 
-                        for(int i = 0; i < ec; i++)
+                        for (int i = 0; i < ec; i++)
                         {
-                            
+
                         }
 
 
@@ -180,7 +175,7 @@ namespace Vivid.Scene
 
             IOHelp.WriteString(cls.GetType().Name);
             IOHelp.WriteInt(cls.GetType().GetProperties().Length);
-            foreach(var prop in cls.GetType().GetProperties())
+            foreach (var prop in cls.GetType().GetProperties())
             {
 
                 IOHelp.WriteString(prop.GetType().Name);
@@ -281,10 +276,10 @@ namespace Vivid.Scene
 
         public void WriteScripts()
         {
-      
+
             //
             Help.IOHelp.WriteInt(NodeScripts.Count);
-            foreach(var scr in NodeScripts)
+            foreach (var scr in NodeScripts)
             {
                 Help.IOHelp.WriteString(scr.FullPath);
                 scr.SaveNode();
@@ -294,10 +289,10 @@ namespace Vivid.Scene
         public void ReadScripts()
         {
 
-            
+
             NodeScripts.Clear();
             int ns = Help.IOHelp.ReadInt();
-            for(int i = 0; i < ns; i++)
+            for (int i = 0; i < ns; i++)
             {
                 string path = Help.IOHelp.ReadString();
                 var cs = NodeScriptCompiler.Compile(path);
@@ -316,7 +311,7 @@ namespace Vivid.Scene
 
         public void InitUIScripts(Vivid.Resonance.UI ui)
         {
-            foreach(var scr in NodeScripts)
+            foreach (var scr in NodeScripts)
             {
                 scr.InitUI(ui);
             }
@@ -324,7 +319,7 @@ namespace Vivid.Scene
 
         public void InitScripts()
         {
-            foreach(var scr in NodeScripts)
+            foreach (var scr in NodeScripts)
             {
                 scr.InitNode();
             }
@@ -337,7 +332,7 @@ namespace Vivid.Scene
 
         public void UpdateScripts()
         {
-            foreach(var scr in NodeScripts)
+            foreach (var scr in NodeScripts)
             {
                 if (scr.Updated)
                 {
@@ -380,11 +375,12 @@ namespace Vivid.Scene
 
             Help.IOHelp.w = bw;
 
-            if(this is Entity3D)
+            if (this is Entity3D)
             {
                 IOHelp.WriteInt(1);
                 this.Write();
-            }else if (this is Node3D)
+            }
+            else if (this is Node3D)
             {
                 IOHelp.WriteInt(2);
                 this.Write();
@@ -400,7 +396,7 @@ namespace Vivid.Scene
         public void DrawScripts()
         {
 
-            foreach(var scr in NodeScripts)
+            foreach (var scr in NodeScripts)
             {
                 scr.RenderNode();
             }
@@ -601,7 +597,7 @@ namespace Vivid.Scene
         {
             ClassCopy = new ClassIO(this);
             ClassCopy.Copy();
-            foreach(var cs in NodeScripts)
+            foreach (var cs in NodeScripts)
             {
                 cs.ClassCopy = new ClassIO(cs);
                 cs.ClassCopy.Copy();
@@ -611,7 +607,7 @@ namespace Vivid.Scene
         public void RestoreProps()
         {
             ClassCopy.Reset();
-            foreach(var cs in NodeScripts)
+            foreach (var cs in NodeScripts)
             {
                 cs.ClassCopy.Reset();
             }
@@ -787,7 +783,7 @@ namespace Vivid.Scene
             else
             {
                 //in progress.
-            
+
                 //prot = prot + r;
                 //r = prot;
 
@@ -797,9 +793,9 @@ namespace Vivid.Scene
             }
         }
 
-      
 
-      
+
+
         public virtual void Update()
         {
             UpdateNode(1.0f);
@@ -807,7 +803,7 @@ namespace Vivid.Scene
 
         public virtual void UpdateNode(float t)
         {
-         
+
             foreach (Node3D n in Sub)
             {
                 n.UpdateNode(t);

@@ -1,8 +1,6 @@
-﻿using Vivid.Texture;
-
-using OpenTK;
-
+﻿using OpenTK;
 using System;
+using Vivid.Texture;
 
 namespace Vivid.Resonance.Forms
 {

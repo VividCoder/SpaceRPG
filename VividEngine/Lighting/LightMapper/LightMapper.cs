@@ -1,7 +1,6 @@
-﻿using Vivid.Scene;
+﻿using System;
+using Vivid.Scene;
 using Vivid.Util.Texture;
-
-using System;
 
 namespace Vivid.Lighting.LightMapper
 {

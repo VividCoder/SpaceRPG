@@ -1,9 +1,7 @@
-﻿using Vivid.Data;
-using Vivid.Scene;
-
-using OpenTK;
-
+﻿using OpenTK;
 using System.Collections.Generic;
+using Vivid.Data;
+using Vivid.Scene;
 
 namespace Vivid.Terrain
 {
@@ -23,7 +21,7 @@ namespace Vivid.Terrain
             GenFlat(w, h, y, xsegs, ysegs);
         }
 
-        public Terrain3D(float w, float h, float y,float yscale, int xsegs, int ysegs, Texture.Texture2D tex)
+        public Terrain3D(float w, float h, float y, float yscale, int xsegs, int ysegs, Texture.Texture2D tex)
         {
             float xr = tex.W / w;
             float yr = tex.H / h;

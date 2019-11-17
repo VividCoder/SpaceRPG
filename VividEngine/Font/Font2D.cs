@@ -1,7 +1,6 @@
-﻿using Vivid.Texture;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using Vivid.Texture;
 
 namespace Vivid.Font
 {

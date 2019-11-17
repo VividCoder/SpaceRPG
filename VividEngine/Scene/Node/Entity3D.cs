@@ -1,10 +1,8 @@
-﻿using Vivid.Data;
+﻿using OpenTK;
+using System.Collections.Generic;
+using Vivid.Data;
 using Vivid.Material;
 using Vivid.Visuals;
-
-using OpenTK;
-
-using System.Collections.Generic;
 
 namespace Vivid.Scene
 {
@@ -47,8 +45,8 @@ namespace Vivid.Scene
 
         private List<Mesh3D> _Meshes = new List<Mesh3D>();
 
-     
-  
+
+
 
 
         public Physics.PyObject PO = null;
@@ -89,7 +87,7 @@ namespace Vivid.Scene
             }
         }
 
-        
+
 
         public void AddMesh(Mesh3D mesh)
         {
@@ -139,7 +137,7 @@ namespace Vivid.Scene
 
         public void GetBounds(Entity3D node)
         {
-            
+
             foreach (Mesh3D m in node.Meshes)
             {
                 if (m.VertexData == null) return;
@@ -158,17 +156,17 @@ namespace Vivid.Scene
                     }
                     if (vr.Y < sh)
                     {
-                        sh =vr.Y;
+                        sh = vr.Y;
                     }
-                    if (vr.Y> bh)
+                    if (vr.Y > bh)
                     {
                         bh = vr.Y;
                     }
-                    if (vr.Z< sd)
+                    if (vr.Z < sd)
                     {
-                        sd =vr.Z;
+                        sd = vr.Z;
                     }
-                    if (vr.Z >bd)
+                    if (vr.Z > bd)
                     {
                         bd = vr.Z;
                     }
@@ -197,25 +195,25 @@ namespace Vivid.Scene
             return l;
         }
 
-        public void GetTris(List<int> tris,Entity3D node)
+        public void GetTris(List<int> tris, Entity3D node)
         {
-            foreach(Mesh3D m in Meshes)
+            foreach (Mesh3D m in Meshes)
             {
-                for(int i = 0; i < m.TriData.Length; i++)
+                for (int i = 0; i < m.TriData.Length; i++)
                 {
                     tris.Add(m.TriData[i].V0);
                     tris.Add(m.TriData[i].V1);
                     tris.Add(m.TriData[i].v2);
                 }
             }
-            foreach(var s_node in Sub)
+            foreach (var s_node in Sub)
             {
                 GetTris(tris, (Entity3D)s_node);
             }
         }
         public void GetVerts(List<Vector3> verts, Entity3D node)
         {
-          
+
             foreach (Mesh3D m in node.Meshes)
             {
                 for (int i = 0; i < m.VertexData.Length; i++)
@@ -314,7 +312,7 @@ namespace Vivid.Scene
 
             AlwaysAlpha = Help.IOHelp.ReadBool();
             On = Help.IOHelp.ReadBool();
-      
+
             int mc = Help.IOHelp.ReadInt();
             for (int m = 0; m < mc; m++)
             {
@@ -396,7 +394,7 @@ namespace Vivid.Scene
                     var r1 = msh.VertexData[td.V1].Pos;
                     var r2 = msh.VertexData[td.v2].Pos;
 
-                    r0=Vector3.TransformPosition(r0, World);
+                    r0 = Vector3.TransformPosition(r0, World);
                     r1 = Vector3.TransformPosition(r1, World);
                     r2 = Vector3.TransformPosition(r2, World);
 
@@ -408,12 +406,12 @@ namespace Vivid.Scene
                     else
                     {
                         Vector3 cr = (Vector3)pr;
-                        if(cr.X<cd || firstHit)
+                        if (cr.X < cd || firstHit)
                         {
                             firstHit = false;
                             cd = cr.X;
                             hitMesh = msh;
-                            
+
                             cu = cr.Y;
                             cv = cr.Z;
                         }
@@ -438,7 +436,7 @@ namespace Vivid.Scene
             return res;
 
         }
-            
+
 
         public virtual void RenderSSRExtrasMap()
         {

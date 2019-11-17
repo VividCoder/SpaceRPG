@@ -1,10 +1,8 @@
-﻿using Vivid.App;
-using Vivid.Texture;
-
-using OpenTK.Graphics.OpenGL4;
-
+﻿using OpenTK.Graphics.OpenGL4;
 using System;
 using System.Collections.Generic;
+using Vivid.App;
+using Vivid.Texture;
 
 namespace Vivid.FrameBuffer
 {
@@ -16,13 +14,13 @@ namespace Vivid.FrameBuffer
         public int IW, IH;
         public int DRB = 0;
         public List<Texture2D> Targets = new List<Texture2D>();
-        public FrameBufferColorMRT(int num,int w, int h, TextureFormat format = TextureFormat.Normal)
+        public FrameBufferColorMRT(int num, int w, int h, TextureFormat format = TextureFormat.Normal)
         {
             IW = w;
             IH = h;
             FBO = GL.GenFramebuffer();
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, FBO);
-            for(int i = 0; i < num; i++)
+            for (int i = 0; i < num; i++)
             {
                 Targets.Add(new Texture2D(w, h, false, format));
             }
@@ -72,12 +70,12 @@ namespace Vivid.FrameBuffer
                         drawb[7] = DrawBuffersEnum.ColorAttachment7;
                         break;
                 }
-                
+
                 GL.FramebufferTexture(FramebufferTarget.Framebuffer, fa, Targets[i].ID, 0);
             }
-          
-              //  DrawBuffersEnum db = DrawBuffersEnum.ColorAttachment0;
-           
+
+            //  DrawBuffersEnum db = DrawBuffersEnum.ColorAttachment0;
+
             GL.DrawBuffers(drawb.Length, drawb);
 
             if (GL.CheckFramebufferStatus(FramebufferTarget.Framebuffer) != FramebufferErrorCode.FramebufferComplete)

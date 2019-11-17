@@ -1,8 +1,6 @@
-﻿using Vivid.Data;
-
-using OpenTK.Graphics.OpenGL4;
-
+﻿using OpenTK.Graphics.OpenGL4;
 using System;
+using Vivid.Data;
 
 namespace Vivid.Visuals
 {

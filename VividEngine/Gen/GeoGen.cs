@@ -1,7 +1,6 @@
-﻿using Vivid.Data;
+﻿using OpenTK;
+using Vivid.Data;
 using Vivid.Scene;
-
-using OpenTK;
 
 namespace Vivid.Gen
 {

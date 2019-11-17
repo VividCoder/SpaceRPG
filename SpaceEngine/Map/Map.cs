@@ -155,6 +155,7 @@ namespace SpaceEngine.Map
                         if (li > 1)
                         {
                             tileSpr.CastShadow = true;
+                            tileSpr.RecvShadow = false;
                         }
 
                     }

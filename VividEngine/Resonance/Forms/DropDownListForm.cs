@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Vivid.Resonance.Forms
 {
@@ -22,7 +18,7 @@ namespace Vivid.Resonance.Forms
             {
 
                 DrawFormSolid(new OpenTK.Vector4(1, 1, 1, 1));
-                DrawText(CurrentItem,5,3);
+                DrawText(CurrentItem, 5, 3);
 
 
             };
@@ -38,7 +34,7 @@ namespace Vivid.Resonance.Forms
                 {
                     int y = 0;
                     Open = true;
-                    foreach(var item in Items)
+                    foreach (var item in Items)
                     {
                         var ib = new ButtonForm().Set(0, H + y, W, 25, item) as ButtonForm;
                         y = y + 25;

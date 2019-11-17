@@ -1,12 +1,9 @@
-﻿using Vivid.Font;
-using Vivid.Logic;
-using Vivid.Resonance.Forms;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL4;
-
 using System;
 using System.Collections.Generic;
+using Vivid.Font;
+using Vivid.Resonance.Forms;
 
 
 
@@ -76,7 +73,7 @@ namespace Vivid.Resonance
             UI.CurUI = null;
             UI.TarAlpha = 1.0f;
             UI.TopForm = null;
-            
+
         }
 
         public UI()
@@ -136,18 +133,18 @@ namespace Vivid.Resonance
             MY = Input.Input.MY;
             MZ = Input.Input.MZ;
 
-            
+
             //UpdateList.Clear();
 
 
 
             var list = new List<UIForm>();
             UpdateList = list;
-          
+
             AddToList(list, Root);
             AddToList(list, ActiveMenu);
             AddToList(list, DragObj);
-            foreach(var form in Overlay)
+            foreach (var form in Overlay)
             {
                 AddToList(list, form);
             }
@@ -160,7 +157,7 @@ namespace Vivid.Resonance
             }
             list.Reverse();
 
-            foreach(var form in list)
+            foreach (var form in list)
             {
                 form.Update?.Invoke();
             }
@@ -176,7 +173,7 @@ namespace Vivid.Resonance
             var list = GenRenderList();
             AddToList(list, ActiveMenu);
             AddToList(list, DragObj);
-            foreach(var form in Overlay)
+            foreach (var form in Overlay)
             {
                 AddToList(list, form);
             }
@@ -196,32 +193,32 @@ namespace Vivid.Resonance
 
             //GL.Viewport(0, 0, App.AppInfo.W, App.AppInfo.H);
             Vivid.Draw.IntelliDraw.Draw_Z = 0.001f;
-            
+
             foreach (var form in list)
             {
 
-              //  GL.Scissor(form.ViewX, Vivid.App.AppInfo.H - (form.ViewY + form.ViewH), form.ViewW, form.ViewH);
+                //  GL.Scissor(form.ViewX, Vivid.App.AppInfo.H - (form.ViewY + form.ViewH), form.ViewW, form.ViewH);
                 //  // GL.Scissor(form.ViewX, form.ViewY, form.ViewW, form.ViewH);
                 // GL.Scissor(0, 0, App.AppInfo.W, App.AppInfo.H);
                 //  GL.Scissor(form.ViewX, form.ViewY, form.ViewW, form.ViewH);
                 if (form.Clip)
                 {
-              //      GL.Enable(EnableCap.ScissorTest);
+                    //      GL.Enable(EnableCap.ScissorTest);
                 }
                 else
                 {
-               //     GL.Disable(EnableCap.ScissorTest);
+                    //     GL.Disable(EnableCap.ScissorTest);
                 }
 
 
-//                form.PreDraw?.Invoke();
+                //                form.PreDraw?.Invoke();
                 Vivid.Draw.IntelliDraw.BeginDraw(true);
                 form.Draw?.Invoke();
                 Vivid.Draw.IntelliDraw.EndDraw();
 
             }
 
-//            Vivid.Draw.IntelliDraw.EndDraw();
+            //            Vivid.Draw.IntelliDraw.EndDraw();
 
         }
 
@@ -235,11 +232,11 @@ namespace Vivid.Resonance
         }
 
 
-        public void AddToList(List<UIForm> list,UIForm node)
+        public void AddToList(List<UIForm> list, UIForm node)
         {
             if (node == null) return;
             list.Add(node);
-            foreach(var sub_form in node.Forms)
+            foreach (var sub_form in node.Forms)
             {
                 AddToList(list, sub_form);
             }
@@ -256,7 +253,7 @@ namespace Vivid.Resonance
                 return;
             }
 
-           // Vivid.Draw.IntelliDraw.BeginDraw();
+            // Vivid.Draw.IntelliDraw.BeginDraw();
 
             if (Top != null)
             {
@@ -274,20 +271,20 @@ namespace Vivid.Resonance
                     TopB = 0;
                 }
             }
-      
+
             UIForm prev = null;
 
             RenderList.Clear();
-           
+
             if (Top != null)
             {
-              
+
                 UpdateRenderList(Root);
                 if (ActiveMenu != null)
                 {
                     UpdateRenderList(ActiveMenu);
                 }
-              
+
                 foreach (UIForm form in RenderList)
                 {
                     GL.Scissor(form.ViewX, Vivid.App.AppInfo.H - (form.ViewY + form.ViewH), form.ViewW, form.ViewH);
@@ -309,7 +306,7 @@ namespace Vivid.Resonance
                     GL.Enable(EnableCap.ScissorTest);
                     Vivid.Draw.IntelliDraw.BeginDraw();
                     //form.Draw?.Invoke();
-      
+
                     ActiveMenu.Draw.Invoke();
                     Vivid.Draw.IntelliDraw.EndDraw();
                 }
@@ -376,7 +373,7 @@ namespace Vivid.Resonance
                     UpdateRenderList(ActiveMenu);
                 }
 
-               
+
                 if (DragObj != null)
                 {
                     UpdateRenderList(DragObj);
@@ -410,20 +407,20 @@ namespace Vivid.Resonance
                 }
 
                 GL.DepthMask(true);
-                
+
                 RenderList.Clear();
                 foreach (var f in Overlay)
                 {
                     UpdateRenderList(f);
                 }
-               // RenderList.Reverse();
+                // RenderList.Reverse();
                 GL.Disable(EnableCap.ScissorTest);
                 foreach (UIForm form in RenderList)
                 {
 
                     //form.ViewH= Vivid.App.AppInfo.H/
                     //Vivid.App.SetVP.Set(form.ViewX, Vivid.App.AppInfo.H - (form.ViewY + form.ViewH), form.ViewW, form.ViewH);
-                     GL.Scissor(form.ViewX, Vivid.App.AppInfo.H - (form.ViewY + form.ViewH), form.ViewW, form.ViewH);
+                    GL.Scissor(form.ViewX, Vivid.App.AppInfo.H - (form.ViewY + form.ViewH), form.ViewW, form.ViewH);
                     //  // GL.Scissor(form.ViewX, form.ViewY, form.ViewW, form.ViewH);
                     // GL.Scissor(0, 0, App.AppInfo.W, App.AppInfo.H);
                     //  GL.Scissor(form.ViewX, form.ViewY, form.ViewW, form.ViewH);
@@ -440,11 +437,11 @@ namespace Vivid.Resonance
                     Vivid.Draw.IntelliDraw.BeginDraw();
                     form.Draw?.Invoke();
                     Vivid.Draw.IntelliDraw.EndDraw();
-                        
+
                 }
 
                 GL.Disable(EnableCap.ScissorTest);
-               // Vivid.App.SetVP.Set(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
+                // Vivid.App.SetVP.Set(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
 
 
                 if (TopB > 0)
@@ -462,13 +459,13 @@ namespace Vivid.Resonance
             Vivid.Draw.IntelliDraw.BeginDraw();
             foreach (var f in RenderList)
             {
-               
+
                 f?.Draw();
             }
             Vivid.Draw.IntelliDraw.EndDraw();
             //Dock.Draw?.Invoke();
 
-           // Vivid.Draw.IntelliDraw.EndDraw();
+            // Vivid.Draw.IntelliDraw.EndDraw();
 
             return;
 
@@ -526,10 +523,10 @@ namespace Vivid.Resonance
 
         public static float TarAlpha = 1.0f;
 
-        public void ResizeAll(float w,float h)
+        public void ResizeAll(float w, float h)
         {
 
-            
+
 
         }
 

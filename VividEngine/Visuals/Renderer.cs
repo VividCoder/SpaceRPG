@@ -1,6 +1,5 @@
-﻿using Vivid.Data;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Vivid.Data;
 
 namespace Vivid.Visuals
 {

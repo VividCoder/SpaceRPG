@@ -1,11 +1,9 @@
-﻿using Vivid.Archive;
-
-using OpenTK.Graphics.OpenGL4;
-
+﻿using OpenTK.Graphics.OpenGL4;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using Vivid.Archive;
 
 namespace Vivid.Tex
 {
@@ -33,9 +31,9 @@ namespace Vivid.Tex
 
         ~Tex2D()
         {
-           // GL.DeleteTexture(ID);
+            // GL.DeleteTexture(ID);
         }
-       
+
         public Tex2D(Bitmap bit, bool alpha)
         {
             if (TmpStore == null)
@@ -159,7 +157,7 @@ namespace Vivid.Tex
             GL.BindTexture(TextureTarget.Texture2D, 0);
         }
 
-        public Tex2D(byte[] data,bool alpha,int w,int h)
+        public Tex2D(byte[] data, bool alpha, int w, int h)
         {
 
             Width = w;

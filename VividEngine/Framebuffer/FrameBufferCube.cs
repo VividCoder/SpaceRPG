@@ -1,9 +1,7 @@
-﻿using Vivid.App;
-using Vivid.Texture;
-
-using OpenTK.Graphics.OpenGL4;
-
+﻿using OpenTK.Graphics.OpenGL4;
 using System;
+using Vivid.App;
+using Vivid.Texture;
 
 namespace Vivid.FrameBuffer
 {

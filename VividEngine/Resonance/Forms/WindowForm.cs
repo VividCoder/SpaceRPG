@@ -24,7 +24,7 @@ namespace Vivid.Resonance.Forms
                 BodyNorm = new Texture2D("data/UI/normal/winnorm5.jpg", LoadMethod.Single, false);
             }
 
-             title = new ButtonForm().Set(0, 0, W, 20, "").SetImage(TitleImg);
+            title = new ButtonForm().Set(0, 0, W, 20, "").SetImage(TitleImg);
 
             body = new ImageForm().Set(0, 20, W - 100, H - 22, "").SetImage(BodyImg, BodyNorm).SetPeak(true, false);
             body.Peak = false;
@@ -66,7 +66,7 @@ namespace Vivid.Resonance.Forms
 
             Add(title);
             Add(body);
-          //  Add(resize);
+            //  Add(resize);
 
             void ChangedFunc()
             {

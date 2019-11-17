@@ -1,7 +1,6 @@
-﻿using Vivid.Scene;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using Vivid.Scene;
 
 namespace Vivid.Import
 {

@@ -1,9 +1,7 @@
-﻿using Vivid.Material;
-using Vivid.Visuals;
-
-using OpenTK;
-
+﻿using OpenTK;
 using System.Collections.Generic;
+using Vivid.Material;
+using Vivid.Visuals;
 
 namespace Vivid.Data
 {
@@ -364,11 +362,11 @@ namespace Vivid.Data
             TriData[id].V1 = v1;
             TriData[id].v2 = v2;
         }
-        public void SetVertex(int id,Vector3 pos)
+        public void SetVertex(int id, Vector3 pos)
         {
             SetVertex(id, pos, Vector3.Zero, Vector3.Zero, Vector3.Zero, Vector2.Zero);
             //VertexData[id].Pos = pos;
-            
+
         }
         public void SetVertex(int id, Vector3 pos, Vector3 t, Vector3 b, Vector3 n, Vector2 uv)
         {

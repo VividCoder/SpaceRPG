@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using csscript;
-using Vivid.Resonance;
-using Vivid.Resonance.Forms;
-using System;
 using System.Threading;
+using Vivid.Resonance;
 using XInputDotNetPure;
 
 
@@ -17,7 +10,7 @@ namespace Vivid.Scripting
     public class NodeScriptCompiler
     {
 
-   
+
 
         public static NodeScript Compile(string path)
         {
@@ -72,7 +65,7 @@ namespace Vivid.Scripting
             return new System.IO.FileInfo(FullPath).Name;
         }
 
-        
+
         public string FullPath
         {
             get;

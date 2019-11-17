@@ -2,7 +2,7 @@
 {
     public class GraphSprite : GraphNode
     {
-     
+
         public GraphSprite(Tex.Tex2D img, int w = -1, int h = -1)
         {
             CastShadow = false;

@@ -1,11 +1,9 @@
-﻿using Vivid.Effect;
-using Vivid.FrameBuffer;
-using Vivid.Scene;
-
-using OpenTK.Graphics.OpenGL4;
-
+﻿using OpenTK.Graphics.OpenGL4;
 using System;
 using System.Collections.Generic;
+using Vivid.Effect;
+using Vivid.FrameBuffer;
+using Vivid.Scene;
 
 namespace Vivid.PostProcess
 {

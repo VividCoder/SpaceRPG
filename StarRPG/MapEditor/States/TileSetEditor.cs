@@ -327,7 +327,7 @@ namespace MapViewer.States
                     CurSetMap.HighlightTile(hx, hy);
                     //CurSetMap.UpdateGraph();
 #pragma warning disable CS7036 // There is no argument given that corresponds to the required formal parameter 'tw' of 'Map.UpdateGraph(int, int)'
-                    tView.Graph = CurSetMap.UpdateGraph();
+                  //  tView.Graph = CurSetMap.UpdateGraph();
 #pragma warning restore CS7036 // There is no argument given that corresponds to the required formal parameter 'tw' of 'Map.UpdateGraph(int, int)'
                     //  tView.Graph.X = -32 + tView.W / 2;
                     // tView.Graph.Y = -32 + tView.H / 2;

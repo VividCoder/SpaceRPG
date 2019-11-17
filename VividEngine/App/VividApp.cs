@@ -1,12 +1,10 @@
-﻿using Vivid.Draw;
-using Vivid.State;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Input;
-
 using System;
 using System.Collections.Generic;
+using Vivid.Draw;
+using Vivid.State;
 
 namespace Vivid.App
 {
@@ -102,9 +100,9 @@ namespace Vivid.App
         private string _Title = "";
         private OpenTK.Graphics.Color4 _BgCol = OpenTK.Graphics.Color4.Black;
         public static int W, H;
-//        public static int RW, RH;
+        //        public static int RW, RH;
 
-       
+
         public static VividState InitState = null;
 
         public static Stack<VividState> States = new Stack<VividState>();
@@ -232,7 +230,7 @@ namespace Vivid.App
         {
             Input.Input.MX = e.Position.X;
             Input.Input.MY = e.Position.Y;
-            
+
         }
 
         private readonly bool fs = true;
@@ -326,7 +324,7 @@ namespace Vivid.App
             if (States.Count > 0)
             {
                 VividState us = States.Peek();
-                if(StateInited == false)
+                if (StateInited == false)
                 {
                     us.InitState();
                     us.StartState();
@@ -358,7 +356,7 @@ namespace Vivid.App
                 Title = AppName;
                 Title += " FPS:" + fps;
             }
-            _BgCol = new OpenTK.Graphics.Color4(0,0,0, 1.0f);
+            _BgCol = new OpenTK.Graphics.Color4(0, 0, 0, 1.0f);
             GL.ClearColor(_BgCol);
 
             // GL.DepthMask(true);
@@ -390,13 +388,13 @@ namespace Vivid.App
 
         public static void Set(int x, int y, int w, int h)
         {
-           
-                GL.Viewport(x, y, w, h);
-                X = x;
-                Y = y;
-                W = w;
-                H = h;
-          
+
+            GL.Viewport(x, y, w, h);
+            X = x;
+            Y = y;
+            W = w;
+            H = h;
+
         }
     }
 }

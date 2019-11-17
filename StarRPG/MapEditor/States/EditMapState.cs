@@ -136,6 +136,17 @@ namespace MapEditor.States
 
             toolRoot.Add(toolBar);
 
+            var mapMode = new Texture2D("content/edit/mapmode.png", LoadMethod.Single, true);
+            var tileMode = new Texture2D("content/edit/tiles.png", LoadMethod.Single, true);
+
+            SUI.Dock.AddIcon(mapMode, 64);
+            var mode_Tiles = SUI.Dock.AddIcon(tileMode, 64);
+            mode_Tiles.Click = ()=>{
+
+                Vivid.App.VividApp.PushState(new MapViewer.States.TileSetEditor());
+
+            };
+            
 
         }
 

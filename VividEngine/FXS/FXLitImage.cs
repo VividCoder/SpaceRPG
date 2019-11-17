@@ -6,9 +6,9 @@ namespace Vivid.FXS
 {
     public class FXBlurShadow : VEffect
     {
-        public FXBlurShadow() : base("","data/shader/blurShadowVS.glsl","data/shader/blurShadowFS.glsl")
+        public FXBlurShadow() : base("", "data/shader/blurShadowVS.glsl", "data/shader/blurShadowFS.glsl")
         {
-        
+
         }
         public override void SetPars()
         {
@@ -80,6 +80,9 @@ namespace Vivid.FXS
     }
     public class FXLitImage : VEffect
     {
+
+        public bool isShadowed = true;
+
         public GraphLight Light
         {
             get;
@@ -119,7 +122,7 @@ namespace Vivid.FXS
 
             SetTex("tDiffuse", 0);
             SetTex("tShadow", 1);
-
+            SetInt("sShadow", isShadowed ? 1 : 0);
             SetVec3("lPos", new OpenTK.Vector3(res.X, res.Y, 0));
             SetVec3("lDif", Light.Diffuse);
             SetVec3("lSpec", Light.Specular);
@@ -127,9 +130,9 @@ namespace Vivid.FXS
             SetFloat("lRange", Light.Range * Graph.Z);
             SetFloat("sWidth", Vivid.App.AppInfo.RW);
             SetFloat("sHeight", Vivid.App.AppInfo.RH);
-                     
-   
-    SetMat("proj", OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));
+
+
+            SetMat("proj", OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));
 
 
         }

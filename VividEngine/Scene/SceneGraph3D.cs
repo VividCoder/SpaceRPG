@@ -1,12 +1,10 @@
-﻿using Vivid.Reflect;
-using Vivid.Scene.Node;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL4;
-
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using Vivid.Reflect;
+using Vivid.Scene.Node;
 
 namespace Vivid.Scene
 {
@@ -63,18 +61,18 @@ namespace Vivid.Scene
 
         public void CheckAssets(Node3D node)
         {
-            Recheck:
-            foreach(var scr in node.NodeScripts)
+        Recheck:
+            foreach (var scr in node.NodeScripts)
             {
                 if (scr.Updated)
                 {
                     System.Console.WriteLine("Updated:" + scr.FullPath);
                     node.NodeScripts.Remove(scr);
-                    
+
                     Vivid.Scripting.NodeScript ns = Vivid.Scripting.NodeScriptCompiler.Compile(scr.FullPath);
                     ns.Node = node;
 
-                  //  scr.Transfer(ns);
+                    //  scr.Transfer(ns);
 
                     node.NodeScripts.Add(ns);
 
@@ -82,7 +80,7 @@ namespace Vivid.Scene
                 }
             }
 
-            foreach(var sub_n in node.Sub)
+            foreach (var sub_n in node.Sub)
             {
                 CheckAssets(sub_n);
             }
@@ -91,13 +89,13 @@ namespace Vivid.Scene
 
         public void InitUIScripts(Vivid.Resonance.UI ui)
         {
-            InitUINodeScripts(Root,ui);
+            InitUINodeScripts(Root, ui);
         }
 
-        public void InitUINodeScripts(Node3D node,Vivid.Resonance.UI ui)
+        public void InitUINodeScripts(Node3D node, Vivid.Resonance.UI ui)
         {
             node.InitUIScripts(ui);
-            foreach(var s_node in node.Sub)
+            foreach (var s_node in node.Sub)
             {
                 InitUINodeScripts(s_node, ui);
             }
@@ -155,7 +153,7 @@ namespace Vivid.Scene
         {
 
             node.UpdateScripts();
-            foreach(var s_node in node.Sub)
+            foreach (var s_node in node.Sub)
             {
                 UpdateNodeScripts(s_node);
             }
@@ -173,7 +171,7 @@ namespace Vivid.Scene
         {
 
             node.DrawScripts();
-            foreach(var s_node in node.Sub)
+            foreach (var s_node in node.Sub)
             {
                 DrawNodeScripts(s_node);
             }
@@ -259,14 +257,14 @@ namespace Vivid.Scene
 
         }
 
-        public Node3D FindNode(Node3D s,string name)
+        public Node3D FindNode(Node3D s, string name)
         {
 
-            if(s.Name == name)
+            if (s.Name == name)
             {
                 return s;
             }
-            foreach(var sub_n in s.Sub)
+            foreach (var sub_n in s.Sub)
             {
                 var fn = FindNode(sub_n, name);
                 if (fn != null)
@@ -278,7 +276,7 @@ namespace Vivid.Scene
 
         }
 
-        public void RemoveNode(Node3D s,Node3D r)
+        public void RemoveNode(Node3D s, Node3D r)
         {
 
             if (s == r)
@@ -661,13 +659,13 @@ namespace Vivid.Scene
 
             int node_t = Help.IOHelp.ReadInt();
             Node3D nn = null;
-            if(node_t == 1)
+            if (node_t == 1)
             {
                 Entity3D new_e = new Entity3D();
                 new_e.Read();
                 nn = new_e;
             }
-            else if(node_t==0)
+            else if (node_t == 0)
             {
                 Node3D new_n = new Node3D();
                 new_n.Read();
@@ -680,7 +678,7 @@ namespace Vivid.Scene
 
             }
             int sc = Help.IOHelp.ReadInt();
-            for(int i = 0; i < sc; i++)
+            for (int i = 0; i < sc; i++)
             {
                 var rn = ReadNode();
                 rn.Top = nn;
@@ -733,7 +731,7 @@ namespace Vivid.Scene
                 "All"
             };
             RenderNodeByTags(defTags, ent);
-           
+
 
         }
         public virtual void Render()
@@ -746,8 +744,8 @@ namespace Vivid.Scene
                 "All"
             };
             RenderNodeByTags(defTags, Root);
-           
-           
+
+
         }
 
         public void SetLightmapTex(Texture.Texture2D tex)
@@ -903,7 +901,7 @@ namespace Vivid.Scene
                     {
                         bool second = true;
                         bool first = true;
-                       
+
                         foreach (Light3D l in Lights)
                         {
                             Light3D.Active = l;
@@ -1085,12 +1083,13 @@ namespace Vivid.Scene
         public void SaveNode(Node3D node)
         {
 
-            if(node is Entity3D)
+            if (node is Entity3D)
             {
                 Help.IOHelp.WriteInt(1);
                 node.Write();
 
-            }else if(node is Node3D)
+            }
+            else if (node is Node3D)
             {
                 Help.IOHelp.WriteInt(0);
                 node.Write();
@@ -1102,7 +1101,7 @@ namespace Vivid.Scene
 
             }
             Help.IOHelp.WriteInt(node.Sub.Count);
-            foreach(var sub in node.Sub)
+            foreach (var sub in node.Sub)
             {
                 SaveNode(sub);
             }

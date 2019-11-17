@@ -1,6 +1,5 @@
-﻿using Vivid.Scene;
-
-using System.IO;
+﻿using System.IO;
+using Vivid.Scene;
 
 namespace Vivid.Script
 {

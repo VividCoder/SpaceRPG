@@ -1,6 +1,5 @@
-﻿using Vivid.Draw;
-
-using OpenTK;
+﻿using OpenTK;
+using Vivid.Draw;
 
 namespace Vivid.Font
 {

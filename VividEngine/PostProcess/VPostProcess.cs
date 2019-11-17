@@ -1,9 +1,7 @@
-﻿using Vivid.Texture;
-
-using OpenTK.Graphics.OpenGL4;
-
+﻿using OpenTK.Graphics.OpenGL4;
 using System;
 using System.Collections.Generic;
+using Vivid.Texture;
 
 namespace Vivid.PostProcess
 {

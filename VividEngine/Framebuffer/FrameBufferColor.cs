@@ -1,9 +1,7 @@
-﻿using Vivid.App;
-using Vivid.Texture;
-
-using OpenTK.Graphics.OpenGL4;
-
+﻿using OpenTK.Graphics.OpenGL4;
 using System;
+using Vivid.App;
+using Vivid.Texture;
 
 namespace Vivid.FrameBuffer
 {
@@ -18,9 +16,10 @@ namespace Vivid.FrameBuffer
         ~FrameBufferColor()
         {
 
-            try {
-               // GL.DeleteFramebuffer(FBO);
-               // GL.DeleteRenderbuffer(DRB);
+            try
+            {
+                // GL.DeleteFramebuffer(FBO);
+                // GL.DeleteRenderbuffer(DRB);
             }
             catch (Exception e)
             {

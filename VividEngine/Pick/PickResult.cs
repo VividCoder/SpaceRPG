@@ -1,6 +1,5 @@
-﻿using Vivid.Scene;
-
-using OpenTK;
+﻿using OpenTK;
+using Vivid.Scene;
 
 namespace Vivid.Pick
 {

@@ -129,7 +129,7 @@ namespace Vivid.FX
             //  GL.DetachShader(_Program, _Vert);
             // GL.DetachShader(_Program, _Frag);
             //GL.DeleteShader(_Vert);
-           // GL.DeleteShader(_Frag);
+            // GL.DeleteShader(_Frag);
 
             return true;
         }

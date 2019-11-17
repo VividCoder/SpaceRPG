@@ -1,7 +1,6 @@
-﻿using Vivid.App;
+﻿using OpenTK;
+using Vivid.App;
 using Vivid.Help;
-
-using OpenTK;
 
 namespace Vivid.Scene
 {
@@ -20,7 +19,7 @@ namespace Vivid.Scene
             }
         }
 
-         public Vector3 ViewVec
+        public Vector3 ViewVec
         {
             get
             {

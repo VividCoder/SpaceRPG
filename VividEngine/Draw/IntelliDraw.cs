@@ -1,10 +1,9 @@
-﻿using Vivid.Effect;
+﻿using OpenTK;
+using OpenTK.Graphics.OpenGL4;
+using System.Collections.Generic;
+using Vivid.Effect;
 using Vivid.Tex;
 using Vivid.Texture;
-using OpenTK;
-using OpenTK.Graphics.OpenGL4;
-
-using System.Collections.Generic;
 
 namespace Vivid.Draw
 {
@@ -25,7 +24,7 @@ namespace Vivid.Draw
     {
         public List<DrawData> Data = new List<DrawData>();
 
-        public void AddDraw(float[] xc,float[] yc,float z,Tex2D img,Vector4 col,bool flipuv = false)
+        public void AddDraw(float[] xc, float[] yc, float z, Tex2D img, Vector4 col, bool flipuv = false)
         {
             DrawData draw_data = new DrawData();
             draw_data.Img2D = img;
@@ -41,7 +40,7 @@ namespace Vivid.Draw
             draw_data.Z = z;
             Data.Add(draw_data);
         }
-        public void AddDraw(int x, int y, int w, int h, Texture2D img, Vector4 col, float z,bool flipuv = false)
+        public void AddDraw(int x, int y, int w, int h, Texture2D img, Vector4 col, float z, bool flipuv = false)
         {
             DrawData draw_data = new DrawData();
             draw_data.Img = img;

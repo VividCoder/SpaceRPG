@@ -1,10 +1,8 @@
-﻿using Vivid.Logic;
-
-namespace Vivid.State
+﻿namespace Vivid.State
 {
     public class VividState
     {
-      
+
         public Resonance.UI SUI = null;
 
         public string Name
@@ -61,7 +59,7 @@ namespace Vivid.State
 
         public void InternalUpdate()
         {
-           
+
         }
     }
 }

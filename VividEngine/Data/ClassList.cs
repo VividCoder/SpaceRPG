@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Vivid.Data
+﻿namespace Vivid.Data
 {
-  
+
 }

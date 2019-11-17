@@ -17,7 +17,7 @@ namespace Vivid.Resonance.Forms
 
             if (BG == null)
             {
-                BG = new Texture.Texture2D("data/nxUI/bg/winBody4.png", Texture.LoadMethod.Single, true); 
+                BG = new Texture.Texture2D("data/nxUI/bg/winBody4.png", Texture.LoadMethod.Single, true);
             }
 
             MouseLeave = () =>
@@ -145,7 +145,7 @@ namespace Vivid.Resonance.Forms
                                 OpenMenu.W = bw + 10;
                                 OpenMenu.H = my2;
                                 OpenMenu.X = 25;
-                                OpenMenu.Y = 5 + (20 * (hi-1));
+                                OpenMenu.Y = 5 + (20 * (hi - 1));
                                 if (OpenMenu.Items.Count > 0)
                                 {
                                     Add(OpenMenu);

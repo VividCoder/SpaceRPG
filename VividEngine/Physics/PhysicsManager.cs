@@ -44,13 +44,13 @@ namespace Vivid.Physics
 
         public static void InitSDK()
         {
-        
+
             Foundation fd = new Foundation(new ECB());
             pvd = new Pvd(fd);
             py = new PhysX.Physics(fd, true, pvd);
             SceneD = new SceneDesc
             {
-                Gravity = new System.Numerics.Vector3(0,0, 0)
+                Gravity = new System.Numerics.Vector3(0, 0, 0)
             };
             Scene = py.CreateScene(SceneD);
             Scene.SetVisualizationParameter(VisualizationParameter.Scale, 2.0f);

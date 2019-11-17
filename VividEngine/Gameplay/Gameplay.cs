@@ -1,6 +1,5 @@
-﻿using Vivid.Scene;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Vivid.Scene;
 
 namespace Vivid.Gameplay
 {

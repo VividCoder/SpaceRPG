@@ -1,8 +1,7 @@
-﻿using Vivid.App;
-using Vivid.Tex;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL4;
+using Vivid.App;
+using Vivid.Tex;
 
 namespace Vivid.Draw
 {
@@ -81,11 +80,11 @@ namespace Vivid.Draw
         {
             //img.Bind(0);
 
-            
 
-            Draw.IntelliDraw.DrawImg2D(xc, yc, img,new Vector4(1,1,1,1));
 
-        
+            Draw.IntelliDraw.DrawImg2D(xc, yc, img, new Vector4(1, 1, 1, 1));
+
+
             //'  Col = new Vector4(1, 1, 1, 0.5f);
             /*
             GL.Color4(Col);

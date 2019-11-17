@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenTK;
+﻿using OpenTK;
 namespace Vivid.Scene.Anim.FrameTypes
 {
-    public class NodeFrame : AnimFrame 
+    public class NodeFrame : AnimFrame
     {
 
         public Node3D Node

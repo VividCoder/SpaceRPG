@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Vivid.Scene.Anim.FrameTypes;
 namespace Vivid.Scene.Anim.Nodes
 {
@@ -19,7 +15,7 @@ namespace Vivid.Scene.Anim.Nodes
 
         public override string GetName()
         {
-            return "Node3D:"+Node.Name;
+            return "Node3D:" + Node.Name;
         }
 
     }

@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vivid;
-using Vivid.App;
-using Vivid.State;
-using Vivid.Resonance;
-using Vivid.Resonance.Forms;
-using Vivid.Tex;
-using Vivid.Texture;
+﻿using System.Collections.Generic;
 
 
 namespace Vivid.Resonance.Forms
@@ -27,7 +16,7 @@ namespace Vivid.Resonance.Forms
             {
                 if (Over != null)
                 {
-                    if(Shown!=null && Shown != Over)
+                    if (Shown != null && Shown != Over)
                     {
                         this.Forms.Remove(Shown);
                     }
@@ -43,12 +32,12 @@ namespace Vivid.Resonance.Forms
 
                 Over = null;
 
-                foreach(var p in Pages)
+                foreach (var p in Pages)
                 {
 
-                    if(x>=cx && x<=(cx+80))
+                    if (x >= cx && x <= (cx + 80))
                     {
-                        if(y>0 && y <= 20)
+                        if (y > 0 && y <= 20)
                         {
                             Over = p;
                             break;
@@ -65,7 +54,7 @@ namespace Vivid.Resonance.Forms
 
                 int x = 5;
 
-                foreach(var p in Pages)
+                foreach (var p in Pages)
                 {
 
                     if (Active == p)
@@ -82,7 +71,7 @@ namespace Vivid.Resonance.Forms
                     {
                         DrawFormSolid(new OpenTK.Vector4(0.4f, 0.4f, 0.4f, 1.0f), x, 0, 80, 20);
                     }
-                        DrawText(p.PageName, x + 5,0);
+                    DrawText(p.PageName, x + 5, 0);
 
                     x = x + 85;
                 }

@@ -1,8 +1,7 @@
-﻿using Vivid.FrameBuffer;
+﻿using OpenTK.Graphics.OpenGL4;
+using Vivid.FrameBuffer;
 using Vivid.Scene;
 using Vivid.Texture;
-
-using OpenTK.Graphics.OpenGL4;
 
 namespace Vivid.PostProcess.Processes
 {

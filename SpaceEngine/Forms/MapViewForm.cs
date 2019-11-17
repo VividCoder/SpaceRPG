@@ -114,21 +114,17 @@ namespace SpaceEngine.Forms
                 {
                     if (shadows)
                     {
-                        if(SceneGraph2D.ShadowBuf == null)
+
+                        foreach (var l in Graph.Lights)
                         {
-                            SceneGraph2D.ShadowBuf = new Vivid.FrameBuffer.FrameBufferColor(MapFrame.IW, MapFrame.IH);
-                            SceneGraph2D.ShadowBuffer2 = new Vivid.FrameBuffer.FrameBufferColor(MapFrame.IW, MapFrame.IH);
-                            SceneGraph2D.Shadow3 = new Vivid.FrameBuffer.FrameBufferColor(MapFrame.IW, MapFrame.IH);
-                        }
-                        Graph.DrawShadowBuf();
-                        if (SceneGraph2D.ShadowBuf.IW != MapFrame.IW)
-                        {
-                            
+                            l.CheckShadowSize(MapFrame.IW, MapFrame.IH);
+                            l.RenderShadowBuffer(Graph);
                         }
                     }
-                   // Graph.GenShadow();
 
-                   
+                    // Graph.GenShadow();
+
+                    //shadows = false;
 
                     //return;
                     MapFrame.Bind();
@@ -168,9 +164,9 @@ namespace SpaceEngine.Forms
                 {
                     if (SceneGraph2D.ShadowBuffer2 != null)
                     {
-                       DrawForm(SceneGraph2D.ShadowBuf.BB, 0, 0, 256, 256);
-                        DrawForm(SceneGraph2D.ShadowBuffer2.BB, 260, 0,256, 256);
-                        DrawForm(SceneGraph2D.Shadow3.BB, 0, 260, 256, 256);
+                       //DrawForm(SceneGraph2D.ShadowBuf.BB, 0, 0, 256, 256);
+                       // DrawForm(SceneGraph2D.ShadowBuffer2.BB, 260, 0,256, 256);
+                      //  DrawForm(SceneGraph2D.Shadow3.BB, 0, 260, 256, 256);
                         //Graph.Rot = r;
                     }
                 }

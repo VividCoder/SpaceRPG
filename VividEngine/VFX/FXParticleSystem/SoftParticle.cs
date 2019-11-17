@@ -1,6 +1,5 @@
-﻿using Vivid.Util;
-
-using OpenTK;
+﻿using OpenTK;
+using Vivid.Util;
 
 namespace Vivid.VFX
 {

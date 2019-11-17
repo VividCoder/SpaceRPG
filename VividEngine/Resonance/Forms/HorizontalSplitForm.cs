@@ -96,7 +96,7 @@ namespace Vivid.Resonance.Forms
                     H = Root.H;
                 }
             };
-            
+
             MouseDown = (b) =>
             {
                 if (b == 0)
@@ -139,7 +139,7 @@ namespace Vivid.Resonance.Forms
 
             Draw = () =>
             {
-             //   DrawFormSolid(new Vector4(0.3f, 0.3f, 0.3f, 1.0f));
+                //   DrawFormSolid(new Vector4(0.3f, 0.3f, 0.3f, 1.0f));
                 DrawFormSolid(new Vector4(0.35f, 0.35f, 0.35f, 1.0f), 0, SplitY - 2, W, 4);
             };
         }

@@ -77,12 +77,12 @@ namespace Vivid.Help
         {
             return r.ReadString();
 
-       }
+        }
 
         public static void WriteTextureList(System.Collections.Generic.List<Texture.Texture2D> list)
         {
             WriteInt(list.Count);
-            foreach(var tex in list)
+            foreach (var tex in list)
             {
                 WriteTexture2D(tex);
             }
@@ -93,7 +93,7 @@ namespace Vivid.Help
         {
             var tl = new System.Collections.Generic.List<Texture.Texture2D>();
             int lc = ReadInt();
-            for(int i = 0; i < lc; i++)
+            for (int i = 0; i < lc; i++)
             {
                 tl.Add(ReadTexture2D());
             }

@@ -80,7 +80,7 @@ namespace Vivid.Resonance
             var wintex = new Texture.Texture2D("data/tex/win1.jpg", Texture.LoadMethod.Single, true);
             Draw = () =>
             {
-//                Y = 20;
+                //                Y = 20;
                 DrawFormSolid(new OpenTK.Vector4(0.7f, 0.7f, 0.7f, 0.7f));
 
                 /*
@@ -104,7 +104,7 @@ namespace Vivid.Resonance
             };
             DoubleClick = (b) =>
             {
-           
+
             };
             MouseDown = (b) =>
             {
@@ -157,7 +157,7 @@ namespace Vivid.Resonance
                 }
                 else
                 {
-                    if (Y < Vivid.App.AppInfo.H - 5)
+                    if (Y < Vivid.App.AppInfo.H - 30)
                     {
                         Y = Y + (int)((float)((Vivid.App.AppInfo.H - 5) - Y) * 0.1f);
                     }

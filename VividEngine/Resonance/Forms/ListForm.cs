@@ -1,8 +1,6 @@
-﻿using Vivid.Texture;
-
-using OpenTK;
-
+﻿using OpenTK;
 using System.Collections.Generic;
+using Vivid.Texture;
 
 namespace Vivid.Resonance.Forms
 {
@@ -81,10 +79,10 @@ namespace Vivid.Resonance.Forms
                     }
                     newi.Y = (int)ly;
                     ly = ly + 22;
-                  //  newi.ViewX = 0;
-                  //  newi.ViewY = 0;
-                   // newi.ViewW = W;
-                   // newi.ViewH = H;
+                    //  newi.ViewX = 0;
+                    //  newi.ViewY = 0;
+                    // newi.ViewW = W;
+                    // newi.ViewH = H;
                     Add(newi);
                 }
 

@@ -1,8 +1,7 @@
-﻿using Vivid.FrameBuffer;
-using Vivid.Settings;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL4;
+using Vivid.FrameBuffer;
+using Vivid.Settings;
 
 namespace Vivid.Scene.Node
 {

@@ -85,8 +85,10 @@ namespace MapEditor.Forms
             View = new MapViewForm(CurMap);
 
             var l1 = new Vivid.Scene.GraphLight();
+            var l2 = new Vivid.Scene.GraphLight();
 
             View.Map.AddLight(l1);
+            View.Map.AddLight(l2);
 
             LabelForm cLab = null;
             ; var TView = View;
@@ -102,7 +104,10 @@ namespace MapEditor.Forms
                     lMode = Mode;
                 }
                 TView.Map.Lights[0].SetPos(300,300);
-                TView.Map.Lights[0].Range = 1200;
+                TView.Map.Lights[0].Range = 450;
+                TView.Map.Lights[0].Diffuse = new OpenTK.Vector3(0, 1, 1);
+                TView.Map.Lights[1].SetPos(650, 400);
+                TView.Map.Lights[1].Range = 400;
 
               
             };

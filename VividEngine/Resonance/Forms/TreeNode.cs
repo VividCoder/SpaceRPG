@@ -11,5 +11,9 @@ namespace Vivid.Resonance.Forms
         public bool Open = true;
         public TreeNode Root = null;
         public Click Click = null;
+        public TreeNode(string name)
+        {
+            Name = name;
+        }
     }
 }

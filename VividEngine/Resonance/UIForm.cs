@@ -83,7 +83,22 @@ namespace Vivid.Resonance
         public int W = 0, H = 0;
         //public 
 
-        public string Text = "";
+        public string Text
+        {
+            get
+            {
+                return _text;
+            }
+            set
+            {
+                System.Console.WriteLine("Text:" + this.GetType().Name + ":" + value);
+                _text = value;
+                
+            }
+            
+
+        }
+        private string _text = "";
         public DockMethod DockStyle = DockMethod.None;
         public UIForm Root = null;
         public List<UIForm> Forms = new List<UIForm>();
@@ -337,6 +352,7 @@ namespace Vivid.Resonance
 
         public void DrawText(string txt, int x, int y, Vector4 col)
         {
+            if (txt == "") return;
             if (Font == null)
             {
                 Font = new Font2.OrchidFont("data/font/font1.ttf", 12);

@@ -9,6 +9,7 @@ namespace SpaceEngine.Map.Layer
     public class MapLayer
     {
 
+        public Map Owner = null;
         public Tile.Tile[,] Tiles
         {
             get;
@@ -39,10 +40,10 @@ namespace SpaceEngine.Map.Layer
 
                 }
             }
-
+            Owner.sceneChanged = true;
         }
 
-        public MapLayer(int width,int height)
+        public MapLayer(int width,int height,Map owner)
         {
 
             Tiles = new Tile.Tile[width, height];
@@ -55,12 +56,14 @@ namespace SpaceEngine.Map.Layer
                     Tiles[x, y] = null;
                 }
             }
+            this.Owner = owner;
         }
 
         public void SetTile(int x,int y,Tile.Tile tile)
         {
 
             Tiles[x, y] = tile;
+            Owner.sceneChanged = true;
 
         }
 

@@ -102,11 +102,20 @@ namespace MapEditor.States
 
             split3.SetSplit(150);
 
+            var nodeTree = new NodeGraphView().Set(0, 0, split3.LeftDock.W, split3.LeftDock.H, "Scene Nodes") as NodeGraphView;
+
+            split3.SetLeft(nodeTree);
+
+    
+
             var nodeBrowse = new NodeBrowser().Set(0, 0, split3.LeftDock.W, split3.LeftDock.H) as NodeBrowser;
 
-            split3.SetLeft(nodeBrowse);
+
+            //split3.SetLeft(nodeBrowse);
 
             var mapEdit = new MapEditForm().Set(0, 0, split3.RightDock.W, split3.RightDock.H) as MapEditForm;
+
+            nodeTree.SetMap(mapEdit.CurMap);
 
             split3.SetRight(mapEdit);
 

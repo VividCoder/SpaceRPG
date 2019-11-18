@@ -78,6 +78,22 @@ namespace Vivid.FXS
         }
 
     }
+    public class FXImage : VEffect
+    {
+
+        
+        public FXImage() : base("","data/shader/fximagevs.glsl","data/shader/fximagefs.glsl")
+        {
+         
+        }
+        public override void SetPars()
+        {
+            SetTex("tDiffuse", 0);
+            SetMat("proj", OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));
+
+        }
+
+    }
     public class FXLitImage : VEffect
     {
 

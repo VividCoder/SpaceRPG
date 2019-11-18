@@ -79,16 +79,25 @@ namespace SpaceEngine.Forms
                 //Graph.Y = -32 + H / 2;
             }
             Changed = true;
-            Console.WriteLine("Changed..");
+  
             //Graph.X -= 370;
             //Graph.Y -= 170;
         }
         public bool Changed = true;
         bool shadows = false;
+        GraphSprite LightSprite;
+
         public MapViewForm(Map.Map map, bool Shadows = true)
         {
             shadows = Shadows;
             Map = map;
+
+            // ContextMenu = new ContextMenuForm();
+
+            //var add_menu = ContextMenu.AddItem("Add");
+            // add_menu.Menu.AddItem("Point Light");
+
+            LightSprite = new GraphSprite(new Tex2D("content/edit/light.png", true), 64, 64);
 
             if (MapFrame == null)
             {
@@ -133,7 +142,19 @@ namespace SpaceEngine.Forms
                    // AppInfo.RW = AppInfo.RW;
                     //AppInfo.RH = AppInfo.RH;
                     Graph.Draw(shadows);
+                    /*
+                    foreach(var l in Graph.Lights)
+                    {
 
+                        LightSprite.X = l.X;
+                        LightSprite.Y = l.Y;
+                        LightSprite.W = 64;
+                        LightSprite.H = 64;
+                        LightSprite.Graph = Graph;
+                       // Graph.DrawSingleNode(LightSprite);
+
+                    }
+                    */
                     //Graph.X += 1;
                     //Graph.Y += 1;
                     //Graph.;

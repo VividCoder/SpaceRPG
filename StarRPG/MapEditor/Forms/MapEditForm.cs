@@ -72,7 +72,7 @@ namespace MapEditor.Forms
             for(int i = 0; i < 4; i++)
             {
 
-                Layers.Add(new MapLayer(24, 24));
+                Layers.Add(new MapLayer(24, 24,CurMap));
                 CurMap.AddLayer(Layers[i]);
             }
             //CurMap.AddLayer(layer[0]);
@@ -86,9 +86,11 @@ namespace MapEditor.Forms
 
             var l1 = new Vivid.Scene.GraphLight();
             var l2 = new Vivid.Scene.GraphLight();
+            var l3 = new Vivid.Scene.GraphLight();
 
-            View.Map.AddLight(l1);
-            View.Map.AddLight(l2);
+//            View.Map.AddLight(l1);
+  //          View.Map.AddLight(l2);
+    //        View.Map.AddLight(l3);
 
             LabelForm cLab = null;
             ; var TView = View;
@@ -103,13 +105,20 @@ namespace MapEditor.Forms
                     updateModeLabel();
                     lMode = Mode;
                 }
+                /*
                 TView.Map.Lights[0].SetPos(300,300);
                 TView.Map.Lights[0].Range = 450;
                 TView.Map.Lights[0].Diffuse = new OpenTK.Vector3(0, 1, 1);
                 TView.Map.Lights[1].SetPos(650, 400);
                 TView.Map.Lights[1].Range = 400;
+                TView.Map.Lights[1].Diffuse = new OpenTK.Vector3(1, 1, 0);
                 TView.Map.Lights[0].Z = 0.1f;
                 TView.Map.Lights[1].Z = 0.1f;
+                TView.Map.Lights[2].Z = 0.1f;
+                TView.Map.Lights[2].Diffuse = new OpenTK.Vector3(1, 0, 1);
+                TView.Map.Lights[2].Range = 600;
+                TView.Map.Lights[2].SetPos(150, 150);
+                */
 
               
             };

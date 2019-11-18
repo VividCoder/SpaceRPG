@@ -24,7 +24,7 @@ namespace Vivid.Resonance.Forms
                 BodyNorm = new Texture2D("data/UI/normal/winnorm5.jpg", LoadMethod.Single, false);
             }
 
-            title = new ButtonForm().Set(0, 0, W, 20, "").SetImage(TitleImg);
+            title = new ButtonForm().Set(0, 0, W, 20, Text).SetImage(TitleImg);
 
             body = new ImageForm().Set(0, 20, W - 100, H - 22, "").SetImage(BodyImg, BodyNorm).SetPeak(true, false);
             body.Peak = false;
@@ -34,6 +34,15 @@ namespace Vivid.Resonance.Forms
             // body.RefractV = 0.72f;
 
             resize = (ButtonForm)new ButtonForm().Set(W - 14, H - 14, 14, 14, "");
+
+            AfterSet=()=>{
+
+
+                
+                title.Text = Text;
+
+
+            };
 
             void ResizeDrag(int x, int y)
             {
@@ -70,7 +79,7 @@ namespace Vivid.Resonance.Forms
 
             void ChangedFunc()
             {
-                title.Text = Text;
+               // title.Text = Text;
                 title.W = W;
                 title.H = 20;
                 body.H = H - 26;

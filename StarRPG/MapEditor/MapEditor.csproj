@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Forms\MapEditForm.cs" />
     <Compile Include="Forms\NodeBrowser.cs" />
+    <Compile Include="Forms\NodeGraphView.cs" />
     <Compile Include="Forms\TileBrowser.cs" />
     <Compile Include="MapEditorApp.cs" />
     <Compile Include="Program.cs" />

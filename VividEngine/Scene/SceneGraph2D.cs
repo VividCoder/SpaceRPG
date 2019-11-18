@@ -38,6 +38,10 @@ namespace Vivid.Scene
             get;
             set;
         }
+        public FXImage UnlitImage
+        { get;
+            set;
+        }
         public FXLitImage LitImage
         {
             get;
@@ -85,7 +89,7 @@ namespace Vivid.Scene
         static int sc = 0;
         public SceneGraph2D()
         {
-            Console.WriteLine("Created Scene:" + sc);
+           // Console.WriteLine("Created Scene:" + sc);
             sc++;
             White1 = new Texture.Texture2D("data/tex/white1.png", Texture.LoadMethod.Single, false);
 
@@ -100,6 +104,7 @@ namespace Vivid.Scene
             ShadowImage = new FXShadowImage();
             DrawShadow = new FXDrawShadow();
             BlurShadow = new FXBlurShadow();
+            UnlitImage = new FXImage();
         }
 
         public void Copy()
@@ -354,12 +359,31 @@ namespace Vivid.Scene
                 DrawNodeShadow(snode);
             }
         }
+        public void DrawSingleNode(GraphNode node)
+        {
 
+            Render.Begin();
+            node.SyncCoords();
+            DrawNode(node);
+            UnlitImage.Bind();
+            Render.End2D();
+            UnlitImage.Release();
+
+        }
         public void Draw(bool shadows)
         {
             // OpenTK.Graphics.OpenGL4.GL.Disable(OpenTK.Graphics.OpenGL4.EnableCap.Blend);
 
             bool first = true;
+            if(Lights.Count == 0)
+            {
+
+                Render.Begin();
+                DrawNode(Root);
+                UnlitImage.Bind();
+                Render.End2D();
+                UnlitImage.Release();
+            }
 
             foreach (var l in Lights)
             {

@@ -46,12 +46,14 @@ namespace SpaceEngine.Map
             Layers = new List<MapLayer>();
             TileWidth = TileHeight = 64;
             Lights = new List<GraphLight>();
+            sceneChanged = true;
         }
 
         public void AddLight(GraphLight l)
         {
 
             Lights.Add(l);
+            sceneChanged = true;
         }
 
         public int TileWidth
@@ -95,7 +97,8 @@ namespace SpaceEngine.Map
         void SetLayer(MapLayer layer,int index)
         {
 
-            Layers[index] = layer;                
+            Layers[index] = layer;
+            sceneChanged = true;
             
         }
 
@@ -108,13 +111,22 @@ namespace SpaceEngine.Map
 
         }
 
+        public bool sceneChanged = false;
+        SceneGraph2D oGraph = null;
         public Vivid.Scene.SceneGraph2D UpdateGraph(int tw,int th)
         {
+            if (sceneChanged == false) return oGraph;
+            Vivid.Scene.SceneGraph2D Graph = oGraph;
+            if (oGraph == null)
+            {
 
-            Vivid.Scene.SceneGraph2D Graph = new Vivid.Scene.SceneGraph2D();
-
+               Graph = new Vivid.Scene.SceneGraph2D();
+            }
+            oGraph = Graph;
+            sceneChanged = false;
             float sp = 0;
             int li = 0;
+            Graph.Root = new GraphNode();
             foreach (var layer in Layers)
             {
                 li++;
@@ -166,7 +178,12 @@ namespace SpaceEngine.Map
 
             NewMethod(Graph);
 
-            Graph.Add(Lights.ToArray());
+            if(Graph.Lights.Count != Lights.Count)
+            {
+                Graph.Lights.Clear();
+                Graph.Add(Lights.ToArray());
+            }
+           // Graph.Add(Lights.ToArray());
             foreach (var l in Lights)
             {
 
@@ -174,18 +191,11 @@ namespace SpaceEngine.Map
                 lg.X = l.X;
                 lg.Y = l.Y;
                 lg.Z = l.Z;
-                Graph.Add(lg);
+             //   Graph.Add(lg);
 
             }
 
-            // Graph.X = -32+ Vivid.App.AppInfo.RW/2;// (TileWidth * Layers[0].Width) / 2;
-            //Graph.Y = -32+ Vivid.App.AppInfo.RH / 2;// (TileHeight * Layers[0].Height) / 2;
-
-
-            //foreach(var l in Lights)
-            //{
-            //   Graph.Add(l);
-            //}
+         
             return Graph;
 
         }

@@ -80,7 +80,7 @@ namespace MapViewer.States
                 }
             };
 
-            CurSetLayer = CurSetMap.AddLayer(new SpaceEngine.Map.Layer.MapLayer(setWidth, setHeight));
+            CurSetLayer = CurSetMap.AddLayer(new SpaceEngine.Map.Layer.MapLayer(setWidth, setHeight,CurSetMap));
 
 
 

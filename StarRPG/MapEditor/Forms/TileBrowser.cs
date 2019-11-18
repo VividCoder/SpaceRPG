@@ -32,7 +32,7 @@ namespace MapEditor.Forms
             tx = 0;
             ty = 0;
             TileMap = new Map();
-            TileLayer = new MapLayer(16, 16);
+            TileLayer = new MapLayer(16, 16,TileMap);
             TileMap.AddLayer(TileLayer);
 
             var l1 = new Vivid.Scene.GraphLight();

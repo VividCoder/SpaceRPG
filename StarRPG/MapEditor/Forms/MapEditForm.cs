@@ -42,6 +42,7 @@ namespace MapEditor.Forms
         bool rotCam = false;
         public int EditZ = 0;
         public int mX, mY;
+        public Vivid.Scene.GraphNode ActiveNode = null;
         public MapEditForm()
 
         {
@@ -163,7 +164,8 @@ namespace MapEditor.Forms
                 {
                     if(pn is Vivid.Scene.GraphLight)
                     {
-                        Environment.Exit(1);
+                        ActiveNode = pn;
+                        TView.ActiveNode = pn;
                     }
 
                 }

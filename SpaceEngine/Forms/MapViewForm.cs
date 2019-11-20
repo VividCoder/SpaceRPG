@@ -30,6 +30,8 @@ namespace SpaceEngine.Forms
             set;
         }
 
+        public Vivid.Scene.GraphNode ActiveNode = null;
+
         //public List<HighLightTile> Highlights = new List<HighLightTile>();
 
         public Vivid.FrameBuffer.FrameBufferColor MapFrame;
@@ -86,6 +88,9 @@ namespace SpaceEngine.Forms
         public bool Changed = true;
         bool shadows = false;
         GraphSprite LightSprite;
+        GraphSprite ActiveNodeSprite;
+        GraphSprite[] ActiveNodeArrow = new GraphSprite[4];
+        GraphSprite ActiveNodePivot = null;
 
         public GraphNode PickObj(int x,int y)
         {
@@ -117,7 +122,8 @@ namespace SpaceEngine.Forms
             // add_menu.Menu.AddItem("Point Light");
 
             LightSprite = new GraphSprite(new Tex2D("content/edit/light.png", true), 64, 64);
-
+            ActiveNodeSprite = new GraphSprite(new Tex2D("content/edit/activenode.png", true), 64, 64);
+            ActiveNodePivot = new GraphSprite(new Tex2D("content/edit/nodepivot.png", true), 16, 16);
             if (MapFrame == null)
             {
 
@@ -173,7 +179,25 @@ namespace SpaceEngine.Forms
                         Graph.DrawSingleNode(LightSprite);
 
                     }
-                    
+
+                    if (ActiveNode != null)
+                    {
+                        ActiveNodeSprite.X = ActiveNode.X;
+                        ActiveNodeSprite.Y = ActiveNode.Y;
+                        ActiveNodeSprite.W = 64;
+                        ActiveNodeSprite.H = 64;
+                        ActiveNodeSprite.Graph = Graph;
+                        Graph.DrawSingleNode(ActiveNodeSprite);
+
+                        ActiveNodePivot.X = ActiveNode.X+32;
+                        ActiveNodePivot.Y = ActiveNode.Y-32;
+                        ActiveNodePivot.W = 16;
+                        ActiveNodePivot.H = 16;
+                        ActiveNodePivot.Graph = Graph;
+                        Graph.DrawSingleNode(ActiveNodePivot);
+
+                    }
+
                     //Graph.X += 1;
                     //Graph.Y += 1;
                     //Graph.;

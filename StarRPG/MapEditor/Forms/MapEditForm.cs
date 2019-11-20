@@ -41,7 +41,9 @@ namespace MapEditor.Forms
         bool zoomCam = false;
         bool rotCam = false;
         public int EditZ = 0;
+        public int mX, mY;
         public MapEditForm()
+
         {
 
             var layDown = new ButtonForm().Set(140, -20, 30, 20, "\\/");
@@ -153,6 +155,19 @@ namespace MapEditor.Forms
                     MoveCam = true;
                     return;
                 }
+                Console.WriteLine("MX:" + mX + " MY:" + mY);
+                AppInfo.RW = W;
+                AppInfo.RH = H;
+                var pn = TView.PickObj(mX, mY);
+                if (pn != null)
+                {
+                    if(pn is Vivid.Scene.GraphLight)
+                    {
+                        Environment.Exit(1);
+                    }
+
+                }
+
                 MouseIn = true;
                 var hz = ONode; // TView.Graph.Pick(lx, ly);
 
@@ -187,6 +202,8 @@ namespace MapEditor.Forms
 
             TView.MouseMove = (x, y, dx, dy) =>
             {
+                mX = x;
+                mY = y;
                 if (rotCam)
                 {
                     TView.Graph.Rot += dx;

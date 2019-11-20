@@ -87,6 +87,25 @@ namespace SpaceEngine.Forms
         bool shadows = false;
         GraphSprite LightSprite;
 
+        public GraphNode PickObj(int x,int y)
+        {
+
+            foreach(var l in Graph.Lights)
+            {
+                float oz = l.Z;
+                l.Z = 1.0f;
+                var n = Graph.PickNode(l, x, y);
+                l.Z = oz;
+               if(n == l)
+
+                {
+                    return n;
+                }
+            }
+            return null;
+
+        }
+
         public MapViewForm(Map.Map map, bool Shadows = true)
         {
             shadows = Shadows;
@@ -142,7 +161,7 @@ namespace SpaceEngine.Forms
                    // AppInfo.RW = AppInfo.RW;
                     //AppInfo.RH = AppInfo.RH;
                     Graph.Draw(shadows);
-                    /*
+                    
                     foreach(var l in Graph.Lights)
                     {
 
@@ -151,10 +170,10 @@ namespace SpaceEngine.Forms
                         LightSprite.W = 64;
                         LightSprite.H = 64;
                         LightSprite.Graph = Graph;
-                       // Graph.DrawSingleNode(LightSprite);
+                        Graph.DrawSingleNode(LightSprite);
 
                     }
-                    */
+                    
                     //Graph.X += 1;
                     //Graph.Y += 1;
                     //Graph.;

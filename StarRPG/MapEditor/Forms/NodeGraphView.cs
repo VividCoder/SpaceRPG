@@ -39,7 +39,7 @@ namespace MapEditor.Forms
 
                 nl.SetPos(250, 250);
                 nl.Range = 800;
-
+                nl.Z = 0.1f;
                 map.AddLight(nl);
                 Console.WriteLine("Added light to scene.");
 

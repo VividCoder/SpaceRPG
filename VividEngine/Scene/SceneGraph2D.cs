@@ -247,6 +247,8 @@ namespace Vivid.Scene
                 xc = node.XC;
                 yc = node.YC;
 
+
+             
                 Render.Image(node.DrawP, node.ImgFrame,node.ShadowPlane);
             
                 //Render.Image(xc, yc, node.ImgFrame);
@@ -463,6 +465,8 @@ namespace Vivid.Scene
            // {
 
                 node.SyncCoords();
+            
+            //Console.WriteLine("XP:" + node.DrawP[0].X + " YP:" + node.DrawP[0].Y);
 
             
             if (node.DrawP != null)

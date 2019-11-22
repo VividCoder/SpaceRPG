@@ -220,6 +220,7 @@ namespace MapEditor.Forms
             {
                 mX = x;
                 mY = y;
+
                 if (rotCam)
                 {
                     TView.Graph.Rot += dx;
@@ -236,8 +237,11 @@ namespace MapEditor.Forms
                 ly = y;
                 if (TView.Graph != null)
                 {
+                    AppInfo.RW = TView.MapFrame.IW;
+                    AppInfo.RH = TView.MapFrame.IH;
                     var node = TView.Graph.Pick(x, y);
-
+                    AppInfo.RW = AppInfo.W;
+                    AppInfo.RH = AppInfo.H;
                     if (node != null)
                     {
                         ONode = node;
@@ -257,12 +261,22 @@ namespace MapEditor.Forms
                         }
 
                         var tView = TView;
+                    
                         TView.Map.HL.Clear();
                         TView.Map.HighlightTile(node.TileX, node.TileY);
                         TView.UpdateGraph();
 
-                      //  TView.Graph.X = -32 + TView.W / 2;
-                       // TView.Graph.Y = -32 + TView.H / 2;
+                   
+                        if (TView.ActiveNodeSprite != null)
+                        {
+                           // TView.ActiveNodeSprite.SyncCoords();
+                            if (TView.ActiveNodeSprite.DrawP != null)
+                            {
+                                moveForm.Set((int)TView.ActiveNodeSprite.DrawP[0].X, (int)TView.ActiveNodeSprite.DrawP[0].Y, 64, 64);
+                                //  TView.Graph.X = -32 + TView.W / 2;
+                            }
+                        }
+                        // TView.Graph.Y = -32 + TView.H / 2;
                         // Console.WriteLine("MX:" + x + " MY:" + y);
                     }
                     else

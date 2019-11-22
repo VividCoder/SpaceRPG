@@ -40,6 +40,66 @@ namespace MapEditor.Forms
             Add(rform);
             Add(dform);
             bool mup = false;
+            bool mleft = false;
+            bool mright = false;
+            bool mdown = false;
+
+
+            rform.MouseDown = (b) =>
+            {
+                mright = true;
+            };
+            rform.MouseUp = (b) =>
+            {
+                mright = false;
+            };
+
+            rform.MouseMove = (x, y, xd, yd) =>
+            {
+                if (Node != null && mright)
+                {
+                    Node.X = Node.X + xd;
+                    View.UpdateGraph();
+                }
+            };
+
+
+            dform.MouseDown = (b) =>
+            {
+                mdown = true;
+            };
+            dform.MouseUp = (b) =>
+            {
+                mdown = false;
+            };
+
+            dform.MouseMove = (x, y, xd, yd) =>
+            {
+                if (Node != null && mdown)
+                {
+                    Node.Y = Node.Y + yd;
+                    View.UpdateGraph();
+                }
+            };
+
+
+            lform.MouseDown = (b) =>
+            {
+                mleft = true;
+            };
+            lform.MouseUp = (b) =>
+            {
+                mleft = false;
+            };
+
+            lform.MouseMove = (x, y, xd, yd) =>
+            {
+                if (Node != null && mleft)
+                {
+                    Node.X = Node.X + xd;
+                    View.UpdateGraph();
+                }
+            };
 
             uform.MouseDown = (b) =>
             {

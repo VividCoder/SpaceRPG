@@ -156,13 +156,14 @@ namespace Vivid.Draw
         {
             if (!begun) return;
             begun = false;
-            GL.Enable(EnableCap.DepthTest);
+            GL.Disable(EnableCap.DepthTest);
             //  GL.Enable(EnableCap.Blend);
             GL.Disable(EnableCap.CullFace);
 
             //GL.Viewport(0, 0, Vivid.App.AppInfo.W, Vivid.App.AppInfo.H);
 
             // DrawFX.Bind();
+           
 
             foreach (var draw_list in Draws)
             {
@@ -184,6 +185,7 @@ namespace Vivid.Draw
 
                 foreach (var data in draw_list.Data)
                 {
+                    
                     for (int i = 0; i < 4; i++)
                     {
                         ind_data[int_i] = (uint)int_i++;

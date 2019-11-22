@@ -35,7 +35,7 @@ namespace MapEditor.Forms
             TileLayer = new MapLayer(16, 16,TileMap);
             TileMap.AddLayer(TileLayer);
 
-            var l1 = new Vivid.Scene.GraphLight();
+           // var l1 = new Vivid.Scene.GraphLight();
 
 
 
@@ -73,7 +73,11 @@ namespace MapEditor.Forms
                 lmy = y;
                 if (TView.Graph != null)
                 {
+                    AppInfo.RW = TView.MapFrame.IW;
+                    AppInfo.RH = TView.MapFrame.IH;
                     var node = TView.Graph.Pick(x, y);
+                    AppInfo.RW = AppInfo.W;
+                    AppInfo.RH = AppInfo.H;
                     ONode = node;
                     if (node != null)
                     {
@@ -96,7 +100,8 @@ namespace MapEditor.Forms
             };
 
 
-            TileMap.AddLight(l1);
+
+            //TileMap.AddLight(l1);
         }
         private void ClearHL(MapViewForm tileSet_View)
         {

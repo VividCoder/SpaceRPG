@@ -231,17 +231,19 @@ namespace SpaceEngine.Forms
                 DrawForm(MapFrame.BB,0,0,-1,-1,true);
                 if (Graph != null)
                 {
-                    if (SceneGraph2D.ShadowBuffer2 != null)
+                    //if (SceneGraph2D.ShadowBuffer2 != null)
+                    //{
+                    if (Graph.Lights.Count > 0 && Graph.Lights[0].SB1 != null)
                     {
-                       //DrawForm(SceneGraph2D.ShadowBuf.BB, 0, 0, 256, 256);
-                       // DrawForm(SceneGraph2D.ShadowBuffer2.BB, 260, 0,256, 256);
-                      //  DrawForm(SceneGraph2D.Shadow3.BB, 0, 260, 256, 256);
+                        DrawForm(Graph.Lights[0].SB1.BB, 0, 0, 256, 256);
+                        DrawForm(Graph.Lights[0].SB2.BB, 260, 0, 256, 256);
+                        // DrawForm(SceneGraph2D.Shadow3.BB, 0, 260, 256, 256);
                         //Graph.Rot = r;
+                        //    }
                     }
+                    r = r + 1;
+                    //Changed = true;
                 }
-                r = r + 1;
-                //Changed = true;
-
 
 
             };

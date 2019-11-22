@@ -108,6 +108,7 @@ namespace SpaceEngine.Map
         {
 
             HL.Add(new HighLightTile() { X = x, Y = y });
+            sceneChanged = true;
 
         }
 
@@ -163,7 +164,10 @@ namespace SpaceEngine.Map
 
                         tileSpr.SetPos(mx, my);
                         tileSpr.Obj[0] = tile;
-                        tileSpr.ShadowPlane = sp;
+                        if (Lights.Count > 0)
+                        {
+                            tileSpr.ShadowPlane = sp;
+                        }
                         Graph.Add(tileSpr);
                         if (li > 1)
                         {

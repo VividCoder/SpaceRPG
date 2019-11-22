@@ -459,12 +459,12 @@ namespace Vivid.Scene
                     return p;
                 }
             }
-            if (node.DrawP == null)
-            {
+            //if (node.DrawP == null)
+           // {
 
                 node.SyncCoords();
 
-            }
+            
             if (node.DrawP != null)
             {
                 if (PointInTriangle(new Vector2(x, y), node.DrawP[0], node.DrawP[1], node.DrawP[2]))

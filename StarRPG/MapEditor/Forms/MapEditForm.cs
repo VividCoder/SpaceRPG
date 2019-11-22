@@ -142,7 +142,9 @@ namespace MapEditor.Forms
 
             body.Add(View);
 
-          
+            MoveNodeForm moveForm = new MoveNodeForm().Set(0, 0, 0, 0) as MoveNodeForm;
+            moveForm.View = TView;
+            TView.Add(moveForm);
 
             TView.MouseDown = (b) =>
             {
@@ -166,8 +168,20 @@ namespace MapEditor.Forms
                     {
                         ActiveNode = pn;
                         TView.ActiveNode = pn;
+                        TView.SetActiveSprite();
+                        moveForm.SetNode(TView.ActiveNode);
+                        moveForm.Set((int)TView.ActiveNodeSprite.DrawP[0].X, (int)TView.ActiveNodeSprite.DrawP[0].Y,64,64);
+                        Console.WriteLine("Set PN");
+                    }
+                    else
+                    {
+                        Console.WriteLine("nope");
                     }
 
+                }
+                else
+                {
+                    Console.WriteLine("No obj");
                 }
 
                 MouseIn = true;

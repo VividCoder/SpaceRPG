@@ -88,9 +88,10 @@ namespace SpaceEngine.Forms
         public bool Changed = true;
         bool shadows = false;
         GraphSprite LightSprite;
-        GraphSprite ActiveNodeSprite;
+        public GraphSprite ActiveNodeSprite;
         GraphSprite[] ActiveNodeArrow = new GraphSprite[4];
         GraphSprite ActiveNodePivot = null;
+        GraphSprite nodeUp, nodeLeft, nodeDown, nodeRight;
 
         public GraphNode PickObj(int x,int y)
         {
@@ -105,6 +106,10 @@ namespace SpaceEngine.Forms
 
                 {
                     return n;
+                }
+                else
+                {
+                    int vv = 5;
                 }
             }
             return null;
@@ -124,6 +129,10 @@ namespace SpaceEngine.Forms
             LightSprite = new GraphSprite(new Tex2D("content/edit/light.png", true), 64, 64);
             ActiveNodeSprite = new GraphSprite(new Tex2D("content/edit/activenode.png", true), 64, 64);
             ActiveNodePivot = new GraphSprite(new Tex2D("content/edit/nodepivot.png", true), 16, 16);
+            nodeLeft = new GraphSprite(new Tex2D("content/edit/left.png", true), 32, 32);
+            nodeUp = new GraphSprite(new Tex2D("content/edit/up.png", true), 32, 32);
+            nodeRight = new GraphSprite(new Tex2D("content/edit/right.png", true), 32, 32);
+            nodeDown = new GraphSprite(new Tex2D("content/edit/down.png", true), 32, 32);
             if (MapFrame == null)
             {
 
@@ -182,15 +191,11 @@ namespace SpaceEngine.Forms
 
                     if (ActiveNode != null)
                     {
-                        ActiveNodeSprite.X = ActiveNode.X;
-                        ActiveNodeSprite.Y = ActiveNode.Y;
-                        ActiveNodeSprite.W = 64;
-                        ActiveNodeSprite.H = 64;
-                        ActiveNodeSprite.Graph = Graph;
+                        SetActiveSprite();
                         Graph.DrawSingleNode(ActiveNodeSprite);
 
-                        ActiveNodePivot.X = ActiveNode.X+32;
-                        ActiveNodePivot.Y = ActiveNode.Y-32;
+                        ActiveNodePivot.X = ActiveNode.X + 32;
+                        ActiveNodePivot.Y = ActiveNode.Y - 32;
                         ActiveNodePivot.W = 16;
                         ActiveNodePivot.H = 16;
                         ActiveNodePivot.Graph = Graph;
@@ -243,6 +248,17 @@ namespace SpaceEngine.Forms
 
             
 
+        }
+
+        public void SetActiveSprite()
+        {
+            ActiveNodeSprite.X = ActiveNode.X;
+            ActiveNodeSprite.Y = ActiveNode.Y;
+            ActiveNodeSprite.W = 64;
+            ActiveNodeSprite.H = 64;
+           
+            ActiveNodeSprite.Graph = Graph;
+            ActiveNodeSprite.SyncCoords();
         }
 
         public void Update()

@@ -43,9 +43,10 @@ void main(){
    float d = length(lightDir);
 
    vec3 N = nv;
-   vec3 L = vec3(normalize(lightDir),1);
+   vec3 L = vec3(normalize(lightDir),2.5);
 
    L.y = -L.y;
+   L.x = -L.x;
 
    vec3 diff = (lDif) * max(dot(N,L),0.0);
 
@@ -90,7 +91,7 @@ void main(){
 
     }
 
-diff = diff * 3.0;
+
 
    tc.rgb = tc.rgb * diff;   
 

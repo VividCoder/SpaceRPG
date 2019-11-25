@@ -112,9 +112,15 @@ namespace Vivid.FXS
         }
 
         public float LightZ = 0;
-        public FXLitImage() : base("", "data/Shader/LitImageVS.glsl", "data/Shader/LitImageFS1.glsl")
+        public FXLitImage() : base("", "data/Shader/LitImageVS.glsl", "data/Shader/LitImageFS2.glsl")
         {
         }
+
+        public OpenTK.Vector3 FallOff = new OpenTK.Vector3(0.4f, 3f, 20f);
+
+        public OpenTK.Vector4 Ambient = new OpenTK.Vector4(0.6f, 0.6f, 1.0f, 0.2f);
+
+        public float DefaultZ = 0.175f;
 
         public override void SetPars()
         {
@@ -137,18 +143,24 @@ namespace Vivid.FXS
 
             res = Maths.Push(res, sw / 2, sh / 2);
 
+            OpenTK.Vector3 lP = new OpenTK.Vector3(res.X / sw,1.0f-(res.Y / sh),DefaultZ);
+
+
             SetTex("tDiffuse", 0);
             SetTex("tShadow", 1);
             SetTex("tNormal", 2);
             SetFloat("lZ", LightZ);
             SetInt("sShadow", isShadowed ? 1 : 0);
-            SetVec3("lPos", new OpenTK.Vector3(res.X, res.Y, 0));
-            SetVec3("lDif", Light.Diffuse);
-            SetVec3("lSpec", Light.Specular);
-            SetFloat("lShiny", Light.Shiny);
-            SetFloat("lRange", Light.Range * Graph.Z);
-            SetFloat("sWidth", Vivid.App.AppInfo.RW);
-            SetFloat("sHeight", Vivid.App.AppInfo.RH);
+          //  SetVec3("lPos", new OpenTK.Vector3(res.X, res.Y, 0));
+            SetVec3("LightPos", lP);
+            SetVec4("LightColor", new OpenTK.Vector4(Light.Diffuse, 1.0f));
+            SetVec4("AmbientColor", Ambient);
+            SetVec3("Falloff", FallOff);
+            SetVec2("Resolution", new OpenTK.Vector2(sw, sh));
+
+               
+            //SetFloat("lRange", Light.Range * Graph.Z);
+            
 
 
             SetMat("proj", OpenTK.Matrix4.CreateOrthographicOffCenter(0, Vivid.App.AppInfo.RW, Vivid.App.AppInfo.RH, 0, -1, 1000));

@@ -94,6 +94,7 @@ namespace SpaceEngine.Map.Tile
 
             if (r.ReadBoolean())
             {
+                int v = 5;
                 ColorImage = LoadImage(r);
             }
             if (r.ReadBoolean())

@@ -17,6 +17,7 @@ uniform vec3 LightPos;
 uniform vec4 LightColor;
 uniform vec4 AmbientColor;
 uniform vec3 Falloff;
+uniform float lZ;
 
 
 void main(){
@@ -46,6 +47,18 @@ void main(){
     
     vec3 Intensity = Ambient + Diffuse * Attenuation;
 	vec3 FinalColor = DiffuseColor.rgb * Intensity;
+
+    vec2 suv = vec2(gl_FragCoord.x/Resolution.x,1.0-(gl_FragCoord.y/Resolution.y));
+
+    float shadow = texture2D(tShadow,suv).r;
+
+
+    if(iZ<lZ){
+
+        FinalColor = FinalColor * shadow;
+
+    }
+
 
     color =  vec4(FinalColor, DiffuseColor.a);
 

@@ -236,8 +236,10 @@ namespace SpaceEngine.Forms
                     if (Graph.Lights.Count > 0 && Graph.Lights[0].SB1 != null)
                     {
                      
-                        // DrawForm(SceneGraph2D.Shadow3.BB, 0, 260, 256, 256);
+                         DrawForm(Graph.Lights[0].SB1.BB, 0,0, 256, 256);
+                        DrawForm(Graph.Lights[0].SB2.BB, 0, 256, 256, 256);
                         //Graph.Rot = r;
+
                         //    }
                     }
                     r = r + 1;

@@ -437,6 +437,19 @@ namespace Vivid.Texture
             ID = -1;
         }
 
+        public Vivid.Tex.Tex2D ToTex2D()
+        {
+
+            var nt = new Vivid.Tex.Tex2D();
+            nt.ID = ID;
+            nt.Width = W;
+            nt.Height = H;
+            nt.Path = Path;
+            nt.RawData = RawData;
+            nt.Alpha = Alpha;
+            return nt;
+
+        }
         public Texture2D(TextureRaw raw)
         {
             RawData = raw.Data;

@@ -122,6 +122,7 @@ namespace Vivid.Resonance
         public int ViewX = 0, ViewY = 0, ViewW = 0, ViewH = 0;
 
         public static Texture2D WhiteTex = null;
+        public static Vivid.Tex.Tex2D WhiteTex2D = null;
 
         public UIForm SetPeak(bool peak, bool refract)
         {
@@ -377,6 +378,7 @@ namespace Vivid.Resonance
             if (WhiteTex == null)
             {
                 WhiteTex = new Texture2D("data/ui/whitetex.png", LoadMethod.Single, true);
+                WhiteTex2D = new Tex.Tex2D("data/ui/whitetex.png", false);
             }
             X = x;
             Y = y;

@@ -143,7 +143,7 @@ namespace SpaceEngine.Map
                             if (li == 1)
                             {
 
-                                var notile = new GraphSprite(new Tex2D("content/edit/notile.png", false), TileWidth, TileHeight);
+                                var notile = new GraphSprite(new Tex2D("content/edit/notile.png", false),null, TileWidth, TileHeight);
                                 notile.SetPos(x * TileWidth, y * TileHeight);
                                 notile.TileX = x;
                                 notile.TileY = y;
@@ -152,7 +152,7 @@ namespace SpaceEngine.Map
                             continue;
                         }
 
-                        var tileSpr = new GraphSprite(tile.Image, TileWidth, TileHeight);
+                        var tileSpr = new GraphSprite(tile.ColorImage,tile.NormalImage, TileWidth, TileHeight);
 
                         tileSpr.TileX = x;
                         tileSpr.TileY = y;
@@ -191,7 +191,7 @@ namespace SpaceEngine.Map
             foreach (var l in Lights)
             {
 
-                var lg = new GraphSprite(new Tex2D("content/edit/light.png", true), 64, 64);
+                var lg = new GraphSprite(new Tex2D("content/edit/light.png", true),null, 64, 64);
                 lg.X = l.X;
                 lg.Y = l.Y;
                 lg.Z = l.Z;
@@ -214,7 +214,7 @@ namespace SpaceEngine.Map
                 int my = hl.Y * TileHeight;
 
 
-                var hs = new GraphSprite(new Tex2D("content/edit/highlight1.png", true), 64, 64);
+                var hs = new GraphSprite(new Tex2D("content/edit/highlight1.png", true),null, 64, 64);
 
                 hs.SetPos(mx, my);
                 // tileSpr.SetPos(mx, my);

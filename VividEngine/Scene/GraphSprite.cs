@@ -3,10 +3,34 @@
     public class GraphSprite : GraphNode
     {
 
-        public GraphSprite(Tex.Tex2D img, int w = -1, int h = -1)
+        public Tex.Tex2D NormalMap
         {
+            get;
+            set;
+        }
+
+        public static Tex.Tex2D NormalBlank=null;
+
+        public GraphSprite(Tex.Tex2D img,Tex.Tex2D normal, int w = -1, int h = -1)
+        {
+            if (normal != null)
+            {
+                int vv = 5;
+            }
+            if (NormalBlank == null)
+            {
+                NormalBlank = new Tex.Tex2D("data/tex/normblank.png", false);
+            }
+            if (normal == null)
+            {
+                NormalMap = NormalBlank;
+            }
             CastShadow = false;
             ImgFrame = img;
+            if (normal != null)
+            {
+                NormalMap = normal;
+            }
             if (w == -1)
             {
                 W = ImgFrame.Width;

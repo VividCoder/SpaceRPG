@@ -26,6 +26,7 @@ namespace MapEditor.States
 
         public override void InitState()
         {
+            GameGlobal.ContentPath = ContentPath;
             base.InitState();
 
             var split1 = new HorizontalSplitterForm().Set(0, 0, AppInfo.W, AppInfo.H) as HorizontalSplitterForm;
@@ -152,6 +153,7 @@ namespace MapEditor.States
             var mode_Tiles = SUI.Dock.AddIcon(tileMode, 64);
             mode_Tiles.Click = ()=>{
 
+                UI.Menu = null;
                 Vivid.App.VividApp.PushState(new MapViewer.States.TileSetEditor());
 
             };

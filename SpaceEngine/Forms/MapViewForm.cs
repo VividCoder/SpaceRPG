@@ -126,13 +126,13 @@ namespace SpaceEngine.Forms
             //var add_menu = ContextMenu.AddItem("Add");
             // add_menu.Menu.AddItem("Point Light");
 
-            LightSprite = new GraphSprite(new Tex2D("content/edit/light.png", true), 64, 64);
-            ActiveNodeSprite = new GraphSprite(new Tex2D("content/edit/activenode.png", true), 64, 64);
-            ActiveNodePivot = new GraphSprite(new Tex2D("content/edit/nodepivot.png", true), 16, 16);
-            nodeLeft = new GraphSprite(new Tex2D("content/edit/left.png", true), 32, 32);
-            nodeUp = new GraphSprite(new Tex2D("content/edit/up.png", true), 32, 32);
-            nodeRight = new GraphSprite(new Tex2D("content/edit/right.png", true), 32, 32);
-            nodeDown = new GraphSprite(new Tex2D("content/edit/down.png", true), 32, 32);
+            LightSprite = new GraphSprite(new Tex2D("content/edit/light.png", true), null,64, 64);
+            ActiveNodeSprite = new GraphSprite(new Tex2D("content/edit/activenode.png", true),null, 64, 64);
+            ActiveNodePivot = new GraphSprite(new Tex2D("content/edit/nodepivot.png", true),null, 16, 16);
+            nodeLeft = new GraphSprite(new Tex2D("content/edit/left.png", true),null, 32, 32);
+            nodeUp = new GraphSprite(new Tex2D("content/edit/up.png", true),null, 32, 32);
+            nodeRight = new GraphSprite(new Tex2D("content/edit/right.png", true),null, 32, 32);
+            nodeDown = new GraphSprite(new Tex2D("content/edit/down.png", true),null, 32, 32);
             if (MapFrame == null)
             {
 
@@ -235,8 +235,7 @@ namespace SpaceEngine.Forms
                     //{
                     if (Graph.Lights.Count > 0 && Graph.Lights[0].SB1 != null)
                     {
-                        DrawForm(Graph.Lights[0].SB1.BB, 0, 0, 256, 256);
-                        DrawForm(Graph.Lights[0].SB2.BB, 260, 0, 256, 256);
+                     
                         // DrawForm(SceneGraph2D.Shadow3.BB, 0, 260, 256, 256);
                         //Graph.Rot = r;
                         //    }

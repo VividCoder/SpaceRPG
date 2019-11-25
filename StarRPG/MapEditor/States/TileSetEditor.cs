@@ -21,6 +21,26 @@ namespace MapViewer.States
         public int setX, setY;
         public Vivid.Scene.SceneGraph2D TileGraph;
         MapViewForm tView;
+
+        MapEditor.Forms.InspectorForm Inspect = null;
+
+        public WindowForm CrTileProps()
+        {
+
+            //WindowForm tile_Edit = new WindowForm().Set(400, 50, 700, 600, "Tile Properties") as WindowForm;
+
+            Inspect = new MapEditor.Forms.InspectorForm();
+
+            //Inspect = tile_Edit.body.Forms[0] as MapEditor.Forms.InspectorForm;
+
+
+            Inspect.Set(250, 50, 350, 600,"Tile Properties");
+
+
+            return Inspect as WindowForm;
+
+        }
+        public static SpaceEngine.Map.Tile.Tile CurTile = null;
         public WindowForm CrTileSetEditor()
         {
             setX = 0;
@@ -35,13 +55,15 @@ namespace MapViewer.States
             setLight.Specular = new OpenTK.Vector3(1, 1, 1);
             setLight.Range = 1200;
 
-            CurSetMap.AddLight(setLight);
+          //  CurSetMap.AddLight(setLight);
 
+         
             WindowForm set_Editor = new WindowForm().Set(200, 200, 700, 600, "TileSet") as WindowForm;
 
             ToolBarForm tools = new ToolBarForm().Set(0, 0, 700, 25) as ToolBarForm;
 
 
+           
 
             set_Editor.body.Add(tools);
 
@@ -53,13 +75,26 @@ namespace MapViewer.States
                 ClearHL(tileSet_View);
 
             };
+            tView.MouseDown = (b) =>
+            {
+
+                if (CurTile != null)
+                {
+                    Inspect.SetObj(CurTile);
+                }
+
+            };
             tView.MouseMove = (x, y, dx, dy) =>
             {
 
                 if (tView.Graph != null)
                 {
-                    var node = tView.Graph.Pick(x, y);
 
+                    AppInfo.RW = tView.MapFrame.IW;
+                    AppInfo.RH = tView.MapFrame.IH;
+                    var node = tView.Graph.Pick(x, y);
+                    AppInfo.RW = AppInfo.W;
+                    AppInfo.RH = AppInfo.H;
                     if (node != null)
                     {
 
@@ -67,6 +102,8 @@ namespace MapViewer.States
                         tView.Map.HL.Clear();
                         tView.Map.HighlightTile(node.TileX, node.TileY);
                         tileSet_View.UpdateGraph();
+                        //Inspect.SetObj(node.Obj[0]);
+                        CurTile = node.Obj[0];
                         // tileSet_View.Graph.X = -32 + tileSet_View.W / 2;
                         //tileSet_View.Graph.Y = -32 + tileSet_View.H / 2;
                         // Console.WriteLine("MX:" + x + " MY:" + y);
@@ -298,7 +335,7 @@ namespace MapViewer.States
             menu_TileSet.Menu.AddItem("Exit", click_Exit);
 
             ui_Root.Add(CrTileSetEditor());
-
+            ui_Root.Add(CrTileProps());
 
 
         }

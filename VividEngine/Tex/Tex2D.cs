@@ -34,6 +34,23 @@ namespace Vivid.Tex
             // GL.DeleteTexture(ID);
         }
 
+        public Texture.Texture2D ToTexture2D()
+        {
+
+            var nt = new Vivid.Texture.Texture2D();
+            nt.ID = ID;
+            nt.W = Width;
+            nt.H = Height;
+            nt.Path = Path;
+            nt.RawData = RawData;
+            nt.Alpha = Alpha;
+            return nt;
+
+       }
+        public Tex2D()
+        {
+
+        }
         public Tex2D(Bitmap bit, bool alpha)
         {
             if (TmpStore == null)

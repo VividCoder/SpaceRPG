@@ -10,6 +10,7 @@ namespace Vivid.Draw
     public class DrawData
     {
         public Tex2D Img2D = null;
+        public Tex2D Norm2D = null;
         public Texture2D Img = null;
         public int X, Y, W, H;
         public Vector4 Col = new Vector4(1, 1, 1, 1);
@@ -24,10 +25,11 @@ namespace Vivid.Draw
     {
         public List<DrawData> Data = new List<DrawData>();
 
-        public void AddDraw(float[] xc, float[] yc, float z, Tex2D img, Vector4 col, bool flipuv = false)
+        public void AddDraw(float[] xc, float[] yc, float z, Tex2D img,Tex2D norm, Vector4 col, bool flipuv = false)
         {
             DrawData draw_data = new DrawData();
             draw_data.Img2D = img;
+            draw_data.Norm2D = norm;
             draw_data.Col = col;
             //draw_data.X = x;
             //draw_data.Y = y;
@@ -125,13 +127,13 @@ namespace Vivid.Draw
             Draw_Z += 0.002f;
         }
 
-        public static void DrawImg2D(float[] xc, float[] yc, Tex.Tex2D img, Vector4 col,float z=1.0f)
+        public static void DrawImg2D(float[] xc, float[] yc, Tex.Tex2D img,Tex.Tex2D norm, Vector4 col,float z=1.0f)
         {
 
             if (!begun) return;
             var draw_list = GetDrawList(img);
 
-            draw_list.AddDraw(xc, yc,z, img, col);
+            draw_list.AddDraw(xc, yc,z, img,norm, col);
 
             Draw_Z += 0.0002f;
 
@@ -182,6 +184,13 @@ namespace Vivid.Draw
                 int int_i = 0;
 
                 draw_list.Data[0].Img2D.Bind(0);
+                if (draw_list.Data[0].Norm2D != null)
+                {
+                    draw_list.Data[0].Norm2D.Bind(2);
+                }
+                else{
+
+                }
 
                 foreach (var data in draw_list.Data)
                 {

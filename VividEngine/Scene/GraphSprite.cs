@@ -3,11 +3,7 @@
     public class GraphSprite : GraphNode
     {
 
-        public Tex.Tex2D NormalMap
-        {
-            get;
-            set;
-        }
+      
 
         public static Tex.Tex2D NormalBlank=null;
 

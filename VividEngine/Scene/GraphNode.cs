@@ -39,6 +39,12 @@ namespace Vivid.Scene
             set;
         }
 
+        public Tex.Tex2D NormalMap
+        {
+            get;
+            set;
+        }
+
         public float ShadowPlane
         {
             get;

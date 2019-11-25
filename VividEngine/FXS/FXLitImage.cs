@@ -139,6 +139,7 @@ namespace Vivid.FXS
 
             SetTex("tDiffuse", 0);
             SetTex("tShadow", 1);
+            SetTex("tNormal", 2);
             SetFloat("lZ", LightZ);
             SetInt("sShadow", isShadowed ? 1 : 0);
             SetVec3("lPos", new OpenTK.Vector3(res.X, res.Y, 0));

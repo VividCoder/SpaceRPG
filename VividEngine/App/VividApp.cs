@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Vivid.Draw;
 using Vivid.State;
+using NLua;
 
 namespace Vivid.App
 {
@@ -186,6 +187,10 @@ namespace Vivid.App
             VSync = VSyncMode.Adaptive;
             Font2.OrchidFont.Init();
             Physics.PhysicsManager.InitSDK();
+            Lua state = new Lua();
+            object res = state.DoString("return 1+1")[0];
+            Console.WriteLine("Returned Version:" + res);
+
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)

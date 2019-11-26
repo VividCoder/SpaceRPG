@@ -46,3 +46,9 @@ C:\Projects\StarRPG\StarRPG\MapEditor\obj\x64\Debug\MapEditor.csprojAssemblyRefe
 C:\Projects\StarRPG\StarRPG\MapEditor\obj\x64\Debug\MapEditor.csproj.CopyComplete
 C:\Projects\StarRPG\StarRPG\MapEditor\obj\x64\Debug\MapEditor.exe
 C:\Projects\StarRPG\StarRPG\MapEditor\obj\x64\Debug\MapEditor.pdb
+C:\Projects\StarRPG\StarRPG\MapEditor\bin\x64\Debug\lua53.dll
+C:\Projects\StarRPG\StarRPG\MapEditor\bin\x64\Debug\liblua53.dylib
+C:\Projects\StarRPG\StarRPG\MapEditor\bin\x64\Debug\liblua53.so
+C:\Projects\StarRPG\StarRPG\MapEditor\bin\x64\Debug\NLua.dll
+C:\Projects\StarRPG\StarRPG\MapEditor\bin\x64\Debug\KeraLua.dll
+C:\Projects\StarRPG\StarRPG\MapEditor\bin\x64\Debug\KeraLua.xml

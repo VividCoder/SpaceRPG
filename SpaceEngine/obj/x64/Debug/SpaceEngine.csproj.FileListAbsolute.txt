@@ -43,3 +43,9 @@ C:\Projects\StarRPG\SpaceEngine\obj\x64\Debug\SpaceEngine.csprojAssemblyReferenc
 C:\Projects\StarRPG\SpaceEngine\obj\x64\Debug\SpaceEngine.csproj.CopyComplete
 C:\Projects\StarRPG\SpaceEngine\obj\x64\Debug\SpaceEngine.dll
 C:\Projects\StarRPG\SpaceEngine\obj\x64\Debug\SpaceEngine.pdb
+C:\Projects\StarRPG\SpaceEngine\bin\x64\Debug\lua53.dll
+C:\Projects\StarRPG\SpaceEngine\bin\x64\Debug\liblua53.dylib
+C:\Projects\StarRPG\SpaceEngine\bin\x64\Debug\liblua53.so
+C:\Projects\StarRPG\SpaceEngine\bin\x64\Debug\NLua.dll
+C:\Projects\StarRPG\SpaceEngine\bin\x64\Debug\KeraLua.dll
+C:\Projects\StarRPG\SpaceEngine\bin\x64\Debug\KeraLua.xml

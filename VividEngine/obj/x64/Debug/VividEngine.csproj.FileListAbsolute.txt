@@ -40,3 +40,9 @@ C:\Projects\StarRPG\VividEngine\obj\x64\Debug\VividEngine.csproj.CopyComplete
 C:\Projects\StarRPG\VividEngine\obj\x64\Debug\VividEngine.dll
 C:\Projects\StarRPG\VividEngine\obj\x64\Debug\VividEngine.pdb
 C:\Projects\StarRPG\VividEngine\obj\x64\Debug\VividEngine.csprojAssemblyReference.cache
+C:\Projects\StarRPG\VividEngine\bin\x64\Debug\lua53.dll
+C:\Projects\StarRPG\VividEngine\bin\x64\Debug\liblua53.dylib
+C:\Projects\StarRPG\VividEngine\bin\x64\Debug\liblua53.so
+C:\Projects\StarRPG\VividEngine\bin\x64\Debug\KeraLua.dll
+C:\Projects\StarRPG\VividEngine\bin\x64\Debug\NLua.dll
+C:\Projects\StarRPG\VividEngine\bin\x64\Debug\KeraLua.xml
